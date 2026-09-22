@@ -114,15 +114,16 @@ input{-webkit-appearance:none;appearance:none}
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text3)}
 .empty i{font-size:3rem;opacity:.2;margin-bottom:14px;display:block}
 
+/* Desktop cart */
 .cart{flex:1;min-width:340px;max-width:440px;display:flex;flex-direction:column;background:var(--bg2);border-left:1px solid var(--border)}
-.cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px}
+.cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px;flex-shrink:0}
 .cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
 .cart-tab.active{background:var(--accentS);color:var(--accentB)}
 .cart-tab:active{transform:scale(.96)}
 .cart-pane{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column}
 .cart-pane.active{display:flex}
 
-.cart-items{flex:1;overflow-y:auto;padding:10px 12px;-webkit-overflow-scrolling:touch}
+.cart-items{flex:1;overflow-y:auto;padding:10px 12px;-webkit-overflow-scrolling:touch;min-height:0}
 .cart-items::-webkit-scrollbar{width:4px}
 .cart-items::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 .cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text3);gap:10px;padding:30px 20px;text-align:center}
@@ -155,14 +156,14 @@ input{-webkit-appearance:none;appearance:none}
 .modal.open{opacity:1;pointer-events:auto}
 .m-content{width:100%;max-width:540px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-xl) var(--r-xl) 0 0;display:flex;flex-direction:column;max-height:94dvh;transform:translateY(24px);transition:transform .25s;padding-bottom:var(--safe-bottom)}
 .modal.open .m-content{transform:translateY(0)}
-.m-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);background:var(--bg3);border-radius:var(--r-xl) var(--r-xl) 0 0;position:relative}
+.m-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);background:var(--bg3);border-radius:var(--r-xl) var(--r-xl) 0 0;position:relative;flex-shrink:0}
 .m-hdr::before{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:44px;height:4px;background:var(--border2);border-radius:4px}
 .m-hdr h3{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:8px;margin-top:8px}
 .m-hdr h3 i{color:var(--accentB)}
 .m-close{width:38px;height:38px;border-radius:50%;background:var(--bg4);color:var(--text2);font-size:1rem;display:flex;align-items:center;justify-content:center;margin-top:8px;padding:0}
 .m-close:active{background:rgba(239,68,68,.2);color:var(--danger)}
-.m-body{padding:18px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;flex:1}
-.m-foot{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--bg3)}
+.m-body{padding:18px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;flex:1;min-height:0}
+.m-foot{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--bg3);flex-shrink:0}
 .m-foot button{flex:1;padding:15px;border-radius:var(--r-md);font-size:.92rem;font-weight:800;min-height:48px}
 .m-foot button:active{transform:scale(.97)}
 
@@ -179,7 +180,7 @@ input{-webkit-appearance:none;appearance:none}
 .form-field input:focus,.form-field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accentS)}
 
 .pay-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.pay-opt{padding:16px 8px;background:var(--bg3);border:2px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:8px;min-height:78px;justify-content:center}
+.pay-opt{padding:16px 8px;background:var(--bg3);border:2px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:8px;min-height:78px;justify-content:center;cursor:pointer}
 .pay-opt.active{border-color:var(--accent);background:var(--accentS)}
 .pay-opt.active.mpesa{border-color:var(--mpesa);background:rgba(0,166,81,.12)}
 .pay-opt i{font-size:1.5rem;color:var(--text2)}
@@ -232,7 +233,7 @@ input{-webkit-appearance:none;appearance:none}
 .receipt .row.total{font-weight:800;font-size:.98rem;margin-top:6px;padding-top:6px;border-top:2px solid #000}
 
 .action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.action-card{padding:18px 12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.action-card{padding:18px 12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;cursor:pointer}
 .action-card:active{transform:scale(.96);background:var(--bg4);border-color:var(--accent)}
 .action-card i{font-size:1.5rem;color:var(--accentB);margin-bottom:4px}
 .action-card .t{font-size:.82rem;font-weight:800}
@@ -241,7 +242,7 @@ input{-webkit-appearance:none;appearance:none}
 .action-card.mpesa i{color:var(--mpesa-light)}
 
 .pin-dot{width:18px;height:18px;border-radius:50%;background:var(--bg3);border:2px solid var(--border)}
-.pin-key{padding:20px 8px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:1.4rem;font-weight:800;min-height:60px;display:flex;align-items:center;justify-content:center}
+.pin-key{padding:20px 8px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:1.4rem;font-weight:800;min-height:60px;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .pin-key:active{background:var(--accent);color:#fff;transform:scale(.94)}
 
 .sale-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);cursor:pointer;margin-bottom:8px}
@@ -265,7 +266,7 @@ input{-webkit-appearance:none;appearance:none}
 .profile-info p{font-size:.8rem;color:var(--text3);word-break:break-word}
 .profile-info .role{display:inline-block;margin-top:8px;font-size:.68rem;color:var(--accentB);text-transform:uppercase;letter-spacing:1.2px;font-weight:800;padding:3px 10px;background:var(--accentS);border-radius:100px}
 .profile-actions{display:flex;flex-direction:column;gap:10px}
-.profile-btn{display:flex;align-items:center;gap:14px;padding:16px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:.92rem;font-weight:700;color:var(--text);text-align:left}
+.profile-btn{display:flex;align-items:center;gap:14px;padding:16px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:.92rem;font-weight:700;color:var(--text);text-align:left;cursor:pointer}
 .profile-btn:active{background:var(--bg3);transform:scale(.98)}
 .profile-btn > i:first-child{width:36px;height:36px;border-radius:10px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--accentB);flex-shrink:0}
 .profile-btn.danger{color:var(--danger)}
@@ -277,37 +278,37 @@ input{-webkit-appearance:none;appearance:none}
 
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-h-total);background:rgba(10,21,36,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:100;padding-bottom:var(--safe-bottom)}
 .bottom-nav-inner{display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
-.bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--text3);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;position:relative;padding:0;background:transparent;min-width:0}
+.bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--text3);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;position:relative;padding:0;background:transparent;min-width:0;cursor:pointer}
 .bnav-item i{font-size:1.15rem;transition:transform .2s,color .2s}
 .bnav-item.active{color:var(--accentB)}
 .bnav-item.active i{transform:scale(1.1)}
 .bnav-item:active i{transform:scale(.9)}
 .bnav-item .bnav-badge{position:absolute;top:8px;right:calc(50% - 22px);background:var(--accent);color:#fff;font-size:.58rem;font-weight:900;padding:1px 5px;border-radius:10px;min-width:16px;text-align:center;line-height:1.4}
-.bnav-item .bnav-badge.warn{background:var(--warning);color:#000}
 .bnav-item.mpesa.active{color:var(--mpesa-light)}
 .bnav-item.mpesa .bnav-badge{background:var(--mpesa)}
-.bnav-item.mpesa .bnav-badge.alert{background:var(--danger);animation:bnav-pulse 1.5s infinite}
-@keyframes bnav-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
 .cart-fab{display:none;position:fixed;right:16px;bottom:calc(var(--nav-h-total) + 16px);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1.4rem;box-shadow:0 8px 24px rgba(59,130,246,.5),0 4px 12px rgba(0,0,0,.4);z-index:99;align-items:center;justify-content:center;padding:0;transition:transform .2s,box-shadow .2s}
 .cart-fab:active{transform:scale(.92);box-shadow:0 4px 12px rgba(59,130,246,.4)}
-.cart-fab .fab-badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:900;padding:3px 8px;border-radius:100px;min-width:24px;text-align:center;border:2px solid var(--bg);animation:fab-bounce .3s}
-@keyframes fab-bounce{0%{transform:scale(.5)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.cart-fab .fab-badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:900;padding:3px 8px;border-radius:100px;min-width:24px;text-align:center;border:2px solid var(--bg)}
 .cart-fab.pulse{animation:fab-pulse .4s}
 @keyframes fab-pulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
 
-.cart-sheet{display:none;position:fixed;left:0;right:0;bottom:0;top:8vh;background:var(--bg2);border-top-left-radius:var(--r-xl);border-top-right-radius:var(--r-xl);border-top:1px solid var(--border2);z-index:200;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);flex-direction:column;max-height:92vh}
+/* Mobile cart sheet */
+.cart-sheet{display:none;position:fixed;left:0;right:0;bottom:0;top:6vh;background:var(--bg2);border-top-left-radius:var(--r-xl);border-top-right-radius:var(--r-xl);border-top:1px solid var(--border2);z-index:200;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);flex-direction:column;max-height:94vh}
 .cart-sheet.open{transform:translateY(0)}
-.cart-sheet .sheet-handle{display:flex;justify-content:center;padding:10px 0 6px;flex-shrink:0;cursor:grab}
+.cart-sheet .sheet-handle{display:flex;justify-content:center;padding:10px 0 6px;flex-shrink:0;cursor:grab;touch-action:none}
 .cart-sheet .sheet-handle::before{content:'';width:44px;height:4px;background:var(--border2);border-radius:4px}
 .cart-sheet .sheet-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 18px 12px;flex-shrink:0}
 .cart-sheet .sheet-hdr h3{font-size:1.05rem;font-weight:800;display:flex;align-items:center;gap:8px}
 .cart-sheet .sheet-hdr h3 i{color:var(--accentB)}
 .cart-sheet .sheet-hdr .count{background:var(--accent);color:#fff;padding:2px 10px;border-radius:100px;font-size:.72rem;font-weight:900;margin-left:6px}
-.cart-sheet .sheet-close{width:36px;height:36px;border-radius:50%;background:var(--bg3);color:var(--text2);font-size:.95rem;display:flex;align-items:center;justify-content:center;padding:0}
+.cart-sheet .sheet-close{width:36px;height:36px;border-radius:50%;background:var(--bg3);color:var(--text2);font-size:.95rem;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
 .cart-sheet .sheet-close:active{background:var(--bg4);color:var(--danger)}
-.cart-sheet-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:199;opacity:0;transition:opacity .3s}
-.cart-sheet-backdrop.open{opacity:1}
+.cart-sheet .cart-tabs{border-top:1px solid var(--border)}
+.cart-sheet .cart-pane.active{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+.cart-sheet .cart-items{flex:1;overflow-y:auto;min-height:0}
+.cart-sheet-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:199;opacity:0;transition:opacity .3s;pointer-events:none}
+.cart-sheet-backdrop.open{opacity:1;pointer-events:auto}
 
 .toasts{position:fixed;top:calc(14px + var(--safe-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);padding:0 16px;width:100%;align-items:center}
 .toast{background:var(--bg4);border:1.5px solid var(--border2);border-left:4px solid var(--accent);border-radius:var(--r-md);padding:13px 16px;color:var(--text);font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:auto;max-width:100%}
@@ -365,7 +366,7 @@ input{-webkit-appearance:none;appearance:none}
 @media print{
   body{background:#fff !important}
   .receipt{box-shadow:none;border-radius:0;padding:12px}
-  .modal,.toasts,.offline-bar,.bottom-nav,.cart-fab,.cart-sheet{display:none !important}
+  .modal,.toasts,.offline-bar,.bottom-nav,.cart-fab,.cart-sheet,.cart-sheet-backdrop{display:none !important}
   #receiptBody .receipt{display:block !important}
 }
 </style>
@@ -377,7 +378,7 @@ input{-webkit-appearance:none;appearance:none}
 
 <script type="module">
 /* ============================================================
-   ElectroPOS · Staff Terminal — Popup-First Mobile Auth
+   ElectroPOS · Staff Terminal — Fixed Features
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -428,7 +429,7 @@ function show(id){addClass(id, 'open');}
 function hide(id){removeClass(id, 'open');}
 
 /* ============================================================
-   MOBILE + STORAGE HELPERS
+   MOBILE HELPERS
    ============================================================ */
 function isMobileDevice(){
   const ua = navigator.userAgent || '';
@@ -436,18 +437,6 @@ function isMobileDevice(){
   const touchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   const smallScreen = window.innerWidth < 900;
   return [uaMobile, touchDevice, smallScreen].filter(Boolean).length >= 2;
-}
-
-/* Test if popups are usable right now (not blocked) */
-function canUsePopup(){
-  try {
-    const w = window.open('', '_blank', 'width=1,height=1,top=0,left=0');
-    if (!w || w.closed || typeof w.closed === 'undefined') return false;
-    try { w.close(); } catch(e) {}
-    return true;
-  } catch (e) {
-    return false;
-  }
 }
 
 function isStorageWorking(type){
@@ -503,9 +492,7 @@ try {
   throw e;
 }
 
-/* ============================================================
-   REDIRECT RESULT RESOLVER — cleans up "missing initial state"
-   ============================================================ */
+/* Redirect result resolver */
 (async () => {
   try {
     await pickBestPersistence();
@@ -513,25 +500,18 @@ try {
     if (result && result.user) {
       console.log('✅ Redirect resolved:', result.user.email);
       clearAuthIntent();
-    } else {
-      if (hasAuthIntent()) {
-        console.warn('⚠️ Auth intent present but no result — clearing');
-        clearAuthIntent();
-        if (window.location.hash && window.location.hash.includes('firebase')) {
-          window.history.replaceState({}, '', window.location.pathname + window.location.search);
-        }
+    } else if (hasAuthIntent()) {
+      console.warn('⚠️ Auth intent present but no result — clearing');
+      clearAuthIntent();
+      if (window.location.hash && window.location.hash.includes('firebase')) {
+        window.history.replaceState({}, '', window.location.pathname + window.location.search);
       }
     }
   } catch (e) {
-    console.warn('[Auth] getRedirectResult error:', e.code, e.message);
     if (e.code === 'auth/argument-error' ||
-        (e.message && (e.message.includes('missing initial state') ||
-                       e.message.includes('sessionStorage')))) {
-      console.log('🔧 Recovering from missing initial state');
+        (e.message && (e.message.includes('missing initial state') || e.message.includes('sessionStorage')))) {
       clearAuthIntent();
-      if (window.location.hash) {
-        window.history.replaceState({}, '', window.location.pathname + window.location.search);
-      }
+      if (window.location.hash) window.history.replaceState({}, '', window.location.pathname + window.location.search);
     }
   }
 })();
@@ -569,7 +549,7 @@ let pinBuffer = '';
 let pinCallback = null;
 
 let activeTab = 'products';
-let cartSheetOpen = false;
+let sheetTab = 'cart';
 
 const CART_KEY = 'electropos_cart';
 const FAV_KEY = 'electro_favorites';
@@ -602,9 +582,7 @@ function toast(msg, type='info', duration=2400, showUndo=false){
   }, duration);
 }
 
-/* ============================================================
-   CART MATH
-   ============================================================ */
+/* CART MATH */
 function cartSubtotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0);}
 function cartTax(){return cartSubtotal()*VAT_RATE;}
 function cartTotal(){return cartSubtotal()+cartTax();}
@@ -632,7 +610,6 @@ function loadCart(){
 function renderLogin(errMsg=''){
   const isMobile = isMobileDevice();
   const storageOk = isStorageWorking('local') || isStorageWorking('session');
-  const popupOk = canUsePopup();
   const intent = hasAuthIntent();
 
   document.getElementById('app').innerHTML = `
@@ -648,9 +625,7 @@ function renderLogin(errMsg=''){
         </button>
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:10px;font-size:.7rem;color:var(--text3);text-align:center;line-height:1.6;margin-top:8px">
           <strong style="color:var(--accentB)">Mobile:</strong> ${isMobile?'✅':'—'} &nbsp;
-          <strong style="color:var(--accentB)">Storage:</strong> ${storageOk?'✅':'⚠️'} &nbsp;
-          <strong style="color:var(--accentB)">Popup:</strong> ${popupOk?'✅':'🚫'} &nbsp;
-          <strong style="color:var(--accentB)">Method:</strong> ${popupOk?'popup':'redirect'}
+          <strong style="color:var(--accentB)">Storage:</strong> ${storageOk?'✅':'⚠️'}
           ${intent ? '<br><span style="color:var(--warning)">⚠️ Previous sign-in interrupted — tap Retry</span>' : ''}
         </div>
       </div>
@@ -666,7 +641,7 @@ function renderLogin(errMsg=''){
     } catch (err) {
       console.error('Sign-in error:', err);
       const map = {
-        'auth/popup-blocked':'Popup blocked — allow popups for this site in browser settings',
+        'auth/popup-blocked':'Popup blocked — allow popups for this site',
         'auth/popup-closed-by-user':'Sign-in cancelled',
         'auth/cancelled-popup-request':'Sign-in cancelled',
         'auth/unauthorized-domain':'Domain not authorized in Firebase Console',
@@ -683,65 +658,59 @@ function renderLogin(errMsg=''){
   };
 }
 
-/* 🔑 POPUP-FIRST SIGN-IN — bypasses sessionStorage wipe on mobile */
+/* ============================================================
+   SIGN-IN — popup first, redirect fallback
+   ============================================================ */
 async function doGoogleSignIn(){
   await pickBestPersistence();
-
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
+  const isMobile = isMobileDevice();
 
-  const popupOk = canUsePopup();
-  console.log('🔐 Popup available:', popupOk);
-
-  // PRIORITY 1: Popup — keeps everything in the same browsing context
-  if (popupOk) {
+  // On mobile, use popup first (avoids sessionStorage wipe). Redirect is last resort.
+  if (isMobile) {
     try {
-      console.log('🔵 Attempting popup sign-in');
+      console.log('📱 Mobile → attempting popup');
       await signInWithPopup(auth, provider);
       clearAuthIntent();
-      console.log('✅ Popup sign-in succeeded');
+      console.log('✅ Popup succeeded');
       return;
     } catch (err) {
-      console.warn('Popup error:', err.code, err.message);
-
-      // User cancelled → don't retry
-      if (err.code === 'auth/popup-closed-by-user' ||
-          err.code === 'auth/cancelled-popup-request') {
+      console.warn('Popup error on mobile:', err.code);
+      if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') {
         throw err;
       }
-
-      // Popup blocked → fall back to redirect
-      if (['auth/popup-blocked', 'auth/operation-not-supported-in-this-environment'].includes(err.code)) {
-        console.log('⚠️ Popup blocked → falling back to redirect');
-        markAuthIntent();
-        try { await setPersistence(auth, browserSessionPersistence); } catch(e){}
-        await signInWithRedirect(auth, provider);
-        return;
-      }
-
-      // "missing initial state" from previous bad redirect → retry popup fresh
       if (err.code === 'auth/argument-error' ||
           (err.message && err.message.includes('missing initial state'))) {
-        console.log('🔧 Clearing stale state, retrying popup');
         clearAuthIntent();
-        if (window.location.hash) {
-          window.history.replaceState({}, '', window.location.pathname + window.location.search);
-        }
+        if (window.location.hash) window.history.replaceState({}, '', window.location.pathname + window.location.search);
         const p2 = new GoogleAuthProvider();
         p2.setCustomParameters({ prompt: 'select_account' });
         await signInWithPopup(auth, p2);
         return;
       }
-
-      throw err;
+      // Fall back to redirect
+      console.log('⚠️ Falling back to redirect');
+      markAuthIntent();
+      try { await setPersistence(auth, browserSessionPersistence); } catch(e){}
+      await signInWithRedirect(auth, provider);
+      return;
     }
   }
 
-  // PRIORITY 2: Popup unavailable → redirect fallback
-  console.log('📱 Popup unavailable → using redirect');
-  markAuthIntent();
-  try { await setPersistence(auth, browserSessionPersistence); } catch(e){}
-  await signInWithRedirect(auth, provider);
+  // Desktop: popup first
+  try {
+    await signInWithPopup(auth, provider);
+    clearAuthIntent();
+  } catch (err) {
+    if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') throw err;
+    if (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment') {
+      markAuthIntent();
+      await signInWithRedirect(auth, provider);
+      return;
+    }
+    throw err;
+  }
 }
 
 /* ============================================================
@@ -852,11 +821,11 @@ function renderUI(){
         <h3><i class="fas fa-shopping-cart"></i> Cart <span class="count" id="sheetCount">0</span></h3>
         <button class="sheet-close" id="sheetClose"><i class="fas fa-xmark"></i></button>
       </div>
-      <div class="cart-tabs" style="border-top:1px solid var(--border)">
+      <div class="cart-tabs">
         <button class="cart-tab active" data-tab="cart"><i class="fas fa-shopping-cart"></i> Cart</button>
         <button class="cart-tab" data-tab="recent"><i class="fas fa-clock-rotate-left"></i> Recent</button>
       </div>
-      <div class="cart-pane active" id="sheetPaneCart" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+      <div class="cart-pane active" id="sheetPaneCart">
         <div class="cart-items" id="sheetCartItems"></div>
         <div class="cart-foot">
           <div class="summary">
@@ -870,7 +839,7 @@ function renderUI(){
           </div>
         </div>
       </div>
-      <div class="cart-pane" id="sheetPaneRecent" style="display:none;flex:1;overflow-y:auto">
+      <div class="cart-pane" id="sheetPaneRecent">
         <div class="cart-items" id="sheetRecentList"></div>
       </div>
     </div>
@@ -1054,8 +1023,14 @@ function switchTab(tab){
   if (profile) profile.classList.remove('active');
 
   if (tab === 'products') { closeCartSheet(); }
-  else if (tab === 'cart') { openCartSheet('cart'); }
-  else if (tab === 'recent') { openCartSheet('recent'); }
+  else if (tab === 'cart') {
+    switchSheetTab('cart');
+    openCartSheet();
+  }
+  else if (tab === 'recent') {
+    switchSheetTab('recent');
+    openCartSheet();
+  }
   else if (tab === 'profile') {
     if (products) products.classList.add('hidden');
     if (profile) profile.classList.add('active');
@@ -1070,19 +1045,12 @@ function renderProfilePage(){
   if (c) c.textContent = `${recentSales.length} transaction${recentSales.length!==1?'s':''}`;
 }
 
-function openCartSheet(tab){
-  cartSheetOpen = true;
+function openCartSheet(){
   addClass('cartSheetBackdrop', 'open');
   addClass('cartSheet', 'open');
-  if (tab === 'recent') {
-    switchSheetTab('recent');
-    const rbtn = document.querySelector('#cartSheet .cart-tab[data-tab="recent"]');
-    if (rbtn) rbtn.click();
-  }
 }
 
 function closeCartSheet(){
-  cartSheetOpen = false;
   removeClass('cartSheetBackdrop', 'open');
   removeClass('cartSheet', 'open');
   if (activeTab === 'cart' || activeTab === 'recent') {
@@ -1092,11 +1060,12 @@ function closeCartSheet(){
 }
 
 function switchSheetTab(tab){
+  sheetTab = tab;
   document.querySelectorAll('#cartSheet .cart-tab').forEach(x => x.classList.toggle('active', x.dataset.tab === tab));
   const cartPane = document.getElementById('sheetPaneCart');
   const recentPane = document.getElementById('sheetPaneRecent');
-  if (cartPane) cartPane.style.display = tab === 'cart' ? 'flex' : 'none';
-  if (recentPane) recentPane.style.display = tab === 'recent' ? 'flex' : 'none';
+  if (cartPane) cartPane.classList.toggle('active', tab === 'cart');
+  if (recentPane) recentPane.classList.toggle('active', tab === 'recent');
   if (tab === 'recent') renderRecentSales();
 }
 
@@ -1146,6 +1115,7 @@ function wireEvents(){
     renderProducts();
   };
 
+  // Desktop cart tabs
   document.querySelectorAll('#cartPanel .cart-tab').forEach(tab => {
     tab.onclick = () => {
       const t = tab.dataset.tab;
@@ -1155,10 +1125,12 @@ function wireEvents(){
     };
   });
 
+  // Sheet cart tabs
   document.querySelectorAll('#cartSheet .cart-tab').forEach(tab => {
     tab.onclick = () => switchSheetTab(tab.dataset.tab);
   });
 
+  // Bottom nav
   document.querySelectorAll('.bnav-item').forEach(btn => {
     btn.onclick = () => switchTab(btn.dataset.nav);
   });
@@ -1171,6 +1143,7 @@ function wireEvents(){
   const sheetBackdrop = document.getElementById('cartSheetBackdrop');
   if (sheetBackdrop) sheetBackdrop.onclick = closeCartSheet;
 
+  // Drag handle
   const sheetHandle = document.getElementById('sheetHandle');
   const cartSheet = document.getElementById('cartSheet');
   if (sheetHandle && cartSheet) {
@@ -1317,6 +1290,7 @@ function wireEvents(){
   const mpesaTxAmount = document.getElementById('mpesaTxAmount');
   if (mpesaTxAmount) mpesaTxAmount.oninput = updateMpesaTxPreview;
 
+  // Modal backdrop tap to close — only close if not cart sheet
   document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
 
   window.addEventListener('online', checkNetwork);
