@@ -19,6 +19,7 @@
   --border:rgba(59,130,246,.14);--border2:rgba(59,130,246,.32);
   --accent:#3b82f6;--accent2:#2563eb;--accentB:#60a5fa;--accentS:rgba(59,130,246,.14);--glow:rgba(59,130,246,.5);
   --success:#10b981;--warning:#f59e0b;--danger:#ef4444;--purple:#8b5cf6;
+  --mpesa:#00a651;--mpesa-light:#4ade80;--mpesa-dark:#007a3d;
   --text:#fff;--text2:#a8b8d0;--text3:#64748b;
   --r-sm:12px;--r-md:16px;--r-lg:22px;--r-xl:28px;
   --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
@@ -60,6 +61,11 @@ input{-webkit-appearance:none;appearance:none}
 .hdr-logo{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff;flex-shrink:0}
 .hdr-title h1{font-size:.98rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hdr-title span{font-size:.6rem;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.hdr-actions{display:flex;align-items:center;gap:6px}
+.hdr-icon-btn{width:42px;height:42px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:.95rem;display:flex;align-items:center;justify-content:center;padding:0;position:relative}
+.hdr-icon-btn:active{background:var(--bg4);transform:scale(.94)}
+.hdr-icon-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.62rem;font-weight:900;padding:2px 6px;border-radius:10px;min-width:18px;text-align:center}
+.hdr-icon-btn.mpesa{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,166,81,.05));border-color:rgba(0,166,81,.35);color:var(--mpesa-light)}
 .user-chip{display:flex;align-items:center;gap:6px;background:var(--bg3);padding:4px 10px 4px 4px;border-radius:100px;border:1px solid var(--border);height:42px;cursor:pointer}
 .user-chip:active{background:var(--bg4);transform:scale(.97)}
 .user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;overflow:hidden}
@@ -172,6 +178,7 @@ input{-webkit-appearance:none;appearance:none}
 .bd{background:rgba(239,68,68,.15);color:var(--danger);border:1.5px solid rgba(239,68,68,.35)}
 .bok{background:linear-gradient(135deg,var(--success),#059669);color:#fff;font-weight:900}
 .bok:disabled{opacity:.5}
+.bmpesa{background:linear-gradient(135deg,var(--mpesa),var(--mpesa-dark));color:#fff;font-weight:900}
 
 .form-field{position:relative;margin-top:6px}
 .form-field label{position:absolute;top:-8px;left:12px;background:var(--bg2);padding:0 6px;font-size:.66rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:1px}
@@ -181,10 +188,13 @@ input{-webkit-appearance:none;appearance:none}
 .pay-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .pay-opt{padding:16px 8px;background:var(--bg3);border:2px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:8px;min-height:78px;justify-content:center}
 .pay-opt.active{border-color:var(--accent);background:var(--accentS)}
+.pay-opt.active.mpesa{border-color:var(--mpesa);background:rgba(0,166,81,.12)}
 .pay-opt i{font-size:1.5rem;color:var(--text2)}
 .pay-opt.active i{color:var(--accentB)}
+.pay-opt.active.mpesa i{color:var(--mpesa-light)}
 .pay-opt span{font-size:.78rem;font-weight:800;color:var(--text2)}
 .pay-opt.active span{color:var(--accentB)}
+.pay-opt.active.mpesa span{color:var(--mpesa-light)}
 
 .cash-box{background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);padding:14px}
 .cash-amt{text-align:center;padding:12px;background:var(--bg4);border-radius:var(--r-md);margin-bottom:10px}
@@ -198,6 +208,16 @@ input{-webkit-appearance:none;appearance:none}
 .change-disp strong{font-size:1.7rem;font-weight:900;color:var(--success);font-variant-numeric:tabular-nums}
 .change-disp.neg strong{color:var(--danger)}
 .change-disp.neg{background:rgba(239,68,68,.1)}
+
+/* M-Pesa payment panel */
+.mpesa-panel{background:linear-gradient(135deg,rgba(0,166,81,.12),rgba(0,166,81,.03));border:1.5px solid rgba(0,166,81,.35);border-radius:var(--r-md);padding:16px}
+.mpesa-panel .mp-hdr{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.mpesa-panel .mp-hdr i{color:var(--mpesa-light);font-size:1.1rem}
+.mpesa-panel .mp-hdr span{font-size:.85rem;font-weight:800;color:var(--mpesa-light);text-transform:uppercase;letter-spacing:1px}
+.mpesa-float-info{display:flex;justify-content:space-between;padding:10px 12px;background:rgba(0,0,0,.2);border-radius:var(--r-sm);font-size:.78rem;margin-bottom:10px}
+.mpesa-float-info .lbl{color:var(--text3);font-weight:700}
+.mpesa-float-info .val{color:var(--mpesa-light);font-weight:900;font-variant-numeric:tabular-nums}
+.mpesa-float-info.warn .val{color:var(--danger)}
 
 .scan-view{position:relative;width:100%;aspect-ratio:4/3;background:#000;border-radius:var(--r-lg);overflow:hidden;border:2px solid var(--accent)}
 .scan-view video{width:100%;height:100%;object-fit:cover}
@@ -219,7 +239,7 @@ input{-webkit-appearance:none;appearance:none}
 .receipt .row.hdr{font-weight:800;text-transform:uppercase;font-size:.7rem}
 .receipt .row.total{font-weight:800;font-size:.98rem;margin-top:6px;padding-top:6px;border-top:2px solid #000}
 
-/* MENU / ACTION CARDS */
+/* ACTION CARDS */
 .action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .action-card{padding:18px 12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
 .action-card:active{transform:scale(.96);background:var(--bg4);border-color:var(--accent)}
@@ -227,20 +247,45 @@ input{-webkit-appearance:none;appearance:none}
 .action-card .t{font-size:.82rem;font-weight:800}
 .action-card .s{font-size:.68rem;color:var(--text3);font-weight:600}
 .action-card.danger i{color:var(--danger)}
+.action-card.mpesa i{color:var(--mpesa-light)}
 
 .pin-dot{width:18px;height:18px;border-radius:50%;background:var(--bg3);border:2px solid var(--border)}
 .pin-key{padding:20px 8px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:1.4rem;font-weight:800;min-height:60px;display:flex;align-items:center;justify-content:center}
 .pin-key:active{background:var(--accent);color:#fff;transform:scale(.94)}
+
+/* RECENT SALES LIST */
+.recent-sales{display:flex;flex-direction:column;gap:8px}
+.sale-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);cursor:pointer}
+.sale-row:active{background:var(--bg4);transform:scale(.98)}
+.sale-icon{width:40px;height:40px;border-radius:10px;background:var(--accentS);display:flex;align-items:center;justify-content:center;color:var(--accentB);font-size:.95rem;flex-shrink:0}
+.sale-info{flex:1;min-width:0}
+.sale-info h4{font-size:.85rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sale-info p{font-size:.7rem;color:var(--text3);font-weight:600}
+.sale-amount{font-size:.95rem;font-weight:900;color:var(--accentB);font-variant-numeric:tabular-nums;text-align:right}
+.sale-amount small{display:block;font-size:.65rem;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.sale-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:100px;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.sale-pill.cash{background:rgba(16,185,129,.15);color:var(--success)}
+.sale-pill.mpesa{background:rgba(0,166,81,.15);color:var(--mpesa-light)}
+
+/* TAB BAR at bottom of cart */
+.cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px}
+.cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
+.cart-tab.active{background:var(--accentS);color:var(--accentB)}
+.cart-tab:active{transform:scale(.96)}
+.cart-pane{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cart-pane.active{display:flex;flex-direction:column}
 
 .toasts{position:fixed;top:calc(14px + var(--safe-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);padding:0 16px;width:100%;align-items:center}
 .toast{background:var(--bg4);border:1.5px solid var(--border2);border-left:4px solid var(--accent);border-radius:var(--r-md);padding:13px 16px;color:var(--text);font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:auto;max-width:100%}
 .toast.success{border-left-color:var(--success)}.toast.success i{color:var(--success)}
 .toast.error{border-left-color:var(--danger)}.toast.error i{color:var(--danger)}
 .toast.warning{border-left-color:var(--warning)}.toast.warning i{color:var(--warning)}
+.toast.mpesa{border-left-color:var(--mpesa)}.toast.mpesa i{color:var(--mpesa-light)}
 .toast .undo{margin-left:auto;background:var(--bg3);border:1px solid var(--border);color:var(--accentB);padding:5px 10px;border-radius:var(--r-sm);font-weight:800;font-size:.75rem}
 
 .offline-bar{position:fixed;top:0;left:0;right:0;background:var(--warning);color:#000;padding:6px 12px;padding-top:calc(6px + var(--safe-top));text-align:center;font-size:.8rem;font-weight:800;z-index:9998;display:none}
 .offline-bar.show{display:block}
+.offline-bar i{margin-right:6px}
 
 @media(max-width:900px){
   .main{flex-direction:column}
@@ -269,17 +314,15 @@ input{-webkit-appearance:none;appearance:none}
 
 <script type="module">
 /* ============================================================
-   ElectroPOS · Staff Terminal
+   ElectroPOS · Staff Terminal (Synced with Admin)
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
   getRedirectResult, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, push, set, onValue, update, remove, get, serverTimestamp }
+import { getDatabase, ref, push, set, onValue, update, remove, get, serverTimestamp, runTransaction }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-/*  FIREBASE CONFIG */
 
 const firebaseConfig = {
   apiKey: "AIzaSyDh3pTqEkU_2G2MpQtDtvZQc1vXM6tvMFo",
@@ -295,9 +338,7 @@ const firebaseConfig = {
 const MANAGER_PIN = '2387';
 const VAT_RATE = 0.16;
 
-/* ============================================================
-   STATE
-   ============================================================ */
+/* ---- State ---- */
 let currentUser = null;
 let allProducts = [];
 let activeCategory = 'all';
@@ -306,8 +347,13 @@ let cart = [];
 let favorites = [];
 let selectedPayment = 'cash';
 let cashReceived = 0;
+let mpesaRef = '';
+let mpesaPhone = '';
+let mpesaFloatBalance = 0;
+let mpesaFloatLowThreshold = 5000;
 let activeProductMenu = null;
 let scannerTarget = 'cart';
+let recentSales = [];
 
 let scanner = null;
 let scannerActive = false;
@@ -321,14 +367,13 @@ let lastRemoved = null;
 let shellRendered = false;
 let pinBuffer = '';
 let pinCallback = null;
+let cartTab = 'cart'; // 'cart' | 'recent'
 
 const CART_KEY = 'electropos_cart';
 const FAV_KEY = 'electro_favorites';
 const OFFLINE_KEY = 'electro_offline_queue';
 
-/* ============================================================
-   HELPERS
-   ============================================================ */
+/* ---- Helpers ---- */
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function money(n){
   const num = Number(n) || 0;
@@ -336,14 +381,21 @@ function money(n){
   const parts = fixed.split('.');
   return 'KSh ' + parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + parts[1];
 }
+function shortMoney(n){
+  const num = Number(n) || 0;
+  if (Math.abs(num) >= 1000000) return 'KSh ' + (num/1000000).toFixed(2) + 'M';
+  if (Math.abs(num) >= 1000) return 'KSh ' + (num/1000).toFixed(1) + 'K';
+  return 'KSh ' + num.toFixed(2);
+}
 function initials(n){return (n||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();}
 function iconFor(cat){return {phones:'fa-mobile-alt',laptops:'fa-laptop',audio:'fa-headphones',accessories:'fa-plug'}[cat]||'fa-box';}
 function vibrate(p){if('vibrate' in navigator){try{navigator.vibrate(p);}catch(e){}}}
+function timeAgo(ts){const d=Date.now()-ts;if(d<60000)return'just now';if(d<3600000)return Math.floor(d/60000)+'m';if(d<86400000)return Math.floor(d/3600000)+'h';return Math.floor(d/86400000)+'d';}
 
 function toast(msg, type='info', duration=2400, showUndo=false){
   let c = document.querySelector('.toasts');
   if (!c) { c = document.createElement('div'); c.className = 'toasts'; document.body.appendChild(c); }
-  const icons = {info:'fa-circle-info',success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation'};
+  const icons = {info:'fa-circle-info',success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',mpesa:'fa-mobile-screen'};
   const el = document.createElement('div');
   el.className = 'toast ' + type;
   el.innerHTML = `<i class="fas ${icons[type]||icons.info}"></i><span>${esc(msg)}</span>${showUndo?'<button class="undo">Undo</button>':''}`;
@@ -357,9 +409,7 @@ function toast(msg, type='info', duration=2400, showUndo=false){
   }, duration);
 }
 
-/* ============================================================
-   CART MATH
-   ============================================================ */
+/* ---- Cart math ---- */
 function cartSubtotal() { return cart.reduce((s,i) => s + i.price * i.qty, 0); }
 function cartTax() { return cartSubtotal() * VAT_RATE; }
 function cartTotal() { return cartSubtotal() + cartTax(); }
@@ -368,8 +418,7 @@ function cartCount() { return cart.reduce((s,i) => s + i.qty, 0); }
 function saveCart() {
   try {
     const clean = cart.map(i => ({
-      id: String(i.id),
-      name: String(i.name),
+      id: String(i.id), name: String(i.name),
       price: Number(i.price) || 0,
       icon: String(i.icon || 'fa-box'),
       qty: Math.max(1, parseInt(i.qty) || 1)
@@ -382,24 +431,18 @@ function loadCart() {
     const raw = localStorage.getItem(CART_KEY);
     if (!raw) return;
     const parsed = JSON.parse(raw) || [];
-    // Sanitize every item — drop anything invalid
     cart = parsed
       .filter(i => i && i.id != null && i.id !== '' && typeof i.name === 'string')
       .map(i => ({
-        id: String(i.id),
-        name: String(i.name),
+        id: String(i.id), name: String(i.name),
         price: Number(i.price) || 0,
         icon: String(i.icon || 'fa-box'),
         qty: Math.max(1, parseInt(i.qty) || 1)
       }));
-  } catch (e) {
-    cart = [];
-  }
+  } catch (e) { cart = []; }
 }
 
-/* ============================================================
-   CONFIG CHECK
-   ============================================================ */
+/* ---- Config check ---- */
 (function checkConfig(){
   const errs = [];
   if (!firebaseConfig.apiKey || !firebaseConfig.apiKey.startsWith('AIza')) errs.push('apiKey');
@@ -423,13 +466,13 @@ try {
 }
 
 /* ============================================================
-   LOGIN
+   LOGIN — Mobile-safe with redirect fallback
    ============================================================ */
 function renderLogin(errMsg=''){
   document.getElementById('app').innerHTML = `
     <div class="login-wrap">
       <div class="login-card">
-        
+        <div class="login-icon"><i class="fas fa-cash-register"></i></div>
         <h1>Lemsa_Accessories</h1>
         <p class="sub">Staff Terminal</p>
         <div class="login-err" id="lerr">${esc(errMsg)}</div>
@@ -476,16 +519,22 @@ function renderUI(){
 
     <header class="hdr">
       <div class="hdr-brand">
-        
+        <div class="hdr-logo"><i class="fas fa-cash-register"></i></div>
         <div class="hdr-title">
           <h1>Lemsa_Accessories</h1>
-          <span>Staff</span>
+          <span>Staff · ${esc(currentUser.role||'staff')}</span>
         </div>
       </div>
-      <button class="user-chip" id="userChip">
-        <div class="user-avatar">${avatarHtml}</div>
-        <span>${esc(currentUser.name)}</span>
-      </button>
+      <div class="hdr-actions">
+        <button class="hdr-icon-btn mpesa" id="mpesaBtn" title="M-Pesa Float">
+          <i class="fas fa-mobile-screen"></i>
+          <span class="badge" id="mpesaBadge" style="display:none">!</span>
+        </button>
+        <button class="user-chip" id="userChip">
+          <div class="user-avatar">${avatarHtml}</div>
+          <span>${esc(currentUser.name)}</span>
+        </button>
+      </div>
     </header>
 
     <div class="main">
@@ -510,21 +559,28 @@ function renderUI(){
       </div>
 
       <div class="cart">
-        <div class="cart-hdr">
-          <h3><i class="fas fa-shopping-cart"></i> Cart</h3>
-          <span class="count" id="cartCount">0</span>
+        <div class="cart-tabs">
+          <button class="cart-tab active" data-tab="cart"><i class="fas fa-shopping-cart"></i> Cart <span id="cartTabCount">0</span></button>
+          <button class="cart-tab" data-tab="recent"><i class="fas fa-clock-rotate-left"></i> Recent</button>
         </div>
-        <div class="cart-items" id="cartItems"></div>
-        <div class="cart-foot">
-          <div class="summary">
-            <div class="sumrow"><span>Subtotal</span><span id="sumSub">KSh 0.00</span></div>
-            <div class="sumrow"><span>VAT (16%)</span><span id="sumTax">KSh 0.00</span></div>
-            <div class="sumrow total"><span>Total</span><span id="sumTotal">KSh 0.00</span></div>
+
+        <div class="cart-pane active" id="pane-cart">
+          <div class="cart-items" id="cartItems"></div>
+          <div class="cart-foot">
+            <div class="summary">
+              <div class="sumrow"><span>Subtotal</span><span id="sumSub">KSh 0.00</span></div>
+              <div class="sumrow"><span>VAT (16%)</span><span id="sumTax">KSh 0.00</span></div>
+              <div class="sumrow total"><span>Total</span><span id="sumTotal">KSh 0.00</span></div>
+            </div>
+            <div class="c-actions-row">
+              <button class="act-btn" id="clearCartBtn"><i class="fas fa-trash"></i> Clear</button>
+              <button class="act-btn primary" id="chargeBtn"><i class="fas fa-credit-card"></i> Charge</button>
+            </div>
           </div>
-          <div class="c-actions-row">
-            <button class="act-btn" id="clearCartBtn"><i class="fas fa-trash"></i> Clear</button>
-            <button class="act-btn primary" id="chargeBtn"><i class="fas fa-credit-card"></i> Charge</button>
-          </div>
+        </div>
+
+        <div class="cart-pane" id="pane-recent">
+          <div class="cart-items" id="recentList"></div>
         </div>
       </div>
     </div>
@@ -577,6 +633,23 @@ function renderUI(){
               <div class="change-disp" id="changeBox">
                 <span>Change Due</span>
                 <strong id="changeAmt">KSh 0.00</strong>
+              </div>
+            </div>
+          </div>
+          <div id="mpesaSection" style="display:none">
+            <div class="mpesa-panel">
+              <div class="mp-hdr"><i class="fas fa-mobile-screen"></i><span>M-Pesa Payment</span></div>
+              <div class="mpesa-float-info" id="mpesaFloatInfo">
+                <span class="lbl">Float Balance</span>
+                <span class="val" id="mpesaFloatDisp">KSh 0.00</span>
+              </div>
+              <div class="form-field">
+                <label>M-Pesa Reference / Code</label>
+                <input id="mpesaRefInput" type="text" placeholder="e.g. QK12345678" autocomplete="off">
+              </div>
+              <div class="form-field">
+                <label>Customer Phone (optional)</label>
+                <input id="mpesaPhoneInput" type="tel" placeholder="e.g. 0712345678" autocomplete="off" inputmode="tel">
               </div>
             </div>
           </div>
@@ -713,12 +786,62 @@ function renderUI(){
         </div>
       </div>
     </div>
+
+    <!-- M-PESA FLOAT MODAL -->
+    <div class="modal" id="mpesaModal">
+      <div class="m-content">
+        <div class="m-hdr">
+          <h3><i class="fas fa-mobile-screen"></i> M-Pesa Float</h3>
+          <button class="m-close" id="closeMpesa"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="m-body">
+          <div style="text-align:center;padding:20px;background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,166,81,.05));border:1.5px solid rgba(0,166,81,.35);border-radius:var(--r-lg);margin-bottom:10px">
+            <div style="font-size:.7rem;color:var(--mpesa-light);text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:8px">Available Float</div>
+            <div style="font-size:2.2rem;font-weight:900;color:#fff;font-variant-numeric:tabular-nums;text-shadow:0 4px 20px rgba(0,166,81,.4)" id="mpesaModalBalance">KSh 0.00</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:6px" id="mpesaModalThreshold">Low threshold: KSh 5,000</div>
+          </div>
+          <div class="action-grid">
+            <button class="action-card mpesa" id="mpesaDepositBtn"><i class="fas fa-arrow-down"></i><div class="t">Deposit</div><div class="s">Add to float</div></button>
+            <button class="action-card mpesa" id="mpesaWithdrawBtn"><i class="fas fa-arrow-up"></i><div class="t">Withdraw</div><div class="s">Move to bank</div></button>
+          </div>
+          <div style="font-size:.75rem;color:var(--text3);text-align:center;padding:10px;background:var(--bg3);border-radius:var(--r-md);line-height:1.5">
+            <i class="fas fa-info-circle" style="color:var(--mpesa-light)"></i>
+            M-Pesa payments during sales automatically deduct from this float.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M-PESA TX MODAL -->
+    <div class="modal" id="mpesaTxModal">
+      <div class="m-content">
+        <div class="m-hdr">
+          <h3><i class="fas fa-mobile-screen"></i> <span id="mpesaTxTitle">Float Transaction</span></h3>
+          <button class="m-close" id="closeMpesaTx"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="m-body">
+          <div class="form-field"><label>Amount (KSh)</label><input id="mpesaTxAmount" type="number" step="0.01" min="0" placeholder="0.00" inputmode="decimal"></div>
+          <div class="form-field"><label>Reference / Code</label><input id="mpesaTxRef" type="text" placeholder="e.g. QK12345678" autocomplete="off"></div>
+          <div class="form-field"><label>Notes (optional)</label><input id="mpesaTxNotes" type="text" placeholder="Reason…"></div>
+          <div class="mpesa-float-info" id="mpesaTxPreview" style="display:none">
+            <span class="lbl">After Transaction</span>
+            <span class="val" id="mpesaTxAfter">KSh 0.00</span>
+          </div>
+        </div>
+        <div class="m-foot">
+          <button class="bs" id="cancelMpesaTx">Cancel</button>
+          <button class="bmpesa" id="saveMpesaTx"><i class="fas fa-check"></i> Confirm</button>
+        </div>
+      </div>
+    </div>
   `;
 
   wireEvents();
   loadCart();
   renderProducts();
   renderCart();
+  renderRecentSales();
+  updateMpesaDisplay();
   checkNetwork();
 }
 
@@ -762,6 +885,17 @@ function wireEvents(){
     renderProducts();
   };
 
+  // Cart tabs
+  document.querySelectorAll('.cart-tab').forEach(tab => {
+    tab.onclick = () => {
+      const t = tab.dataset.tab;
+      cartTab = t;
+      document.querySelectorAll('.cart-tab').forEach(x => x.classList.toggle('active', x.dataset.tab === t));
+      document.querySelectorAll('.cart-pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + t));
+      if (t === 'recent') renderRecentSales();
+    };
+  });
+
   // Scanner
   document.getElementById('scanBtn').onclick = () => openScanner('cart');
   document.getElementById('closeScan').onclick = closeScanner;
@@ -799,12 +933,14 @@ function wireEvents(){
       opt.classList.add('active');
       selectedPayment = opt.dataset.method;
       document.getElementById('cashSection').style.display = selectedPayment === 'cash' ? 'block' : 'none';
+      document.getElementById('mpesaSection').style.display = selectedPayment === 'mpesa' ? 'block' : 'none';
       document.getElementById('checkoutTotal').textContent = money(cartTotal());
       updateChangeDisplay();
+      updateMpesaDisplay();
     };
   });
 
-  // Quick cash buttons (KSh notes)
+  // Quick cash buttons
   const quickAmounts = [50, 100, 200, 500, 1000, 2000];
   document.getElementById('quickCash').innerHTML = quickAmounts.map(v =>
     `<button data-cash="${v}">${v >= 1000 ? (v/1000)+'K' : v}</button>`
@@ -826,6 +962,10 @@ function wireEvents(){
     cashReceived = parseFloat(e.target.value) || 0;
     updateChangeDisplay();
   };
+
+  // M-Pesa inputs
+  document.getElementById('mpesaRefInput').oninput = e => { mpesaRef = e.target.value.trim(); };
+  document.getElementById('mpesaPhoneInput').oninput = e => { mpesaPhone = e.target.value.trim(); };
 
   // Receipt
   document.getElementById('closeReceipt').onclick = () => closeModal('receiptModal');
@@ -865,6 +1005,16 @@ function wireEvents(){
   document.getElementById('closeUser').onclick = () => closeModal('userModal');
   document.getElementById('cancelUser').onclick = () => closeModal('userModal');
   document.getElementById('signOutBtn').onclick = () => signOut(auth);
+
+  // M-Pesa Float
+  document.getElementById('mpesaBtn').onclick = () => { updateMpesaDisplay(); openModal('mpesaModal'); };
+  document.getElementById('closeMpesa').onclick = () => closeModal('mpesaModal');
+  document.getElementById('mpesaDepositBtn').onclick = () => openMpesaTxModal('in');
+  document.getElementById('mpesaWithdrawBtn').onclick = () => openMpesaTxModal('out');
+  document.getElementById('closeMpesaTx').onclick = () => closeModal('mpesaTxModal');
+  document.getElementById('cancelMpesaTx').onclick = () => closeModal('mpesaTxModal');
+  document.getElementById('saveMpesaTx').onclick = saveMpesaTx;
+  document.getElementById('mpesaTxAmount').oninput = updateMpesaTxPreview;
 
   // Close on overlay tap
   document.querySelectorAll('.modal').forEach(m => {
@@ -1223,6 +1373,8 @@ function renderCart(){
   const items = document.getElementById('cartItems');
   if (!items) return;
   document.getElementById('cartCount').textContent = cartCount();
+  const tabCount = document.getElementById('cartTabCount');
+  if (tabCount) tabCount.textContent = cartCount();
 
   if (cart.length === 0) {
     items.innerHTML = `<div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Cart is empty</p></div>`;
@@ -1253,17 +1405,57 @@ function renderCart(){
 }
 
 /* ============================================================
-   CHECKOUT — FIXED
+   RECENT SALES
+   ============================================================ */
+function renderRecentSales(){
+  const list = document.getElementById('recentList');
+  if (!list) return;
+  if (recentSales.length === 0) {
+    list.innerHTML = `<div class="cart-empty"><i class="fas fa-clock-rotate-left"></i><p>No recent sales</p></div>`;
+    return;
+  }
+  list.innerHTML = recentSales.slice(0, 20).map(s => {
+    const itemCount = (s.items||[]).reduce((sum,i) => sum + (i.qty||1), 0);
+    const when = s.timestamp ? timeAgo(s.timestamp) : 'just now';
+    const payClass = s.paymentMethod === 'mpesa' ? 'mpesa' : 'cash';
+    const payLabel = s.paymentMethod === 'mpesa' ? 'M-Pesa' : 'Cash';
+    return `
+      <div class="sale-row" data-sale="${esc(s.id)}">
+        <div class="sale-icon"><i class="fas fa-receipt"></i></div>
+        <div class="sale-info">
+          <h4>${itemCount} item${itemCount!==1?'s':''} · ${esc(s.staff||'Staff')}</h4>
+          <p>${when} · <span class="sale-pill ${payClass}">${payLabel}</span></p>
+        </div>
+        <div class="sale-amount">${money(s.total)}<small>${esc(s.status||'completed')}</small></div>
+      </div>`;
+  }).join('');
+
+  list.querySelectorAll('[data-sale]').forEach(row => {
+    row.onclick = () => {
+      const s = recentSales.find(x => String(x.id) === String(row.dataset.sale));
+      if (s) showReceipt(s);
+    };
+  });
+}
+
+/* ============================================================
+   CHECKOUT — FIXED + M-PESA INTEGRATION
    ============================================================ */
 function openCheckout(){
   if (cart.length === 0) { toast('Cart is empty', 'warning'); return; }
   selectedPayment = 'cash';
   cashReceived = 0;
+  mpesaRef = '';
+  mpesaPhone = '';
   document.querySelectorAll('.pay-opt').forEach(x => x.classList.toggle('active', x.dataset.method === 'cash'));
   document.getElementById('cashSection').style.display = 'block';
+  document.getElementById('mpesaSection').style.display = 'none';
   document.getElementById('cashInput').value = '';
+  document.getElementById('mpesaRefInput').value = '';
+  document.getElementById('mpesaPhoneInput').value = '';
   document.getElementById('checkoutTotal').textContent = money(cartTotal());
   updateChangeDisplay();
+  updateMpesaDisplay();
   openModal('checkoutModal');
 }
 
@@ -1278,13 +1470,28 @@ function updateChangeDisplay(){
   box.querySelector('span').textContent = change < 0 ? 'Remaining' : 'Change Due';
 }
 
+function updateMpesaDisplay(){
+  const disp = document.getElementById('mpesaFloatDisp');
+  const modalDisp = document.getElementById('mpesaModalBalance');
+  const modalThresh = document.getElementById('mpesaModalThreshold');
+  const info = document.getElementById('mpesaFloatInfo');
+  const badge = document.getElementById('mpesaBadge');
+
+  const formatted = money(mpesaFloatBalance);
+  if (disp) disp.textContent = formatted;
+  if (modalDisp) modalDisp.textContent = formatted;
+  if (modalThresh) modalThresh.textContent = 'Low threshold: ' + money(mpesaFloatLowThreshold);
+
+  const isLow = mpesaFloatBalance < mpesaFloatLowThreshold;
+  if (info) info.classList.toggle('warn', isLow);
+  if (badge) badge.style.display = isLow ? 'block' : 'none';
+}
+
 async function completeSale(){
   if (cart.length === 0) { toast('Cart is empty', 'warning'); return; }
 
-  // 🛡️ Sanitize cart — filter out anything invalid
   const cleanCart = cart.filter(i =>
-    i &&
-    i.id != null && String(i.id) !== '' &&
+    i && i.id != null && String(i.id) !== '' &&
     typeof i.name === 'string' && i.name.length > 0 &&
     typeof i.price === 'number' && !isNaN(i.price) &&
     typeof i.qty === 'number' && i.qty > 0
@@ -1298,22 +1505,31 @@ async function completeSale(){
     renderProducts();
     return;
   }
-
-  // Restore sanitized cart
   cart = cleanCart;
 
   const total = cartTotal();
+
+  // Cash validation
   if (selectedPayment === 'cash' && cashReceived < total) {
     toast('Cash received is less than total', 'warning');
     vibrate([40, 30, 40]);
     return;
   }
 
+  // M-Pesa validation
+  if (selectedPayment === 'mpesa') {
+    if (!mpesaRef) { toast('Enter M-Pesa reference code', 'warning'); return; }
+    if (mpesaFloatBalance < total) {
+      toast(`Insufficient float. Need ${money(total - mpesaFloatBalance)} more`, 'error', 4000);
+      vibrate([40, 30, 40]);
+      return;
+    }
+  }
+
   const btn = document.getElementById('confirmCheckout');
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
 
-  // 🛡️ Build fully sanitized sale object — every field is defined
   const sale = {
     items: cart.map(i => ({
       productId: String(i.id),
@@ -1330,6 +1546,8 @@ async function completeSale(){
     paymentMethod: String(selectedPayment || 'cash'),
     cashReceived: selectedPayment === 'cash' ? +cashReceived.toFixed(2) : null,
     change: selectedPayment === 'cash' ? +(cashReceived - total).toFixed(2) : null,
+    mpesaRef: selectedPayment === 'mpesa' ? String(mpesaRef) : null,
+    mpesaPhone: selectedPayment === 'mpesa' ? String(mpesaPhone || '') : null,
     staff: String(currentUser.name || 'Staff'),
     staffId: String(currentUser.uid || 'unknown'),
     timestamp: Date.now(),
@@ -1338,11 +1556,11 @@ async function completeSale(){
 
   try {
     if (isOnline) {
-      // 1. Save transaction
       const txRef = push(ref(db, 'transactions'));
-      await set(txRef, { ...sale, timestamp: serverTimestamp() });
+      const txId = txRef.key;
+      await set(txRef, { ...sale, id: txId, timestamp: serverTimestamp() });
 
-      // 2. Decrement stock — sanitized loop
+      // Decrement stock
       for (const item of cart) {
         const p = allProducts.find(x => String(x.id) === String(item.id));
         if (p && typeof p.stock === 'number') {
@@ -1350,22 +1568,45 @@ async function completeSale(){
           await update(ref(db, `products/${p.id}`), { stock: newStock });
         }
       }
+
+      // M-Pesa float deduction
+      if (selectedPayment === 'mpesa') {
+        const newBalance = mpesaFloatBalance - total;
+        await set(ref(db, 'mpesaFloat/balance'), +newBalance.toFixed(2));
+
+        await set(push(ref(db, 'mpesaFloat/transactions')), {
+          type: 'sale',
+          amount: +total.toFixed(2),
+          reference: String(mpesaRef),
+          phone: String(mpesaPhone || ''),
+          notes: `Sale #${(txId || '').slice(-6)}`,
+          staff: String(currentUser.name || 'Staff'),
+          staffId: String(currentUser.uid || 'unknown'),
+          balanceAfter: +newBalance.toFixed(2),
+          timestamp: Date.now()
+        });
+        toast('M-Pesa float updated', 'mpesa');
+      }
+
+      // Prepend to recent sales
+      sale.id = txId;
+      recentSales.unshift(sale);
+      if (recentSales.length > 50) recentSales = recentSales.slice(0, 50);
+
       console.log('✅ Sale saved:', sale.total);
     } else {
       offlineQueue.push(sale);
       localStorage.setItem(OFFLINE_KEY, JSON.stringify(offlineQueue));
+      recentSales.unshift({ ...sale, id: 'offline-' + Date.now() });
       toast('Sale queued (offline)', 'warning');
     }
 
-    // Show receipt
     showReceipt(sale);
-
-    // Reset
     cart = [];
     saveCart();
     renderCart();
     renderProducts();
-
+    renderRecentSales();
     closeModal('checkoutModal');
     toast(`Sale complete — ${money(total)}`, 'success');
     vibrate([30, 50, 30]);
@@ -1379,19 +1620,21 @@ async function completeSale(){
 }
 
 function showReceipt(sale){
-  const date = new Date(sale.timestamp).toLocaleString();
+  const date = sale.timestamp ? new Date(sale.timestamp).toLocaleString() : new Date().toLocaleString();
   document.getElementById('receiptBody').innerHTML = `
     <div class="receipt">
-      <h2>ELECTROPOS</h2>
+      <h2>LEMSA_ACCESSORIES</h2>
+      <div class="center" style="font-size:.72rem">Electronics Shop</div>
       <div class="div"></div>
       <div class="row"><span>Date:</span><span>${date}</span></div>
       <div class="row"><span>Staff:</span><span>${esc(sale.staff)}</span></div>
-      <div class="row"><span>Payment:</span><span>${esc(sale.paymentMethod.toUpperCase())}</span></div>
+      <div class="row"><span>Payment:</span><span>${esc((sale.paymentMethod||'cash').toUpperCase())}</span></div>
+      ${sale.mpesaRef ? `<div class="row"><span>M-Pesa Ref:</span><span>${esc(sale.mpesaRef)}</span></div>` : ''}
       <div class="div"></div>
       <div class="row hdr"><span>Item</span><span>Total</span></div>
       <div class="div"></div>
-      ${sale.items.map(i => `
-        <div class="row"><span>${esc(i.name)}</span><span>${money(i.lineTotal)}</span></div>
+      ${(sale.items||[]).map(i => `
+        <div class="row"><span>${esc(i.name)}</span><span>${money(i.lineTotal || (i.price*i.qty))}</span></div>
         <div style="font-size:.7rem;color:#444;padding-left:6px">${i.qty} × ${money(i.price)}</div>
       `).join('')}
       <div class="div"></div>
@@ -1486,6 +1729,78 @@ function handleScan(code){
 }
 
 /* ============================================================
+   M-PESA FLOAT TX
+   ============================================================ */
+let mpesaTxMode = 'in';
+function openMpesaTxModal(mode){
+  mpesaTxMode = mode;
+  closeModal('mpesaModal');
+  document.getElementById('mpesaTxTitle').textContent = mode === 'in' ? 'Deposit to Float' : 'Withdraw from Float';
+  document.getElementById('mpesaTxAmount').value = '';
+  document.getElementById('mpesaTxRef').value = '';
+  document.getElementById('mpesaTxNotes').value = '';
+  document.getElementById('mpesaTxPreview').style.display = 'none';
+  openModal('mpesaTxModal');
+  setTimeout(() => document.getElementById('mpesaTxAmount').focus(), 300);
+}
+
+function updateMpesaTxPreview(){
+  const amt = parseFloat(document.getElementById('mpesaTxAmount').value) || 0;
+  const preview = document.getElementById('mpesaTxPreview');
+  if (amt <= 0) { preview.style.display = 'none'; return; }
+  preview.style.display = 'flex';
+  const after = mpesaTxMode === 'in' ? mpesaFloatBalance + amt : mpesaFloatBalance - amt;
+  document.getElementById('mpesaTxAfter').textContent = money(Math.max(0, after));
+}
+
+async function saveMpesaTx(){
+  const amt = parseFloat(document.getElementById('mpesaTxAmount').value);
+  const ref = document.getElementById('mpesaTxRef').value.trim();
+  const notes = document.getElementById('mpesaTxNotes').value.trim();
+
+  if (!amt || amt <= 0) { toast('Enter valid amount', 'warning'); return; }
+  if (mpesaTxMode === 'out' && amt > mpesaFloatBalance) {
+    toast(`Insufficient float. Available: ${money(mpesaFloatBalance)}`, 'error');
+    return;
+  }
+
+  const btn = document.getElementById('saveMpesaTx');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+
+  try {
+    const newBalance = mpesaTxMode === 'in' ? mpesaFloatBalance + amt : mpesaFloatBalance - amt;
+
+    await runTransaction(ref(db, 'mpesaFloat/balance'), (cur) => {
+      const c = cur || 0;
+      return mpesaTxMode === 'in' ? c + amt : c - amt;
+    });
+
+    await set(push(ref(db, 'mpesaFloat/transactions')), {
+      type: mpesaTxMode,
+      amount: +amt.toFixed(2),
+      reference: ref || '',
+      phone: '',
+      notes: notes || '',
+      staff: String(currentUser.name || 'Staff'),
+      staffId: String(currentUser.uid || 'unknown'),
+      balanceAfter: +newBalance.toFixed(2),
+      timestamp: Date.now()
+    });
+
+    toast(`${mpesaTxMode === 'in' ? 'Deposited' : 'Withdrawn'} ${money(amt)}`, 'mpesa');
+    vibrate([20, 40, 20]);
+    closeModal('mpesaTxModal');
+  } catch (e) {
+    console.error(e);
+    toast('Failed: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check"></i> Confirm';
+  }
+}
+
+/* ============================================================
    NETWORK / OFFLINE
    ============================================================ */
 function checkNetwork(){
@@ -1502,7 +1817,37 @@ async function syncOffline(){
   let synced = 0;
   for (const sale of q) {
     try {
-      await set(push(ref(db, 'transactions')), { ...sale, timestamp: serverTimestamp() });
+      const txRef = push(ref(db, 'transactions'));
+      const txId = txRef.key;
+      await set(txRef, { ...sale, id: txId, timestamp: serverTimestamp() });
+
+      // Decrement stock
+      for (const item of (sale.items || [])) {
+        const p = allProducts.find(x => String(x.id) === String(item.productId));
+        if (p && typeof p.stock === 'number') {
+          const newStock = Math.max(0, p.stock - item.qty);
+          await update(ref(db, `products/${p.id}`), { stock: newStock });
+        }
+      }
+
+      // M-Pesa float deduction
+      if (sale.paymentMethod === 'mpesa' && sale.mpesaRef) {
+        const currentSnap = await get(ref(db, 'mpesaFloat/balance'));
+        const current = currentSnap.val() || 0;
+        const newBal = current - sale.total;
+        await set(ref(db, 'mpesaFloat/balance'), +newBal.toFixed(2));
+        await set(push(ref(db, 'mpesaFloat/transactions')), {
+          type: 'sale',
+          amount: +sale.total.toFixed(2),
+          reference: String(sale.mpesaRef),
+          phone: String(sale.mpesaPhone || ''),
+          notes: `Offline sale #${(txId || '').slice(-6)}`,
+          staff: String(sale.staff || 'Staff'),
+          staffId: String(sale.staffId || 'unknown'),
+          balanceAfter: +newBal.toFixed(2),
+          timestamp: Date.now()
+        });
+      }
       synced++;
     } catch (e) { offlineQueue.push(sale); }
   }
@@ -1576,6 +1921,30 @@ onAuthStateChanged(auth, async (user) => {
       renderProducts();
       renderCart();
     }
+  });
+
+  // Live recent sales (last 20 for this staff)
+  onValue(ref(db, 'transactions'), snap => {
+    const data = snap.val() || {};
+    const all = Object.entries(data).map(([id, val]) => {
+      let ts = val.timestamp;
+      if (ts && typeof ts === 'object' && ts['.sv'] === 'timestamp') ts = Date.now();
+      return { id, ...val, timestamp: ts || Date.now() };
+    }).sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
+    recentSales = all.slice(0, 50);
+    if (shellRendered && cartTab === 'recent') renderRecentSales();
+  });
+
+  // Live M-Pesa float
+  onValue(ref(db, 'mpesaFloat/balance'), snap => {
+    mpesaFloatBalance = snap.val() || 0;
+    if (shellRendered) updateMpesaDisplay();
+  });
+
+  onValue(ref(db, 'mpesaFloat/settings'), snap => {
+    const settings = snap.val() || {};
+    if (settings.lowThreshold) mpesaFloatLowThreshold = settings.lowThreshold;
+    if (shellRendered) updateMpesaDisplay();
   });
 
   if (!shellRendered) {
