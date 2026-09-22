@@ -35,7 +35,6 @@ button{cursor:pointer;border:none;background:none}
 input{-webkit-appearance:none;appearance:none}
 #app{height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg)}
 
-/* LOADING / FATAL / LOGIN */
 .loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:var(--bg);z-index:9999}
 .spinner{width:52px;height:52px;border:3px solid var(--bg3);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -58,7 +57,6 @@ input{-webkit-appearance:none;appearance:none}
 .google-btn:disabled{opacity:.6}
 .google-btn svg{width:20px;height:20px}
 
-/* HEADER */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:calc(8px + var(--safe-top)) 12px 8px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;gap:8px;z-index:50}
 .hdr-brand{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
 .hdr-logo{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff;flex-shrink:0}
@@ -70,10 +68,8 @@ input{-webkit-appearance:none;appearance:none}
 .hdr-icon-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.62rem;font-weight:900;padding:2px 6px;border-radius:10px;min-width:18px;text-align:center}
 .hdr-icon-btn.mpesa{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,166,81,.05));border-color:rgba(0,166,81,.35);color:var(--mpesa-light)}
 
-/* MAIN LAYOUT */
 .main{flex:1;display:flex;overflow:hidden;min-height:0}
 
-/* PRODUCTS PANEL */
 .products{flex:1.6;display:flex;flex-direction:column;padding:10px;overflow:hidden;min-width:0}
 .toolbar{display:flex;gap:8px;margin-bottom:10px}
 .search{position:relative;flex:1;min-width:0}
@@ -118,7 +114,6 @@ input{-webkit-appearance:none;appearance:none}
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text3)}
 .empty i{font-size:3rem;opacity:.2;margin-bottom:14px;display:block}
 
-/* CART */
 .cart{flex:1;min-width:340px;max-width:440px;display:flex;flex-direction:column;background:var(--bg2);border-left:1px solid var(--border)}
 .cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px}
 .cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
@@ -156,7 +151,6 @@ input{-webkit-appearance:none;appearance:none}
 .act-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-weight:900}
 .act-btn:disabled{opacity:.5}
 
-/* MODAL */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .modal.open{opacity:1;pointer-events:auto}
 .m-content{width:100%;max-width:540px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-xl) var(--r-xl) 0 0;display:flex;flex-direction:column;max-height:94dvh;transform:translateY(24px);transition:transform .25s;padding-bottom:var(--safe-bottom)}
@@ -262,7 +256,6 @@ input{-webkit-appearance:none;appearance:none}
 .sale-pill.cash{background:rgba(16,185,129,.15);color:var(--success)}
 .sale-pill.mpesa{background:rgba(0,166,81,.15);color:var(--mpesa-light)}
 
-/* PROFILE PAGE (mobile) */
 .profile-page{display:none;flex-direction:column;gap:16px;padding:16px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
 .profile-page.active{display:flex}
 .profile-header{display:flex;align-items:center;gap:16px;padding:20px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-lg)}
@@ -274,15 +267,14 @@ input{-webkit-appearance:none;appearance:none}
 .profile-actions{display:flex;flex-direction:column;gap:10px}
 .profile-btn{display:flex;align-items:center;gap:14px;padding:16px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:.92rem;font-weight:700;color:var(--text);text-align:left}
 .profile-btn:active{background:var(--bg3);transform:scale(.98)}
-.profile-btn i{width:36px;height:36px;border-radius:10px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--accentB);flex-shrink:0}
+.profile-btn > i:first-child{width:36px;height:36px;border-radius:10px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--accentB);flex-shrink:0}
 .profile-btn.danger{color:var(--danger)}
-.profile-btn.danger i{color:var(--danger);background:rgba(239,68,68,.12)}
-.profile-btn.mpesa i{color:var(--mpesa-light);background:rgba(0,166,81,.15)}
+.profile-btn.danger > i:first-child{color:var(--danger);background:rgba(239,68,68,.12)}
+.profile-btn.mpesa > i:first-child{color:var(--mpesa-light);background:rgba(0,166,81,.15)}
 .profile-btn .text{flex:1}
 .profile-btn .text small{display:block;font-size:.72rem;color:var(--text3);font-weight:600;margin-top:2px}
 .profile-btn .chev{color:var(--text3);font-size:.85rem}
 
-/* BOTTOM NAVIGATION (mobile only) */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-h-total);background:rgba(10,21,36,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:100;padding-bottom:var(--safe-bottom)}
 .bottom-nav-inner{display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
 .bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--text3);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;position:relative;padding:0;background:transparent;min-width:0}
@@ -297,13 +289,13 @@ input{-webkit-appearance:none;appearance:none}
 .bnav-item.mpesa .bnav-badge.alert{background:var(--danger);animation:bnav-pulse 1.5s infinite}
 @keyframes bnav-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
-/* CART FAB (floating action button) */
 .cart-fab{display:none;position:fixed;right:16px;bottom:calc(var(--nav-h-total) + 16px);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1.4rem;box-shadow:0 8px 24px rgba(59,130,246,.5),0 4px 12px rgba(0,0,0,.4);z-index:99;align-items:center;justify-content:center;padding:0;transition:transform .2s,box-shadow .2s}
 .cart-fab:active{transform:scale(.92);box-shadow:0 4px 12px rgba(59,130,246,.4)}
 .cart-fab .fab-badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.72rem;font-weight:900;padding:3px 8px;border-radius:100px;min-width:24px;text-align:center;border:2px solid var(--bg);animation:fab-bounce .3s}
 @keyframes fab-bounce{0%{transform:scale(.5)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.cart-fab.pulse{animation:fab-pulse .4s}
+@keyframes fab-pulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
 
-/* MOBILE CART SHEET (bottom sheet) */
 .cart-sheet{display:none;position:fixed;left:0;right:0;bottom:0;top:8vh;background:var(--bg2);border-top-left-radius:var(--r-xl);border-top-right-radius:var(--r-xl);border-top:1px solid var(--border2);z-index:200;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);flex-direction:column;max-height:92vh}
 .cart-sheet.open{transform:translateY(0)}
 .cart-sheet .sheet-handle{display:flex;justify-content:center;padding:10px 0 6px;flex-shrink:0;cursor:grab}
@@ -317,10 +309,6 @@ input{-webkit-appearance:none;appearance:none}
 .cart-sheet-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:199;opacity:0;transition:opacity .3s}
 .cart-sheet-backdrop.open{opacity:1}
 
-/* SUBTLE HAPTIC VISUAL — when adding to cart */
-.cart-fab.pulse{animation:fab-pulse .4s}
-@keyframes fab-pulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
-
 .toasts{position:fixed;top:calc(14px + var(--safe-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);padding:0 16px;width:100%;align-items:center}
 .toast{background:var(--bg4);border:1.5px solid var(--border2);border-left:4px solid var(--accent);border-radius:var(--r-md);padding:13px 16px;color:var(--text);font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:auto;max-width:100%}
 .toast.success{border-left-color:var(--success)}.toast.success i{color:var(--success)}
@@ -333,7 +321,6 @@ input{-webkit-appearance:none;appearance:none}
 .offline-bar.show{display:block}
 .offline-bar i{margin-right:6px}
 
-/* MOBILE LAYOUT */
 @media(max-width:900px){
   .main{flex-direction:column;padding-bottom:var(--nav-h-total)}
   .products{padding:8px;flex:1;min-height:0}
@@ -352,7 +339,6 @@ input{-webkit-appearance:none;appearance:none}
   .tbtn{width:44px;height:44px;min-width:44px;font-size:1rem}
   .chips{padding:2px 0 8px}
   .chip{padding:8px 12px;font-size:.76rem;min-height:34px}
-  /* Show profile page when on profile tab */
   .products.hidden{display:none}
   .profile-page.active{display:flex}
   .modal .m-content{max-height:96dvh}
@@ -367,8 +353,6 @@ input{-webkit-appearance:none;appearance:none}
   .bnav-item i{font-size:1.05rem}
   .cart-fab{width:54px;height:54px;font-size:1.2rem}
 }
-
-/* DESKTOP LAYOUT */
 @media(min-width:901px){
   .main{flex-direction:row;padding-bottom:0}
   .cart{display:flex;max-height:none}
@@ -378,7 +362,6 @@ input{-webkit-appearance:none;appearance:none}
   .cart-sheet-backdrop{display:none}
   .profile-page{display:none!important}
 }
-
 @media print{
   body{background:#fff !important}
   .receipt{box-shadow:none;border-radius:0;padding:12px}
@@ -394,7 +377,7 @@ input{-webkit-appearance:none;appearance:none}
 
 <script type="module">
 /* ============================================================
-   ElectroPOS · Staff Terminal — Realistic Mobile Navigation
+   ElectroPOS · Staff Terminal — Popup-First Mobile Auth
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -432,7 +415,9 @@ const VAT_RATE = 0.16;
 
 let app, auth, db;
 
-/* SAFE DOM HELPERS */
+/* ============================================================
+   SAFE DOM HELPERS
+   ============================================================ */
 function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
 function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
 function setDisplay(id, value){const el=document.getElementById(id); if(el) el.style.display=value;}
@@ -442,7 +427,9 @@ function toggleClass(id, cls, force){const el=document.getElementById(id); if(el
 function show(id){addClass(id, 'open');}
 function hide(id){removeClass(id, 'open');}
 
-/* MOBILE HELPERS */
+/* ============================================================
+   MOBILE + STORAGE HELPERS
+   ============================================================ */
 function isMobileDevice(){
   const ua = navigator.userAgent || '';
   const uaMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS|FxiOS/i.test(ua);
@@ -450,17 +437,61 @@ function isMobileDevice(){
   const smallScreen = window.innerWidth < 900;
   return [uaMobile, touchDevice, smallScreen].filter(Boolean).length >= 2;
 }
+
+/* Test if popups are usable right now (not blocked) */
+function canUsePopup(){
+  try {
+    const w = window.open('', '_blank', 'width=1,height=1,top=0,left=0');
+    if (!w || w.closed || typeof w.closed === 'undefined') return false;
+    try { w.close(); } catch(e) {}
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function isStorageWorking(type){
-  try { const s = type === 'local' ? localStorage : sessionStorage; const k='__t_'+Date.now(); s.setItem(k,'ok'); const v=s.getItem(k); s.removeItem(k); return v==='ok'; } catch(e){return false;}
+  try {
+    const s = type === 'local' ? window.localStorage : window.sessionStorage;
+    const k = '__test_' + Date.now();
+    s.setItem(k, 'ok');
+    const v = s.getItem(k);
+    s.removeItem(k);
+    return v === 'ok';
+  } catch (e) { return false; }
 }
+
 async function pickBestPersistence(){
-  if (isStorageWorking('local')) { try { await setPersistence(auth, browserLocalPersistence); return 'local'; } catch(e){} }
-  if (isStorageWorking('session')) { try { await setPersistence(auth, browserSessionPersistence); return 'session'; } catch(e){} }
-  try { await setPersistence(auth, inMemoryPersistence); return 'memory'; } catch(e){ return 'none'; }
+  if (isStorageWorking('local')) {
+    try { await setPersistence(auth, browserLocalPersistence); return 'local'; } catch(e){}
+  }
+  if (isStorageWorking('session')) {
+    try { await setPersistence(auth, browserSessionPersistence); return 'session'; } catch(e){}
+  }
+  try { await setPersistence(auth, inMemoryPersistence); return 'memory'; } catch(e){}
+  return 'none';
 }
-function markAuthIntent(){try{const u=new URL(location.href);u.searchParams.set('auth_intent','1');u.searchParams.set('t',Date.now().toString());history.replaceState({},'',u.toString());}catch(e){}}
-function clearAuthIntent(){try{const u=new URL(location.href);u.searchParams.delete('auth_intent');u.searchParams.delete('t');history.replaceState({},'',u.toString());}catch(e){}}
-function hasAuthIntent(){try{return new URL(location.href).searchParams.get('auth_intent')==='1';}catch(e){return false;}}
+
+function markAuthIntent(){
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.set('auth_intent', '1');
+    u.searchParams.set('t', Date.now().toString());
+    window.history.replaceState({}, '', u.toString());
+  } catch (e) {}
+}
+function clearAuthIntent(){
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.delete('auth_intent');
+    u.searchParams.delete('t');
+    window.history.replaceState({}, '', u.toString());
+  } catch (e) {}
+}
+function hasAuthIntent(){
+  try { return new URL(window.location.href).searchParams.get('auth_intent') === '1'; }
+  catch (e) { return false; }
+}
 
 try {
   app = initializeApp(firebaseConfig);
@@ -472,26 +503,42 @@ try {
   throw e;
 }
 
+/* ============================================================
+   REDIRECT RESULT RESOLVER — cleans up "missing initial state"
+   ============================================================ */
 (async () => {
   try {
     await pickBestPersistence();
     const result = await getRedirectResult(auth);
-    if (result && result.user) { console.log('✅ Redirect resolved:', result.user.email); clearAuthIntent(); }
-    else {
+    if (result && result.user) {
+      console.log('✅ Redirect resolved:', result.user.email);
+      clearAuthIntent();
+    } else {
       if (hasAuthIntent()) {
+        console.warn('⚠️ Auth intent present but no result — clearing');
         clearAuthIntent();
-        if (location.hash && location.hash.includes('firebase')) history.replaceState({},'',location.pathname+location.search);
+        if (window.location.hash && window.location.hash.includes('firebase')) {
+          window.history.replaceState({}, '', window.location.pathname + window.location.search);
+        }
       }
     }
   } catch (e) {
-    if (e.code === 'auth/argument-error' || (e.message && (e.message.includes('missing initial state') || e.message.includes('sessionStorage')))) {
+    console.warn('[Auth] getRedirectResult error:', e.code, e.message);
+    if (e.code === 'auth/argument-error' ||
+        (e.message && (e.message.includes('missing initial state') ||
+                       e.message.includes('sessionStorage')))) {
+      console.log('🔧 Recovering from missing initial state');
       clearAuthIntent();
-      if (location.hash) history.replaceState({},'',location.pathname+location.search);
+      if (window.location.hash) {
+        window.history.replaceState({}, '', window.location.pathname + window.location.search);
+      }
     }
   }
 })();
 
-/* STATE */
+/* ============================================================
+   STATE
+   ============================================================ */
 let currentUser = null;
 let allProducts = [];
 let activeCategory = 'all';
@@ -521,15 +568,16 @@ let shellRendered = false;
 let pinBuffer = '';
 let pinCallback = null;
 
-/* Mobile tab state */
-let activeTab = 'products'; // products | cart | recent | profile
+let activeTab = 'products';
 let cartSheetOpen = false;
 
 const CART_KEY = 'electropos_cart';
 const FAV_KEY = 'electro_favorites';
 const OFFLINE_KEY = 'electro_offline_queue';
 
-/* HELPERS */
+/* ============================================================
+   HELPERS
+   ============================================================ */
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function money(n){const num=Number(n)||0;const fixed=num.toFixed(2);const parts=fixed.split('.');return 'KSh '+parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',')+'.'+parts[1];}
 function initials(n){return (n||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();}
@@ -554,7 +602,9 @@ function toast(msg, type='info', duration=2400, showUndo=false){
   }, duration);
 }
 
-/* CART MATH */
+/* ============================================================
+   CART MATH
+   ============================================================ */
 function cartSubtotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0);}
 function cartTax(){return cartSubtotal()*VAT_RATE;}
 function cartTotal(){return cartSubtotal()+cartTax();}
@@ -582,6 +632,7 @@ function loadCart(){
 function renderLogin(errMsg=''){
   const isMobile = isMobileDevice();
   const storageOk = isStorageWorking('local') || isStorageWorking('session');
+  const popupOk = canUsePopup();
   const intent = hasAuthIntent();
 
   document.getElementById('app').innerHTML = `
@@ -598,7 +649,8 @@ function renderLogin(errMsg=''){
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:10px;font-size:.7rem;color:var(--text3);text-align:center;line-height:1.6;margin-top:8px">
           <strong style="color:var(--accentB)">Mobile:</strong> ${isMobile?'✅':'—'} &nbsp;
           <strong style="color:var(--accentB)">Storage:</strong> ${storageOk?'✅':'⚠️'} &nbsp;
-          <strong style="color:var(--accentB)">Method:</strong> ${isMobile?'redirect':'popup→redirect'}
+          <strong style="color:var(--accentB)">Popup:</strong> ${popupOk?'✅':'🚫'} &nbsp;
+          <strong style="color:var(--accentB)">Method:</strong> ${popupOk?'popup':'redirect'}
           ${intent ? '<br><span style="color:var(--warning)">⚠️ Previous sign-in interrupted — tap Retry</span>' : ''}
         </div>
       </div>
@@ -609,45 +661,87 @@ function renderLogin(errMsg=''){
   btn.onclick = async () => {
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting…';
-    try { await doGoogleSignIn(); }
-    catch (err) {
+    try {
+      await doGoogleSignIn();
+    } catch (err) {
+      console.error('Sign-in error:', err);
       const map = {
-        'auth/popup-blocked':'Popup blocked — allow popups',
+        'auth/popup-blocked':'Popup blocked — allow popups for this site in browser settings',
         'auth/popup-closed-by-user':'Sign-in cancelled',
-        'auth/unauthorized-domain':'Domain not authorized',
-        'auth/operation-not-allowed':'Google sign-in disabled',
-        'auth/network-request-failed':'Network error',
-        'auth/argument-error':'Session lost — retrying…'
+        'auth/cancelled-popup-request':'Sign-in cancelled',
+        'auth/unauthorized-domain':'Domain not authorized in Firebase Console',
+        'auth/operation-not-allowed':'Google sign-in disabled in Firebase',
+        'auth/network-request-failed':'Network error — check your connection',
+        'auth/argument-error':'Session lost — tap Retry',
+        'auth/internal-error':'Browser blocked storage — tap Retry'
       };
       const el = document.getElementById('lerr');
       if (el) el.textContent = map[err.code] || (err.code || err.message);
       btn.disabled = false;
-      btn.innerHTML = '<span>Sign in with Google</span>';
+      btn.innerHTML = `<svg viewBox="0 0 48 48" style="width:20px;height:20px"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg><span>Sign in with Google</span>`;
     }
   };
 }
 
+/* 🔑 POPUP-FIRST SIGN-IN — bypasses sessionStorage wipe on mobile */
 async function doGoogleSignIn(){
   await pickBestPersistence();
+
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
-  const isMobile = isMobileDevice();
-  markAuthIntent();
 
-  if (isMobile) {
-    try { await signInWithRedirect(auth, provider); }
-    catch(err) {
-      try { await setPersistence(auth, browserSessionPersistence); await signInWithRedirect(auth, provider); }
-      catch(err2) { await setPersistence(auth, inMemoryPersistence); await signInWithRedirect(auth, provider); }
-    }
-  } else {
-    try { await signInWithPopup(auth, provider); clearAuthIntent(); }
-    catch(err) {
-      const fallbackCodes = ['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request','auth/argument-error','auth/internal-error','auth/operation-not-supported-in-this-environment'];
-      if (fallbackCodes.includes(err.code)) { await signInWithRedirect(auth, provider); }
-      else { clearAuthIntent(); throw err; }
+  const popupOk = canUsePopup();
+  console.log('🔐 Popup available:', popupOk);
+
+  // PRIORITY 1: Popup — keeps everything in the same browsing context
+  if (popupOk) {
+    try {
+      console.log('🔵 Attempting popup sign-in');
+      await signInWithPopup(auth, provider);
+      clearAuthIntent();
+      console.log('✅ Popup sign-in succeeded');
+      return;
+    } catch (err) {
+      console.warn('Popup error:', err.code, err.message);
+
+      // User cancelled → don't retry
+      if (err.code === 'auth/popup-closed-by-user' ||
+          err.code === 'auth/cancelled-popup-request') {
+        throw err;
+      }
+
+      // Popup blocked → fall back to redirect
+      if (['auth/popup-blocked', 'auth/operation-not-supported-in-this-environment'].includes(err.code)) {
+        console.log('⚠️ Popup blocked → falling back to redirect');
+        markAuthIntent();
+        try { await setPersistence(auth, browserSessionPersistence); } catch(e){}
+        await signInWithRedirect(auth, provider);
+        return;
+      }
+
+      // "missing initial state" from previous bad redirect → retry popup fresh
+      if (err.code === 'auth/argument-error' ||
+          (err.message && err.message.includes('missing initial state'))) {
+        console.log('🔧 Clearing stale state, retrying popup');
+        clearAuthIntent();
+        if (window.location.hash) {
+          window.history.replaceState({}, '', window.location.pathname + window.location.search);
+        }
+        const p2 = new GoogleAuthProvider();
+        p2.setCustomParameters({ prompt: 'select_account' });
+        await signInWithPopup(auth, p2);
+        return;
+      }
+
+      throw err;
     }
   }
+
+  // PRIORITY 2: Popup unavailable → redirect fallback
+  console.log('📱 Popup unavailable → using redirect');
+  markAuthIntent();
+  try { await setPersistence(auth, browserSessionPersistence); } catch(e){}
+  await signInWithRedirect(auth, provider);
 }
 
 /* ============================================================
@@ -707,7 +801,6 @@ function renderUI(){
             <span class="role">${esc(currentUser.role||'staff')}</span>
           </div>
         </div>
-
         <div class="profile-actions">
           <button class="profile-btn mpesa" id="profileMpesaBtn">
             <i class="fas fa-mobile-screen"></i>
@@ -716,7 +809,7 @@ function renderUI(){
           </button>
           <button class="profile-btn" id="profileRecentBtn">
             <i class="fas fa-clock-rotate-left"></i>
-            <div class="text">Recent Sales<small>${recentSales.length} transaction${recentSales.length!==1?'s':''}</small></div>
+            <div class="text">Recent Sales<small id="profileRecentCount">0 transactions</small></div>
             <i class="fas fa-chevron-right chev"></i>
           </button>
           <button class="profile-btn danger" id="profileSignOutBtn">
@@ -732,7 +825,6 @@ function renderUI(){
           <button class="cart-tab active" data-tab="cart"><i class="fas fa-shopping-cart"></i> Cart <span id="cartTabCount">0</span></button>
           <button class="cart-tab" data-tab="recent"><i class="fas fa-clock-rotate-left"></i> Recent</button>
         </div>
-
         <div class="cart-pane active" id="pane-cart">
           <div class="cart-items" id="cartItems"></div>
           <div class="cart-foot">
@@ -747,14 +839,12 @@ function renderUI(){
             </div>
           </div>
         </div>
-
         <div class="cart-pane" id="pane-recent">
           <div class="cart-items" id="recentList"></div>
         </div>
       </div>
     </div>
 
-    <!-- MOBILE CART SHEET -->
     <div class="cart-sheet-backdrop" id="cartSheetBackdrop"></div>
     <div class="cart-sheet" id="cartSheet">
       <div class="sheet-handle" id="sheetHandle"></div>
@@ -785,36 +875,29 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- CART FAB -->
     <button class="cart-fab" id="cartFab">
       <i class="fas fa-shopping-cart"></i>
       <span class="fab-badge" id="fabBadge" style="display:none">0</span>
     </button>
 
-    <!-- BOTTOM NAV -->
     <nav class="bottom-nav" id="bottomNav">
       <div class="bottom-nav-inner">
         <button class="bnav-item active" data-nav="products">
-          <i class="fas fa-store"></i>
-          <span>Products</span>
+          <i class="fas fa-store"></i><span>Products</span>
         </button>
         <button class="bnav-item" data-nav="cart">
-          <i class="fas fa-shopping-cart"></i>
-          <span>Cart</span>
+          <i class="fas fa-shopping-cart"></i><span>Cart</span>
           <span class="bnav-badge" id="bnavCartBadge" style="display:none">0</span>
         </button>
         <button class="bnav-item" data-nav="recent">
-          <i class="fas fa-clock-rotate-left"></i>
-          <span>Recent</span>
+          <i class="fas fa-clock-rotate-left"></i><span>Recent</span>
         </button>
         <button class="bnav-item mpesa" data-nav="profile">
-          <i class="fas fa-user-circle"></i>
-          <span>Profile</span>
+          <i class="fas fa-user-circle"></i><span>Profile</span>
         </button>
       </div>
     </nav>
 
-    <!-- SCANNER MODAL -->
     <div class="modal" id="scanModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-barcode"></i> <span id="scanTitle">Scan Barcode</span></h3><button class="m-close" id="closeScan"><i class="fas fa-xmark"></i></button></div>
@@ -826,7 +909,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
     <div class="modal" id="checkoutModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-cash-register"></i> Complete Sale</h3><button class="m-close" id="closeCheckout"><i class="fas fa-xmark"></i></button></div>
@@ -860,7 +942,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- RECEIPT MODAL -->
     <div class="modal" id="receiptModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-receipt"></i> Receipt</h3><button class="m-close" id="closeReceipt"><i class="fas fa-xmark"></i></button></div>
@@ -869,7 +950,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- PRODUCT MENU -->
     <div class="modal" id="menuModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-ellipsis-vertical"></i> Product Actions</h3><button class="m-close" id="closeMenu"><i class="fas fa-xmark"></i></button></div>
@@ -877,7 +957,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- EDIT MODAL -->
     <div class="modal" id="editModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-pen"></i> Edit Product</h3><button class="m-close" id="closeEdit"><i class="fas fa-xmark"></i></button></div>
@@ -893,7 +972,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- STOCK MODAL -->
     <div class="modal" id="stockModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-boxes-packing"></i> Adjust Stock</h3><button class="m-close" id="closeStock"><i class="fas fa-xmark"></i></button></div>
@@ -910,7 +988,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- PIN MODAL -->
     <div class="modal" id="pinModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-lock"></i> Manager PIN</h3><button class="m-close" id="closePin"><i class="fas fa-xmark"></i></button></div>
@@ -923,7 +1000,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- M-PESA FLOAT MODAL -->
     <div class="modal" id="mpesaModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-mobile-screen"></i> M-Pesa Float</h3><button class="m-close" id="closeMpesa"><i class="fas fa-xmark"></i></button></div>
@@ -941,7 +1017,6 @@ function renderUI(){
       </div>
     </div>
 
-    <!-- M-PESA TX MODAL -->
     <div class="modal" id="mpesaTxModal">
       <div class="m-content">
         <div class="m-hdr"><h3><i class="fas fa-mobile-screen"></i> <span id="mpesaTxTitle">Float Transaction</span></h3><button class="m-close" id="closeMpesaTx"><i class="fas fa-xmark"></i></button></div>
@@ -967,32 +1042,21 @@ function renderUI(){
 }
 
 /* ============================================================
-   MOBILE NAVIGATION
+   MOBILE NAV
    ============================================================ */
 function switchTab(tab){
   activeTab = tab;
   const products = document.getElementById('productsPanel');
   const profile = document.getElementById('profilePage');
-
-  // Update nav active state
   document.querySelectorAll('.bnav-item').forEach(b => b.classList.toggle('active', b.dataset.nav === tab));
 
-  // Hide all pages first
   if (products) products.classList.remove('hidden');
   if (profile) profile.classList.remove('active');
 
-  if (tab === 'products') {
-    // Show products
-    if (products) products.classList.remove('hidden');
-    closeCartSheet();
-  } else if (tab === 'cart') {
-    // Show products behind, open cart sheet
-    if (products) products.classList.remove('hidden');
-    openCartSheet();
-  } else if (tab === 'recent') {
-    if (products) products.classList.remove('hidden');
-    openCartSheet('recent');
-  } else if (tab === 'profile') {
+  if (tab === 'products') { closeCartSheet(); }
+  else if (tab === 'cart') { openCartSheet('cart'); }
+  else if (tab === 'recent') { openCartSheet('recent'); }
+  else if (tab === 'profile') {
     if (products) products.classList.add('hidden');
     if (profile) profile.classList.add('active');
     closeCartSheet();
@@ -1002,11 +1066,8 @@ function switchTab(tab){
 }
 
 function renderProfilePage(){
-  const recentBtn = document.getElementById('profileRecentBtn');
-  if (recentBtn) {
-    const txt = recentBtn.querySelector('.text small');
-    if (txt) txt.textContent = `${recentSales.length} transaction${recentSales.length!==1?'s':''}`;
-  }
+  const c = document.getElementById('profileRecentCount');
+  if (c) c.textContent = `${recentSales.length} transaction${recentSales.length!==1?'s':''}`;
 }
 
 function openCartSheet(tab){
@@ -1015,8 +1076,8 @@ function openCartSheet(tab){
   addClass('cartSheet', 'open');
   if (tab === 'recent') {
     switchSheetTab('recent');
-    const recBtn = document.querySelector('#cartSheet .cart-tab[data-tab="recent"]');
-    if (recBtn) recBtn.click();
+    const rbtn = document.querySelector('#cartSheet .cart-tab[data-tab="recent"]');
+    if (rbtn) rbtn.click();
   }
 }
 
@@ -1040,29 +1101,17 @@ function switchSheetTab(tab){
 }
 
 function updateMobileNav(){
-  // Cart badge on bottom nav
-  const badge = document.getElementById('bnavCartBadge');
   const count = cartCount();
-  if (badge) {
-    badge.textContent = count;
-    badge.style.display = count > 0 ? 'block' : 'none';
+  const bnav = document.getElementById('bnavCartBadge');
+  if (bnav) {
+    bnav.textContent = count;
+    bnav.style.display = count > 0 ? 'block' : 'none';
   }
-  // FAB badge
   const fabBadge = document.getElementById('fabBadge');
   if (fabBadge) {
     fabBadge.textContent = count;
     fabBadge.style.display = count > 0 ? 'block' : 'none';
-    // pulse animation when count changes
-    if (count > 0) {
-      const fab = document.getElementById('cartFab');
-      if (fab) {
-        fab.classList.remove('pulse');
-        void fab.offsetWidth;
-        fab.classList.add('pulse');
-      }
-    }
   }
-  // Sheet count
   setText('sheetCount', count);
 }
 
@@ -1082,8 +1131,8 @@ function wireEvents(){
     if (!c) return;
     document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
     c.classList.add('active');
-    const favBtn = document.getElementById('favBtn');
-    if (favBtn) favBtn.classList.remove('active');
+    const fb = document.getElementById('favBtn');
+    if (fb) fb.classList.remove('active');
     activeCategory = c.dataset.cat;
     renderProducts();
   };
@@ -1097,7 +1146,6 @@ function wireEvents(){
     renderProducts();
   };
 
-  // Cart tabs (desktop cart)
   document.querySelectorAll('#cartPanel .cart-tab').forEach(tab => {
     tab.onclick = () => {
       const t = tab.dataset.tab;
@@ -1107,27 +1155,22 @@ function wireEvents(){
     };
   });
 
-  // Cart tabs (mobile sheet)
   document.querySelectorAll('#cartSheet .cart-tab').forEach(tab => {
     tab.onclick = () => switchSheetTab(tab.dataset.tab);
   });
 
-  // Bottom nav
   document.querySelectorAll('.bnav-item').forEach(btn => {
     btn.onclick = () => switchTab(btn.dataset.nav);
   });
 
-  // FAB
   const fab = document.getElementById('cartFab');
-  if (fab) fab.onclick = () => { switchTab('cart'); };
+  if (fab) fab.onclick = () => switchTab('cart');
 
-  // Sheet close
   const sheetClose = document.getElementById('sheetClose');
   if (sheetClose) sheetClose.onclick = closeCartSheet;
   const sheetBackdrop = document.getElementById('cartSheetBackdrop');
   if (sheetBackdrop) sheetBackdrop.onclick = closeCartSheet;
 
-  // Sheet drag handle
   const sheetHandle = document.getElementById('sheetHandle');
   const cartSheet = document.getElementById('cartSheet');
   if (sheetHandle && cartSheet) {
@@ -1152,7 +1195,6 @@ function wireEvents(){
     });
   }
 
-  // Product actions
   const scanBtn = document.getElementById('scanBtn');
   if (scanBtn) scanBtn.onclick = () => openScanner('cart');
   const closeScan = document.getElementById('closeScan');
@@ -1162,19 +1204,16 @@ function wireEvents(){
   const manualCode = document.getElementById('manualCode');
   if (manualCode) manualCode.onkeypress = e => { if (e.key === 'Enter' && e.target.value.trim()) handleScan(e.target.value.trim()); };
 
-  // Charge buttons (desktop + mobile)
   const chargeBtn = document.getElementById('chargeBtn');
   if (chargeBtn) chargeBtn.onclick = openCheckout;
   const sheetChargeBtn = document.getElementById('sheetChargeBtn');
   if (sheetChargeBtn) sheetChargeBtn.onclick = openCheckout;
 
-  // Clear cart
   const clearCartBtn = document.getElementById('clearCartBtn');
   if (clearCartBtn) clearCartBtn.onclick = clearCart;
   const sheetClearCartBtn = document.getElementById('sheetClearCartBtn');
   if (sheetClearCartBtn) sheetClearCartBtn.onclick = clearCart;
 
-  // Checkout
   const closeCheckout = document.getElementById('closeCheckout');
   if (closeCheckout) closeCheckout.onclick = () => hide('checkoutModal');
   const cancelCheckout = document.getElementById('cancelCheckout');
@@ -1220,7 +1259,6 @@ function wireEvents(){
   const mpesaPhoneInput = document.getElementById('mpesaPhoneInput');
   if (mpesaPhoneInput) mpesaPhoneInput.oninput = e => { mpesaPhone = e.target.value.trim(); };
 
-  // Receipt
   const closeReceipt = document.getElementById('closeReceipt');
   if (closeReceipt) closeReceipt.onclick = () => hide('receiptModal');
   const newSaleBtn = document.getElementById('newSaleBtn');
@@ -1228,11 +1266,9 @@ function wireEvents(){
   const printBtn = document.getElementById('printBtn');
   if (printBtn) printBtn.onclick = () => window.print();
 
-  // Menu
   const closeMenu = document.getElementById('closeMenu');
   if (closeMenu) closeMenu.onclick = () => hide('menuModal');
 
-  // Edit
   const closeEdit = document.getElementById('closeEdit');
   if (closeEdit) closeEdit.onclick = () => hide('editModal');
   const cancelEdit = document.getElementById('cancelEdit');
@@ -1240,7 +1276,6 @@ function wireEvents(){
   const saveEdit = document.getElementById('saveEdit');
   if (saveEdit) saveEdit.onclick = saveProductEdit;
 
-  // Stock
   const closeStock = document.getElementById('closeStock');
   if (closeStock) closeStock.onclick = () => hide('stockModal');
   const stockAmount = document.getElementById('stockAmount');
@@ -1250,7 +1285,6 @@ function wireEvents(){
   const stockRemove = document.getElementById('stockRemove');
   if (stockRemove) stockRemove.onclick = () => changeStock(-1);
 
-  // PIN
   const closePin = document.getElementById('closePin');
   if (closePin) closePin.onclick = () => { hide('pinModal'); pinCallback = null; pinBuffer = ''; };
   const pad = document.getElementById('pinPad');
@@ -1259,7 +1293,6 @@ function wireEvents(){
     pad.onclick = e => { const b = e.target.closest('button'); if (b) handlePinInput(b.dataset.pin); };
   }
 
-  // Profile page
   const profileMpesaBtn = document.getElementById('profileMpesaBtn');
   if (profileMpesaBtn) profileMpesaBtn.onclick = () => { updateMpesaDisplay(); show('mpesaModal'); };
   const profileRecentBtn = document.getElementById('profileRecentBtn');
@@ -1267,7 +1300,6 @@ function wireEvents(){
   const profileSignOutBtn = document.getElementById('profileSignOutBtn');
   if (profileSignOutBtn) profileSignOutBtn.onclick = () => signOut(auth);
 
-  // M-Pesa
   const mpesaBtn = document.getElementById('mpesaBtn');
   if (mpesaBtn) mpesaBtn.onclick = () => { updateMpesaDisplay(); show('mpesaModal'); };
   const closeMpesa = document.getElementById('closeMpesa');
@@ -1285,10 +1317,8 @@ function wireEvents(){
   const mpesaTxAmount = document.getElementById('mpesaTxAmount');
   if (mpesaTxAmount) mpesaTxAmount.oninput = updateMpesaTxPreview;
 
-  // Modal close on overlay click
   document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
 
-  // Network
   window.addEventListener('online', checkNetwork);
   window.addEventListener('offline', checkNetwork);
 }
@@ -1309,16 +1339,12 @@ function clearCart(){
 function renderProducts(){
   const grid = document.getElementById('grid');
   if (!grid) return;
-
   let list = allProducts.slice();
   if (activeCategory === 'favorites') list = list.filter(p => favorites.includes(p.id));
   else if (activeCategory !== 'all') list = list.filter(p => p.category === activeCategory);
   if (searchQuery) list = list.filter(p => (p.name||'').toLowerCase().includes(searchQuery) || (p.barcode||'').includes(searchQuery) || (p.category||'').toLowerCase().includes(searchQuery));
 
-  if (list.length === 0) {
-    grid.innerHTML = `<div class="empty"><i class="fas fa-box-open"></i><p>No products found</p></div>`;
-    return;
-  }
+  if (list.length === 0) { grid.innerHTML = `<div class="empty"><i class="fas fa-box-open"></i><p>No products found</p></div>`; return; }
   if (activeCategory === 'all' && !searchQuery) list.sort((a,b) => (favorites.includes(b.id)?1:0) - (favorites.includes(a.id)?1:0));
 
   grid.innerHTML = list.map(p => {
@@ -1365,7 +1391,6 @@ function toggleFavorite(id){
   renderProducts();
 }
 
-/* PRODUCT MENU */
 function openProductMenu(id){
   const p = allProducts.find(x => String(x.id) === String(id));
   if (!p) return;
@@ -1404,7 +1429,6 @@ function runProductAction(action){
   });
 }
 
-/* EDIT PRODUCT */
 function openEditProduct(p){
   const n = document.getElementById('editName'); if (n) n.value = p.name || '';
   const pr = document.getElementById('editPrice'); if (pr) pr.value = p.price || 0;
@@ -1428,7 +1452,6 @@ async function saveProductEdit(){
   } catch (e) { toast('Failed: ' + e.message, 'error'); }
 }
 
-/* STOCK */
 function openStockAdjust(p){
   setText('stockName', p.name);
   setText('stockCurrent', p.stock ?? 0);
@@ -1466,7 +1489,6 @@ async function deleteProduct(p){
   catch (e) { toast('Delete failed: ' + e.message, 'error'); }
 }
 
-/* PIN */
 function requestPin(msg, cb){
   pinBuffer = '';
   pinCallback = cb;
@@ -1501,7 +1523,6 @@ function handlePinInput(k){
   }
 }
 
-/* CART */
 function addToCart(p){
   if (!p || p.id == null || p.id === '') { toast('Invalid product', 'error'); return; }
   if (p.stock !== undefined && p.stock <= 0) { toast('Out of stock', 'warning'); vibrate([40,30,40]); return; }
@@ -1516,7 +1537,6 @@ function addToCart(p){
   saveCart();
   renderCart();
   renderProducts();
-  // Show cart FAB pulse
   const fab = document.getElementById('cartFab');
   if (fab) { fab.classList.remove('pulse'); void fab.offsetWidth; fab.classList.add('pulse'); }
 }
@@ -1569,7 +1589,6 @@ function renderCart(){
         </div>
       </div>`).join('');
 
-  // Both desktop cart and mobile sheet
   ['cartItems', 'sheetCartItems'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -1580,7 +1599,6 @@ function renderCart(){
     }
   });
 
-  // Summary values
   const sub = money(cartSubtotal());
   const tax = money(cartTax());
   const tot = money(cartTotal());
@@ -1591,7 +1609,6 @@ function renderCart(){
   updateMobileNav();
 }
 
-/* RECENT SALES */
 function renderRecentSales(){
   const html = recentSales.length === 0
     ? `<div class="cart-empty"><i class="fas fa-clock-rotate-left"></i><p>No recent sales</p></div>`
@@ -1626,7 +1643,6 @@ function renderRecentSales(){
   renderProfilePage();
 }
 
-/* CHECKOUT */
 function openCheckout(){
   if (cart.length === 0) { toast('Cart is empty', 'warning'); return; }
   selectedPayment = 'cash';
@@ -1642,7 +1658,6 @@ function openCheckout(){
   setText('checkoutTotal', money(cartTotal()));
   updateChangeDisplay();
   updateMpesaDisplay();
-  // Close cart sheet when opening checkout
   closeCartSheet();
   show('checkoutModal');
 }
@@ -1782,7 +1797,6 @@ function showReceipt(sale){
   show('receiptModal');
 }
 
-/* SCANNER */
 function openScanner(target){
   scannerTarget = target || 'cart';
   const title = document.getElementById('scanTitle');
@@ -1839,7 +1853,6 @@ function handleScan(code){
   closeScanner();
 }
 
-/* M-PESA FLOAT TX */
 let mpesaTxMode = 'in';
 function openMpesaTxModal(mode){
   mpesaTxMode = mode;
@@ -1885,7 +1898,6 @@ async function saveMpesaTxFn(){
   finally { if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Confirm'; } }
 }
 
-/* NETWORK */
 function checkNetwork(){
   isOnline = navigator.onLine;
   const bar = document.getElementById('offlineBar');
@@ -1927,7 +1939,6 @@ async function syncOffline(){
   else if (synced > 0) toast(`Synced ${synced} offline sale${synced !== 1 ? 's' : ''}`, 'success');
 }
 
-/* AUTH STATE */
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     shellRendered = false;
