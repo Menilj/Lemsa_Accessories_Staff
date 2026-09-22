@@ -209,7 +209,6 @@ input{-webkit-appearance:none;appearance:none}
 .change-disp.neg strong{color:var(--danger)}
 .change-disp.neg{background:rgba(239,68,68,.1)}
 
-/* M-Pesa payment panel */
 .mpesa-panel{background:linear-gradient(135deg,rgba(0,166,81,.12),rgba(0,166,81,.03));border:1.5px solid rgba(0,166,81,.35);border-radius:var(--r-md);padding:16px}
 .mpesa-panel .mp-hdr{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .mpesa-panel .mp-hdr i{color:var(--mpesa-light);font-size:1.1rem}
@@ -239,7 +238,6 @@ input{-webkit-appearance:none;appearance:none}
 .receipt .row.hdr{font-weight:800;text-transform:uppercase;font-size:.7rem}
 .receipt .row.total{font-weight:800;font-size:.98rem;margin-top:6px;padding-top:6px;border-top:2px solid #000}
 
-/* ACTION CARDS */
 .action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .action-card{padding:18px 12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
 .action-card:active{transform:scale(.96);background:var(--bg4);border-color:var(--accent)}
@@ -253,9 +251,7 @@ input{-webkit-appearance:none;appearance:none}
 .pin-key{padding:20px 8px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:1.4rem;font-weight:800;min-height:60px;display:flex;align-items:center;justify-content:center}
 .pin-key:active{background:var(--accent);color:#fff;transform:scale(.94)}
 
-/* RECENT SALES LIST */
-.recent-sales{display:flex;flex-direction:column;gap:8px}
-.sale-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);cursor:pointer}
+.sale-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);cursor:pointer;margin-bottom:8px}
 .sale-row:active{background:var(--bg4);transform:scale(.98)}
 .sale-icon{width:40px;height:40px;border-radius:10px;background:var(--accentS);display:flex;align-items:center;justify-content:center;color:var(--accentB);font-size:.95rem;flex-shrink:0}
 .sale-info{flex:1;min-width:0}
@@ -267,13 +263,12 @@ input{-webkit-appearance:none;appearance:none}
 .sale-pill.cash{background:rgba(16,185,129,.15);color:var(--success)}
 .sale-pill.mpesa{background:rgba(0,166,81,.15);color:var(--mpesa-light)}
 
-/* TAB BAR at bottom of cart */
 .cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px}
 .cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
 .cart-tab.active{background:var(--accentS);color:var(--accentB)}
 .cart-tab:active{transform:scale(.96)}
-.cart-pane{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.cart-pane.active{display:flex;flex-direction:column}
+.cart-pane{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column}
+.cart-pane.active{display:flex}
 
 .toasts{position:fixed;top:calc(14px + var(--safe-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);padding:0 16px;width:100%;align-items:center}
 .toast{background:var(--bg4);border:1.5px solid var(--border2);border-left:4px solid var(--accent);border-radius:var(--r-md);padding:13px 16px;color:var(--text);font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:auto;max-width:100%}
@@ -314,16 +309,19 @@ input{-webkit-appearance:none;appearance:none}
 
 <script type="module">
 /* ============================================================
-   ElectroPOS · Staff Terminal (Synced with Admin)
+   ElectroPOS · Staff Terminal — Mobile Auth Fixed
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
-  getRedirectResult, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence
+  getRedirectResult, onAuthStateChanged, signOut,
+  setPersistence, browserLocalPersistence,
+  browserSessionPersistence, inMemoryPersistence
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getDatabase, ref, push, set, onValue, update, remove, get, serverTimestamp, runTransaction }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
+/* 🔥 FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyDh3pTqEkU_2G2MpQtDtvZQc1vXM6tvMFo",
   authDomain: "lemsaaccessories.firebaseapp.com",
@@ -338,7 +336,145 @@ const firebaseConfig = {
 const MANAGER_PIN = '2387';
 const VAT_RATE = 0.16;
 
-/* ---- State ---- */
+/* ============================================================
+   CONFIG CHECK
+   ============================================================ */
+(function checkConfig(){
+  const errs = [];
+  if (!firebaseConfig.apiKey || !firebaseConfig.apiKey.startsWith('AIza')) errs.push('apiKey');
+  if (!firebaseConfig.databaseURL) errs.push('databaseURL');
+  if (errs.length) {
+    document.getElementById('app').innerHTML = `<div class="fatal"><div class="fatal-card"><h2>Config Missing</h2><p>Add your Firebase config in the HTML file.</p><pre>Missing: ${errs.join(', ')}</pre><button onclick="location.reload()">Retry</button></div></div>`;
+    throw new Error('Config missing');
+  }
+})();
+
+let app, auth, db;
+
+/* ============================================================
+   MOBILE-PROOF STORAGE HELPERS
+   ============================================================ */
+function isMobileDevice() {
+  const ua = navigator.userAgent || '';
+  const uaMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS|FxiOS/i.test(ua);
+  const touchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const smallScreen = window.innerWidth < 900;
+  // Mobile if at least 2 of 3 indicators are true
+  return [uaMobile, touchDevice, smallScreen].filter(Boolean).length >= 2;
+}
+
+function isStorageWorking(type) {
+  try {
+    const s = type === 'local' ? window.localStorage : window.sessionStorage;
+    const k = '__test_' + Date.now();
+    s.setItem(k, 'ok');
+    const v = s.getItem(k);
+    s.removeItem(k);
+    return v === 'ok';
+  } catch (e) { return false; }
+}
+
+async function pickBestPersistence() {
+  // ALWAYS prefer local — session is what mobile clears
+  if (isStorageWorking('local')) {
+    try {
+      await setPersistence(auth, browserLocalPersistence);
+      console.log('✅ Persistence: LOCAL');
+      return 'local';
+    } catch (e) { console.warn('local persistence failed:', e); }
+  }
+  if (isStorageWorking('session')) {
+    try {
+      await setPersistence(auth, browserSessionPersistence);
+      console.log('✅ Persistence: SESSION');
+      return 'session';
+    } catch (e) { console.warn('session persistence failed:', e); }
+  }
+  try {
+    await setPersistence(auth, inMemoryPersistence);
+    console.log('✅ Persistence: MEMORY');
+    return 'memory';
+  } catch (e) {
+    console.error('all persistence failed:', e);
+    return 'none';
+  }
+}
+
+/* URL markers — survive storage wipe */
+function markAuthIntent() {
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.set('auth_intent', '1');
+    u.searchParams.set('t', Date.now().toString());
+    window.history.replaceState({}, '', u.toString());
+  } catch (e) {}
+}
+function clearAuthIntent() {
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.delete('auth_intent');
+    u.searchParams.delete('t');
+    window.history.replaceState({}, '', u.toString());
+  } catch (e) {}
+}
+function hasAuthIntent() {
+  try { return new URL(window.location.href).searchParams.get('auth_intent') === '1'; }
+  catch (e) { return false; }
+}
+
+/* Boot Firebase */
+try {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getDatabase(app);
+  console.log('✅ Firebase ready');
+} catch (e) {
+  document.getElementById('app').innerHTML = `<div class="fatal"><div class="fatal-card"><h2>Init Failed</h2><pre>${String(e.message||e)}</pre><button onclick="location.reload()">Retry</button></div></div>`;
+  throw e;
+}
+
+/* ============================================================
+   RESOLVE PENDING REDIRECT (with "missing initial state" recovery)
+   ============================================================ */
+(async () => {
+  try {
+    // Set persistence FIRST — critical for mobile
+    await pickBestPersistence();
+
+    const result = await getRedirectResult(auth);
+    if (result && result.user) {
+      console.log('✅ Redirect resolved:', result.user.email);
+      clearAuthIntent();
+    } else {
+      console.log('ℹ️ No pending redirect');
+      // If we have intent marker but no result, it means the state was lost
+      if (hasAuthIntent()) {
+        console.warn('⚠️ Auth intent present but no result — clearing stale state');
+        clearAuthIntent();
+        // Clean any Firebase hash left in URL
+        if (window.location.hash && window.location.hash.includes('firebase')) {
+          window.history.replaceState({}, '', window.location.pathname + window.location.search);
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('[Auth] getRedirectResult error:', e.code, e.message);
+    // 🛡️ Recover from "missing initial state"
+    if (e.code === 'auth/argument-error' ||
+        (e.message && e.message.includes('missing initial state')) ||
+        (e.message && e.message.includes('sessionStorage'))) {
+      console.log('🔧 Recovering from missing initial state — clearing markers');
+      clearAuthIntent();
+      if (window.location.hash) {
+        window.history.replaceState({}, '', window.location.pathname + window.location.search);
+      }
+    }
+  }
+})();
+
+/* ============================================================
+   STATE
+   ============================================================ */
 let currentUser = null;
 let allProducts = [];
 let activeCategory = 'all';
@@ -367,25 +503,21 @@ let lastRemoved = null;
 let shellRendered = false;
 let pinBuffer = '';
 let pinCallback = null;
-let cartTab = 'cart'; // 'cart' | 'recent'
+let cartTab = 'cart';
 
 const CART_KEY = 'electropos_cart';
 const FAV_KEY = 'electro_favorites';
 const OFFLINE_KEY = 'electro_offline_queue';
 
-/* ---- Helpers ---- */
+/* ============================================================
+   HELPERS
+   ============================================================ */
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function money(n){
   const num = Number(n) || 0;
   const fixed = num.toFixed(2);
   const parts = fixed.split('.');
   return 'KSh ' + parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + parts[1];
-}
-function shortMoney(n){
-  const num = Number(n) || 0;
-  if (Math.abs(num) >= 1000000) return 'KSh ' + (num/1000000).toFixed(2) + 'M';
-  if (Math.abs(num) >= 1000) return 'KSh ' + (num/1000).toFixed(1) + 'K';
-  return 'KSh ' + num.toFixed(2);
 }
 function initials(n){return (n||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();}
 function iconFor(cat){return {phones:'fa-mobile-alt',laptops:'fa-laptop',audio:'fa-headphones',accessories:'fa-plug'}[cat]||'fa-box';}
@@ -442,33 +574,14 @@ function loadCart() {
   } catch (e) { cart = []; }
 }
 
-/* ---- Config check ---- */
-(function checkConfig(){
-  const errs = [];
-  if (!firebaseConfig.apiKey || !firebaseConfig.apiKey.startsWith('AIza')) errs.push('apiKey');
-  if (!firebaseConfig.databaseURL) errs.push('databaseURL');
-  if (errs.length) {
-    document.getElementById('app').innerHTML = `<div class="fatal"><div class="fatal-card"><h2>Config Missing</h2><p>Add your Firebase config in the HTML file.</p><pre>Missing: ${errs.join(', ')}</pre><button onclick="location.reload()">Retry</button></div></div>`;
-    throw new Error('Config missing');
-  }
-})();
-
-let app, auth, db;
-try {
-  app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getDatabase(app);
-  setPersistence(auth, browserLocalPersistence).catch(()=>{});
-  console.log('✅ Firebase ready');
-} catch (e) {
-  document.getElementById('app').innerHTML = `<div class="fatal"><div class="fatal-card"><h2>Init Failed</h2><pre>${esc(e.message)}</pre><button onclick="location.reload()">Retry</button></div></div>`;
-  throw e;
-}
-
 /* ============================================================
-   LOGIN — Mobile-safe with redirect fallback
+   LOGIN
    ============================================================ */
 function renderLogin(errMsg=''){
+  const isMobile = isMobileDevice();
+  const storageOk = isStorageWorking('local') || isStorageWorking('session');
+  const intent = hasAuthIntent();
+
   document.getElementById('app').innerHTML = `
     <div class="login-wrap">
       <div class="login-card">
@@ -478,8 +591,14 @@ function renderLogin(errMsg=''){
         <div class="login-err" id="lerr">${esc(errMsg)}</div>
         <button class="google-btn" id="gbtn" type="button">
           <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
-          <span>Sign in with Google</span>
+          <span>${intent ? 'Retry Sign In' : 'Sign in with Google'}</span>
         </button>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:10px;font-size:.7rem;color:var(--text3);text-align:center;line-height:1.6;margin-top:8px">
+          <strong style="color:var(--accentB)">Mobile:</strong> ${isMobile?'✅':'—'} &nbsp;
+          <strong style="color:var(--accentB)">Storage:</strong> ${storageOk?'✅':'⚠️ blocked'} &nbsp;
+          <strong style="color:var(--accentB)">Method:</strong> ${isMobile?'redirect':'popup→redirect'}
+          ${intent ? '<br><span style="color:var(--warning)">⚠️ Previous sign-in interrupted — tap Retry</span>' : ''}
+        </div>
       </div>
     </div>`;
 
@@ -488,23 +607,70 @@ function renderLogin(errMsg=''){
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting…';
     try {
-      const provider = new GoogleAuthProvider();
-      provider.setCustomParameters({ prompt: 'select_account' });
-      const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 700;
-      if (isMobile) await signInWithRedirect(auth, provider);
-      else await signInWithPopup(auth, provider);
+      await doGoogleSignIn();
     } catch (err) {
+      console.error('Sign-in error:', err);
       const map = {
-        'auth/popup-blocked':'Popup blocked — allow popups',
+        'auth/popup-blocked':'Popup blocked — allow popups in your browser',
         'auth/popup-closed-by-user':'Sign-in cancelled',
-        'auth/unauthorized-domain':'Domain not authorized',
-        'auth/operation-not-allowed':'Google sign-in not enabled'
+        'auth/cancelled-popup-request':'Sign-in cancelled',
+        'auth/unauthorized-domain':'Domain not authorized in Firebase Console',
+        'auth/operation-not-allowed':'Google sign-in is disabled in Firebase',
+        'auth/network-request-failed':'Network error — check your connection',
+        'auth/argument-error':'Session state lost — retrying…',
+        'auth/internal-error':'Browser blocked storage — retrying…'
       };
-      document.getElementById('lerr').textContent = map[err.code] || err.message;
+      document.getElementById('lerr').textContent = map[err.code] || (err.code || err.message);
       btn.disabled = false;
-      btn.innerHTML = '<span>Sign in with Google</span>';
+      btn.innerHTML = `<svg viewBox="0 0 48 48" style="width:20px;height:20px"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg><span>Sign in with Google</span>`;
     }
   };
+}
+
+/* 🔑 MOBILE-SAFE SIGN-IN */
+async function doGoogleSignIn() {
+  await pickBestPersistence();
+
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+
+  const isMobile = isMobileDevice();
+  markAuthIntent();
+
+  if (isMobile) {
+    console.log('📱 Mobile → signInWithRedirect');
+    try {
+      await signInWithRedirect(auth, provider);
+    } catch (err) {
+      console.warn('Redirect with local persistence failed, trying session…', err);
+      try {
+        await setPersistence(auth, browserSessionPersistence);
+        await signInWithRedirect(auth, provider);
+      } catch (err2) {
+        console.warn('Session persistence also failed, trying memory…', err2);
+        await setPersistence(auth, inMemoryPersistence);
+        await signInWithRedirect(auth, provider);
+      }
+    }
+  } else {
+    console.log('💻 Desktop → signInWithPopup with redirect fallback');
+    try {
+      await signInWithPopup(auth, provider);
+      clearAuthIntent();
+    } catch (err) {
+      const fallbackCodes = [
+        'auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request',
+        'auth/argument-error','auth/internal-error','auth/operation-not-supported-in-this-environment'
+      ];
+      if (fallbackCodes.includes(err.code)) {
+        console.log('Falling back to redirect…');
+        await signInWithRedirect(auth, provider);
+      } else {
+        clearAuthIntent();
+        throw err;
+      }
+    }
+  }
 }
 
 /* ============================================================
@@ -849,7 +1015,6 @@ function renderUI(){
    EVENTS
    ============================================================ */
 function wireEvents(){
-  // Search
   const si = document.getElementById('searchInput');
   const sw = document.getElementById('searchWrap');
   si.oninput = e => {
@@ -864,7 +1029,6 @@ function wireEvents(){
     si.focus();
   };
 
-  // Category chips
   document.getElementById('chips').onclick = e => {
     const c = e.target.closest('.chip');
     if (!c) return;
@@ -875,7 +1039,6 @@ function wireEvents(){
     renderProducts();
   };
 
-  // Favorites
   document.getElementById('favBtn').onclick = () => {
     const btn = document.getElementById('favBtn');
     const isFav = btn.classList.toggle('active');
@@ -885,7 +1048,6 @@ function wireEvents(){
     renderProducts();
   };
 
-  // Cart tabs
   document.querySelectorAll('.cart-tab').forEach(tab => {
     tab.onclick = () => {
       const t = tab.dataset.tab;
@@ -896,7 +1058,6 @@ function wireEvents(){
     };
   });
 
-  // Scanner
   document.getElementById('scanBtn').onclick = () => openScanner('cart');
   document.getElementById('closeScan').onclick = closeScanner;
   document.getElementById('manualBtn').onclick = () => {
@@ -910,7 +1071,6 @@ function wireEvents(){
     }
   };
 
-  // Cart
   document.getElementById('chargeBtn').onclick = openCheckout;
   document.getElementById('clearCartBtn').onclick = () => {
     if (cart.length === 0) return;
@@ -922,7 +1082,6 @@ function wireEvents(){
     toast('Cart cleared', 'info');
   };
 
-  // Checkout
   document.getElementById('closeCheckout').onclick = () => closeModal('checkoutModal');
   document.getElementById('cancelCheckout').onclick = () => closeModal('checkoutModal');
   document.getElementById('confirmCheckout').onclick = completeSale;
@@ -940,7 +1099,6 @@ function wireEvents(){
     };
   });
 
-  // Quick cash buttons
   const quickAmounts = [50, 100, 200, 500, 1000, 2000];
   document.getElementById('quickCash').innerHTML = quickAmounts.map(v =>
     `<button data-cash="${v}">${v >= 1000 ? (v/1000)+'K' : v}</button>`
@@ -963,30 +1121,24 @@ function wireEvents(){
     updateChangeDisplay();
   };
 
-  // M-Pesa inputs
   document.getElementById('mpesaRefInput').oninput = e => { mpesaRef = e.target.value.trim(); };
   document.getElementById('mpesaPhoneInput').oninput = e => { mpesaPhone = e.target.value.trim(); };
 
-  // Receipt
   document.getElementById('closeReceipt').onclick = () => closeModal('receiptModal');
   document.getElementById('newSaleBtn').onclick = () => closeModal('receiptModal');
   document.getElementById('printBtn').onclick = () => window.print();
 
-  // Product menu
   document.getElementById('closeMenu').onclick = () => closeModal('menuModal');
 
-  // Edit
   document.getElementById('closeEdit').onclick = () => closeModal('editModal');
   document.getElementById('cancelEdit').onclick = () => closeModal('editModal');
   document.getElementById('saveEdit').onclick = saveProductEdit;
 
-  // Stock
   document.getElementById('closeStock').onclick = () => closeModal('stockModal');
   document.getElementById('stockAmount').oninput = updateStockPreview;
   document.getElementById('stockAdd').onclick = () => changeStock(1);
   document.getElementById('stockRemove').onclick = () => changeStock(-1);
 
-  // PIN
   document.getElementById('closePin').onclick = () => { closeModal('pinModal'); pinCallback = null; pinBuffer = ''; };
   const pad = document.getElementById('pinPad');
   pad.innerHTML = [1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k => {
@@ -1000,13 +1152,11 @@ function wireEvents(){
     handlePinInput(b.dataset.pin);
   };
 
-  // User
   document.getElementById('userChip').onclick = () => openModal('userModal');
   document.getElementById('closeUser').onclick = () => closeModal('userModal');
   document.getElementById('cancelUser').onclick = () => closeModal('userModal');
   document.getElementById('signOutBtn').onclick = () => signOut(auth);
 
-  // M-Pesa Float
   document.getElementById('mpesaBtn').onclick = () => { updateMpesaDisplay(); openModal('mpesaModal'); };
   document.getElementById('closeMpesa').onclick = () => closeModal('mpesaModal');
   document.getElementById('mpesaDepositBtn').onclick = () => openMpesaTxModal('in');
@@ -1016,7 +1166,6 @@ function wireEvents(){
   document.getElementById('saveMpesaTx').onclick = saveMpesaTx;
   document.getElementById('mpesaTxAmount').oninput = updateMpesaTxPreview;
 
-  // Close on overlay tap
   document.querySelectorAll('.modal').forEach(m => {
     m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
   });
@@ -1439,7 +1588,7 @@ function renderRecentSales(){
 }
 
 /* ============================================================
-   CHECKOUT — FIXED + M-PESA INTEGRATION
+   CHECKOUT — M-PESA INTEGRATION + SANITIZED SALE
    ============================================================ */
 function openCheckout(){
   if (cart.length === 0) { toast('Cart is empty', 'warning'); return; }
@@ -1509,14 +1658,12 @@ async function completeSale(){
 
   const total = cartTotal();
 
-  // Cash validation
   if (selectedPayment === 'cash' && cashReceived < total) {
     toast('Cash received is less than total', 'warning');
     vibrate([40, 30, 40]);
     return;
   }
 
-  // M-Pesa validation
   if (selectedPayment === 'mpesa') {
     if (!mpesaRef) { toast('Enter M-Pesa reference code', 'warning'); return; }
     if (mpesaFloatBalance < total) {
@@ -1560,7 +1707,6 @@ async function completeSale(){
       const txId = txRef.key;
       await set(txRef, { ...sale, id: txId, timestamp: serverTimestamp() });
 
-      // Decrement stock
       for (const item of cart) {
         const p = allProducts.find(x => String(x.id) === String(item.id));
         if (p && typeof p.stock === 'number') {
@@ -1569,7 +1715,6 @@ async function completeSale(){
         }
       }
 
-      // M-Pesa float deduction
       if (selectedPayment === 'mpesa') {
         const newBalance = mpesaFloatBalance - total;
         await set(ref(db, 'mpesaFloat/balance'), +newBalance.toFixed(2));
@@ -1588,7 +1733,6 @@ async function completeSale(){
         toast('M-Pesa float updated', 'mpesa');
       }
 
-      // Prepend to recent sales
       sale.id = txId;
       recentSales.unshift(sale);
       if (recentSales.length > 50) recentSales = recentSales.slice(0, 50);
@@ -1821,7 +1965,6 @@ async function syncOffline(){
       const txId = txRef.key;
       await set(txRef, { ...sale, id: txId, timestamp: serverTimestamp() });
 
-      // Decrement stock
       for (const item of (sale.items || [])) {
         const p = allProducts.find(x => String(x.id) === String(item.productId));
         if (p && typeof p.stock === 'number') {
@@ -1830,7 +1973,6 @@ async function syncOffline(){
         }
       }
 
-      // M-Pesa float deduction
       if (sale.paymentMethod === 'mpesa' && sale.mpesaRef) {
         const currentSnap = await get(ref(db, 'mpesaFloat/balance'));
         const current = currentSnap.val() || 0;
@@ -1859,24 +2001,25 @@ async function syncOffline(){
 }
 
 /* ============================================================
-   BOOT + AUTH
+   AUTH STATE
    ============================================================ */
-(async () => {
-  try {
-    const r = await getRedirectResult(auth);
-    if (r && r.user) console.log('Redirect resolved:', r.user.email);
-  } catch (e) { console.error('Redirect error:', e); }
-})();
-
 onAuthStateChanged(auth, async (user) => {
+  console.log('[Auth] state:', user ? user.email : 'signed out');
+
   if (!user) {
     shellRendered = false;
     currentUser = null;
-    renderLogin('');
+    if (hasAuthIntent()) {
+      renderLogin('Sign-in was interrupted. Please tap Retry.');
+    } else {
+      renderLogin('');
+    }
     return;
   }
 
-  // Verify registered
+  clearAuthIntent();
+
+  // Verify user is registered
   try {
     const snap = await get(ref(db, 'users'));
     const users = snap.val() || {};
@@ -1885,7 +2028,7 @@ onAuthStateChanged(auth, async (user) => {
     );
     if (!entry) {
       await signOut(auth);
-      renderLogin(`"${user.email}" not registered.`);
+      renderLogin(`"${user.email}" is not registered.`);
       return;
     }
     currentUser = {
@@ -1905,7 +2048,6 @@ onAuthStateChanged(auth, async (user) => {
     };
   }
 
-  // Load local state
   try {
     const f = localStorage.getItem(FAV_KEY);
     if (f) favorites = JSON.parse(f) || [];
@@ -1913,17 +2055,12 @@ onAuthStateChanged(auth, async (user) => {
     if (q) offlineQueue = JSON.parse(q) || [];
   } catch (e) {}
 
-  // Live products
   onValue(ref(db, 'products'), snap => {
     const data = snap.val() || {};
     allProducts = Object.entries(data).map(([id, val]) => ({ id, ...val }));
-    if (shellRendered) {
-      renderProducts();
-      renderCart();
-    }
+    if (shellRendered) { renderProducts(); renderCart(); }
   });
 
-  // Live recent sales (last 20 for this staff)
   onValue(ref(db, 'transactions'), snap => {
     const data = snap.val() || {};
     const all = Object.entries(data).map(([id, val]) => {
@@ -1935,7 +2072,6 @@ onAuthStateChanged(auth, async (user) => {
     if (shellRendered && cartTab === 'recent') renderRecentSales();
   });
 
-  // Live M-Pesa float
   onValue(ref(db, 'mpesaFloat/balance'), snap => {
     mpesaFloatBalance = snap.val() || 0;
     if (shellRendered) updateMpesaDisplay();
