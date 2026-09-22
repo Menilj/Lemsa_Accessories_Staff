@@ -32,7 +32,6 @@ button{cursor:pointer;border:none;background:none}
 input{-webkit-appearance:none;appearance:none}
 #app{height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg)}
 
-/* LOADING / FATAL / LOGIN */
 .loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:var(--bg);z-index:9999}
 .spinner{width:52px;height:52px;border:3px solid var(--bg3);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -55,7 +54,6 @@ input{-webkit-appearance:none;appearance:none}
 .google-btn:disabled{opacity:.6}
 .google-btn svg{width:20px;height:20px}
 
-/* HEADER */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:calc(8px + var(--safe-top)) 12px 8px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;gap:8px;z-index:50}
 .hdr-brand{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
 .hdr-logo{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--purple));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff;flex-shrink:0}
@@ -73,10 +71,8 @@ input{-webkit-appearance:none;appearance:none}
 .user-chip span{font-size:.75rem;font-weight:700;color:var(--text2);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:400px){.user-chip span{display:none}.user-chip{padding:5px;width:42px;justify-content:center}}
 
-/* MAIN LAYOUT */
 .main{flex:1;display:flex;overflow:hidden;min-height:0}
 
-/* PRODUCTS PANEL */
 .products{flex:1.6;display:flex;flex-direction:column;padding:10px;overflow:hidden;min-width:0}
 .toolbar{display:flex;gap:8px;margin-bottom:10px}
 .search{position:relative;flex:1;min-width:0}
@@ -121,12 +117,13 @@ input{-webkit-appearance:none;appearance:none}
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text3)}
 .empty i{font-size:3rem;opacity:.2;margin-bottom:14px;display:block}
 
-/* CART */
 .cart{flex:1;min-width:340px;max-width:440px;display:flex;flex-direction:column;background:var(--bg2);border-left:1px solid var(--border)}
-.cart-hdr{padding:14px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.cart-hdr h3{font-size:.98rem;font-weight:800;display:flex;align-items:center;gap:8px}
-.cart-hdr h3 i{color:var(--accentB)}
-.cart-hdr .count{background:var(--accent);color:#fff;padding:2px 10px;border-radius:100px;font-size:.72rem;font-weight:900}
+.cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px}
+.cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
+.cart-tab.active{background:var(--accentS);color:var(--accentB)}
+.cart-tab:active{transform:scale(.96)}
+.cart-pane{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column}
+.cart-pane.active{display:flex}
 
 .cart-items{flex:1;overflow-y:auto;padding:10px 12px;-webkit-overflow-scrolling:touch}
 .cart-items::-webkit-scrollbar{width:4px}
@@ -157,7 +154,6 @@ input{-webkit-appearance:none;appearance:none}
 .act-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-weight:900}
 .act-btn:disabled{opacity:.5}
 
-/* MODAL */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .modal.open{opacity:1;pointer-events:auto}
 .m-content{width:100%;max-width:540px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-xl) var(--r-xl) 0 0;display:flex;flex-direction:column;max-height:94dvh;transform:translateY(24px);transition:transform .25s;padding-bottom:var(--safe-bottom)}
@@ -263,13 +259,6 @@ input{-webkit-appearance:none;appearance:none}
 .sale-pill.cash{background:rgba(16,185,129,.15);color:var(--success)}
 .sale-pill.mpesa{background:rgba(0,166,81,.15);color:var(--mpesa-light)}
 
-.cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px}
-.cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
-.cart-tab.active{background:var(--accentS);color:var(--accentB)}
-.cart-tab:active{transform:scale(.96)}
-.cart-pane{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;flex-direction:column}
-.cart-pane.active{display:flex}
-
 .toasts{position:fixed;top:calc(14px + var(--safe-top));left:50%;transform:translateX(-50%);z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:calc(100vw - 32px);padding:0 16px;width:100%;align-items:center}
 .toast{background:var(--bg4);border:1.5px solid var(--border2);border-left:4px solid var(--accent);border-radius:var(--r-md);padding:13px 16px;color:var(--text);font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:auto;max-width:100%}
 .toast.success{border-left-color:var(--success)}.toast.success i{color:var(--success)}
@@ -309,7 +298,7 @@ input{-webkit-appearance:none;appearance:none}
 
 <script type="module">
 /* ============================================================
-   ElectroPOS · Staff Terminal — Mobile Auth Fixed
+   ElectroPOS · Staff Terminal — Safe DOM Writes
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -321,7 +310,6 @@ import {
 import { getDatabase, ref, push, set, onValue, update, remove, get, serverTimestamp, runTransaction }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-/* 🔥 FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyDh3pTqEkU_2G2MpQtDtvZQc1vXM6tvMFo",
   authDomain: "lemsaaccessories.firebaseapp.com",
@@ -336,9 +324,7 @@ const firebaseConfig = {
 const MANAGER_PIN = '2387';
 const VAT_RATE = 0.16;
 
-/* ============================================================
-   CONFIG CHECK
-   ============================================================ */
+/* ---- Config check ---- */
 (function checkConfig(){
   const errs = [];
   if (!firebaseConfig.apiKey || !firebaseConfig.apiKey.startsWith('AIza')) errs.push('apiKey');
@@ -352,6 +338,36 @@ const VAT_RATE = 0.16;
 let app, auth, db;
 
 /* ============================================================
+   SAFE DOM HELPERS — prevent "Cannot set properties of null"
+   ============================================================ */
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+function setHTML(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = value;
+}
+function setDisplay(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = value;
+}
+function addClass(id, cls) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add(cls);
+}
+function removeClass(id, cls) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove(cls);
+}
+function toggleClass(id, cls, force) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle(cls, force);
+}
+function show(id) { addClass(id, 'open'); }
+function hide(id) { removeClass(id, 'open'); }
+
+/* ============================================================
    MOBILE-PROOF STORAGE HELPERS
    ============================================================ */
 function isMobileDevice() {
@@ -359,7 +375,6 @@ function isMobileDevice() {
   const uaMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS|FxiOS/i.test(ua);
   const touchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   const smallScreen = window.innerWidth < 900;
-  // Mobile if at least 2 of 3 indicators are true
   return [uaMobile, touchDevice, smallScreen].filter(Boolean).length >= 2;
 }
 
@@ -375,32 +390,18 @@ function isStorageWorking(type) {
 }
 
 async function pickBestPersistence() {
-  // ALWAYS prefer local — session is what mobile clears
   if (isStorageWorking('local')) {
-    try {
-      await setPersistence(auth, browserLocalPersistence);
-      console.log('✅ Persistence: LOCAL');
-      return 'local';
-    } catch (e) { console.warn('local persistence failed:', e); }
+    try { await setPersistence(auth, browserLocalPersistence); console.log('✅ Persistence: LOCAL'); return 'local'; }
+    catch (e) { console.warn('local persistence failed:', e); }
   }
   if (isStorageWorking('session')) {
-    try {
-      await setPersistence(auth, browserSessionPersistence);
-      console.log('✅ Persistence: SESSION');
-      return 'session';
-    } catch (e) { console.warn('session persistence failed:', e); }
+    try { await setPersistence(auth, browserSessionPersistence); console.log('✅ Persistence: SESSION'); return 'session'; }
+    catch (e) { console.warn('session persistence failed:', e); }
   }
-  try {
-    await setPersistence(auth, inMemoryPersistence);
-    console.log('✅ Persistence: MEMORY');
-    return 'memory';
-  } catch (e) {
-    console.error('all persistence failed:', e);
-    return 'none';
-  }
+  try { await setPersistence(auth, inMemoryPersistence); console.log('✅ Persistence: MEMORY'); return 'memory'; }
+  catch (e) { console.error('all persistence failed:', e); return 'none'; }
 }
 
-/* URL markers — survive storage wipe */
 function markAuthIntent() {
   try {
     const u = new URL(window.location.href);
@@ -434,24 +435,20 @@ try {
 }
 
 /* ============================================================
-   RESOLVE PENDING REDIRECT (with "missing initial state" recovery)
+   RESOLVE PENDING REDIRECT
    ============================================================ */
 (async () => {
   try {
-    // Set persistence FIRST — critical for mobile
     await pickBestPersistence();
-
     const result = await getRedirectResult(auth);
     if (result && result.user) {
       console.log('✅ Redirect resolved:', result.user.email);
       clearAuthIntent();
     } else {
       console.log('ℹ️ No pending redirect');
-      // If we have intent marker but no result, it means the state was lost
       if (hasAuthIntent()) {
         console.warn('⚠️ Auth intent present but no result — clearing stale state');
         clearAuthIntent();
-        // Clean any Firebase hash left in URL
         if (window.location.hash && window.location.hash.includes('firebase')) {
           window.history.replaceState({}, '', window.location.pathname + window.location.search);
         }
@@ -459,7 +456,6 @@ try {
     }
   } catch (e) {
     console.warn('[Auth] getRedirectResult error:', e.code, e.message);
-    // 🛡️ Recover from "missing initial state"
     if (e.code === 'auth/argument-error' ||
         (e.message && e.message.includes('missing initial state')) ||
         (e.message && e.message.includes('sessionStorage'))) {
@@ -602,8 +598,9 @@ function renderLogin(errMsg=''){
       </div>
     </div>`;
 
-  document.getElementById('gbtn').onclick = async () => {
-    const btn = document.getElementById('gbtn');
+  const btn = document.getElementById('gbtn');
+  if (!btn) return;
+  btn.onclick = async () => {
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting…';
     try {
@@ -620,20 +617,18 @@ function renderLogin(errMsg=''){
         'auth/argument-error':'Session state lost — retrying…',
         'auth/internal-error':'Browser blocked storage — retrying…'
       };
-      document.getElementById('lerr').textContent = map[err.code] || (err.code || err.message);
+      const el = document.getElementById('lerr');
+      if (el) el.textContent = map[err.code] || (err.code || err.message);
       btn.disabled = false;
       btn.innerHTML = `<svg viewBox="0 0 48 48" style="width:20px;height:20px"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg><span>Sign in with Google</span>`;
     }
   };
 }
 
-/* 🔑 MOBILE-SAFE SIGN-IN */
 async function doGoogleSignIn() {
   await pickBestPersistence();
-
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
-
   const isMobile = isMobileDevice();
   markAuthIntent();
 
@@ -677,6 +672,7 @@ async function doGoogleSignIn() {
    MAIN UI
    ============================================================ */
 function renderUI(){
+  if (!currentUser) return;
   const inits = initials(currentUser.name);
   const avatarHtml = currentUser.photoURL ? `<img src="${currentUser.photoURL}" alt="">` : inits;
 
@@ -1017,36 +1013,50 @@ function renderUI(){
 function wireEvents(){
   const si = document.getElementById('searchInput');
   const sw = document.getElementById('searchWrap');
-  si.oninput = e => {
-    searchQuery = e.target.value.toLowerCase();
-    sw.classList.toggle('has-text', searchQuery.length > 0);
-    renderProducts();
-  };
-  document.getElementById('clearSearch').onclick = () => {
-    si.value = ''; searchQuery = '';
-    sw.classList.remove('has-text');
-    renderProducts();
-    si.focus();
-  };
+  if (si) {
+    si.oninput = e => {
+      searchQuery = e.target.value.toLowerCase();
+      if (sw) sw.classList.toggle('has-text', searchQuery.length > 0);
+      renderProducts();
+    };
+  }
+  const clearBtn = document.getElementById('clearSearch');
+  if (clearBtn) {
+    clearBtn.onclick = () => {
+      if (si) { si.value = ''; si.focus(); }
+      searchQuery = '';
+      if (sw) sw.classList.remove('has-text');
+      renderProducts();
+    };
+  }
 
-  document.getElementById('chips').onclick = e => {
-    const c = e.target.closest('.chip');
-    if (!c) return;
-    document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
-    c.classList.add('active');
-    document.getElementById('favBtn').classList.remove('active');
-    activeCategory = c.dataset.cat;
-    renderProducts();
-  };
+  const chips = document.getElementById('chips');
+  if (chips) {
+    chips.onclick = e => {
+      const c = e.target.closest('.chip');
+      if (!c) return;
+      document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      const favBtn = document.getElementById('favBtn');
+      if (favBtn) favBtn.classList.remove('active');
+      activeCategory = c.dataset.cat;
+      renderProducts();
+    };
+  }
 
-  document.getElementById('favBtn').onclick = () => {
-    const btn = document.getElementById('favBtn');
-    const isFav = btn.classList.toggle('active');
-    document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
-    activeCategory = isFav ? 'favorites' : 'all';
-    if (!isFav) document.querySelector('.chip[data-cat="all"]').classList.add('active');
-    renderProducts();
-  };
+  const favBtn = document.getElementById('favBtn');
+  if (favBtn) {
+    favBtn.onclick = () => {
+      const isFav = favBtn.classList.toggle('active');
+      document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+      activeCategory = isFav ? 'favorites' : 'all';
+      if (!isFav) {
+        const allChip = document.querySelector('.chip[data-cat="all"]');
+        if (allChip) allChip.classList.add('active');
+      }
+      renderProducts();
+    };
+  }
 
   document.querySelectorAll('.cart-tab').forEach(tab => {
     tab.onclick = () => {
@@ -1058,113 +1068,159 @@ function wireEvents(){
     };
   });
 
-  document.getElementById('scanBtn').onclick = () => openScanner('cart');
-  document.getElementById('closeScan').onclick = closeScanner;
-  document.getElementById('manualBtn').onclick = () => {
-    const v = document.getElementById('manualCode').value.trim();
-    if (v) handleScan(v);
+  const scanBtn = document.getElementById('scanBtn');
+  if (scanBtn) scanBtn.onclick = () => openScanner('cart');
+  const closeScan = document.getElementById('closeScan');
+  if (closeScan) closeScan.onclick = closeScanner;
+  const manualBtn = document.getElementById('manualBtn');
+  if (manualBtn) manualBtn.onclick = () => {
+    const v = document.getElementById('manualCode');
+    if (v && v.value.trim()) handleScan(v.value.trim());
   };
-  document.getElementById('manualCode').onkeypress = e => {
-    if (e.key === 'Enter') {
-      const v = e.target.value.trim();
-      if (v) handleScan(v);
-    }
-  };
+  const manualCode = document.getElementById('manualCode');
+  if (manualCode) {
+    manualCode.onkeypress = e => {
+      if (e.key === 'Enter' && e.target.value.trim()) handleScan(e.target.value.trim());
+    };
+  }
 
-  document.getElementById('chargeBtn').onclick = openCheckout;
-  document.getElementById('clearCartBtn').onclick = () => {
-    if (cart.length === 0) return;
-    if (!confirm('Clear the entire cart?')) return;
-    cart = [];
-    saveCart();
-    renderCart();
-    renderProducts();
-    toast('Cart cleared', 'info');
-  };
+  const chargeBtn = document.getElementById('chargeBtn');
+  if (chargeBtn) chargeBtn.onclick = openCheckout;
+  const clearCartBtn = document.getElementById('clearCartBtn');
+  if (clearCartBtn) {
+    clearCartBtn.onclick = () => {
+      if (cart.length === 0) return;
+      if (!confirm('Clear the entire cart?')) return;
+      cart = [];
+      saveCart();
+      renderCart();
+      renderProducts();
+      toast('Cart cleared', 'info');
+    };
+  }
 
-  document.getElementById('closeCheckout').onclick = () => closeModal('checkoutModal');
-  document.getElementById('cancelCheckout').onclick = () => closeModal('checkoutModal');
-  document.getElementById('confirmCheckout').onclick = completeSale;
+  const closeCheckout = document.getElementById('closeCheckout');
+  if (closeCheckout) closeCheckout.onclick = () => hide('checkoutModal');
+  const cancelCheckout = document.getElementById('cancelCheckout');
+  if (cancelCheckout) cancelCheckout.onclick = () => hide('checkoutModal');
+  const confirmCheckout = document.getElementById('confirmCheckout');
+  if (confirmCheckout) confirmCheckout.onclick = completeSale;
 
   document.querySelectorAll('.pay-opt').forEach(opt => {
     opt.onclick = () => {
       document.querySelectorAll('.pay-opt').forEach(x => x.classList.remove('active'));
       opt.classList.add('active');
       selectedPayment = opt.dataset.method;
-      document.getElementById('cashSection').style.display = selectedPayment === 'cash' ? 'block' : 'none';
-      document.getElementById('mpesaSection').style.display = selectedPayment === 'mpesa' ? 'block' : 'none';
-      document.getElementById('checkoutTotal').textContent = money(cartTotal());
+      const cashSec = document.getElementById('cashSection');
+      const mpSec = document.getElementById('mpesaSection');
+      if (cashSec) cashSec.style.display = selectedPayment === 'cash' ? 'block' : 'none';
+      if (mpSec) mpSec.style.display = selectedPayment === 'mpesa' ? 'block' : 'none';
+      setText('checkoutTotal', money(cartTotal()));
       updateChangeDisplay();
       updateMpesaDisplay();
     };
   });
 
   const quickAmounts = [50, 100, 200, 500, 1000, 2000];
-  document.getElementById('quickCash').innerHTML = quickAmounts.map(v =>
-    `<button data-cash="${v}">${v >= 1000 ? (v/1000)+'K' : v}</button>`
-  ).join('') + '<button data-cash="exact">Exact</button><button data-cash="clear">Clear</button>';
+  const quickCash = document.getElementById('quickCash');
+  if (quickCash) {
+    quickCash.innerHTML = quickAmounts.map(v =>
+      `<button data-cash="${v}">${v >= 1000 ? (v/1000)+'K' : v}</button>`
+    ).join('') + '<button data-cash="exact">Exact</button><button data-cash="clear">Clear</button>';
+    quickCash.onclick = e => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      vibrate(8);
+      const v = b.dataset.cash;
+      if (v === 'exact') cashReceived = cartTotal();
+      else if (v === 'clear') cashReceived = 0;
+      else cashReceived += parseFloat(v);
+      const cashInput = document.getElementById('cashInput');
+      if (cashInput) cashInput.value = cashReceived > 0 ? cashReceived : '';
+      updateChangeDisplay();
+    };
+  }
 
-  document.getElementById('quickCash').onclick = e => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    vibrate(8);
-    const v = b.dataset.cash;
-    if (v === 'exact') cashReceived = cartTotal();
-    else if (v === 'clear') cashReceived = 0;
-    else cashReceived += parseFloat(v);
-    document.getElementById('cashInput').value = cashReceived > 0 ? cashReceived : '';
-    updateChangeDisplay();
-  };
+  const cashInput = document.getElementById('cashInput');
+  if (cashInput) {
+    cashInput.oninput = e => {
+      cashReceived = parseFloat(e.target.value) || 0;
+      updateChangeDisplay();
+    };
+  }
 
-  document.getElementById('cashInput').oninput = e => {
-    cashReceived = parseFloat(e.target.value) || 0;
-    updateChangeDisplay();
-  };
+  const mpesaRefInput = document.getElementById('mpesaRefInput');
+  if (mpesaRefInput) mpesaRefInput.oninput = e => { mpesaRef = e.target.value.trim(); };
+  const mpesaPhoneInput = document.getElementById('mpesaPhoneInput');
+  if (mpesaPhoneInput) mpesaPhoneInput.oninput = e => { mpesaPhone = e.target.value.trim(); };
 
-  document.getElementById('mpesaRefInput').oninput = e => { mpesaRef = e.target.value.trim(); };
-  document.getElementById('mpesaPhoneInput').oninput = e => { mpesaPhone = e.target.value.trim(); };
+  const closeReceipt = document.getElementById('closeReceipt');
+  if (closeReceipt) closeReceipt.onclick = () => hide('receiptModal');
+  const newSaleBtn = document.getElementById('newSaleBtn');
+  if (newSaleBtn) newSaleBtn.onclick = () => hide('receiptModal');
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) printBtn.onclick = () => window.print();
 
-  document.getElementById('closeReceipt').onclick = () => closeModal('receiptModal');
-  document.getElementById('newSaleBtn').onclick = () => closeModal('receiptModal');
-  document.getElementById('printBtn').onclick = () => window.print();
+  const closeMenu = document.getElementById('closeMenu');
+  if (closeMenu) closeMenu.onclick = () => hide('menuModal');
 
-  document.getElementById('closeMenu').onclick = () => closeModal('menuModal');
+  const closeEdit = document.getElementById('closeEdit');
+  if (closeEdit) closeEdit.onclick = () => hide('editModal');
+  const cancelEdit = document.getElementById('cancelEdit');
+  if (cancelEdit) cancelEdit.onclick = () => hide('editModal');
+  const saveEdit = document.getElementById('saveEdit');
+  if (saveEdit) saveEdit.onclick = saveProductEdit;
 
-  document.getElementById('closeEdit').onclick = () => closeModal('editModal');
-  document.getElementById('cancelEdit').onclick = () => closeModal('editModal');
-  document.getElementById('saveEdit').onclick = saveProductEdit;
+  const closeStock = document.getElementById('closeStock');
+  if (closeStock) closeStock.onclick = () => hide('stockModal');
+  const stockAmount = document.getElementById('stockAmount');
+  if (stockAmount) stockAmount.oninput = updateStockPreview;
+  const stockAdd = document.getElementById('stockAdd');
+  if (stockAdd) stockAdd.onclick = () => changeStock(1);
+  const stockRemove = document.getElementById('stockRemove');
+  if (stockRemove) stockRemove.onclick = () => changeStock(-1);
 
-  document.getElementById('closeStock').onclick = () => closeModal('stockModal');
-  document.getElementById('stockAmount').oninput = updateStockPreview;
-  document.getElementById('stockAdd').onclick = () => changeStock(1);
-  document.getElementById('stockRemove').onclick = () => changeStock(-1);
-
-  document.getElementById('closePin').onclick = () => { closeModal('pinModal'); pinCallback = null; pinBuffer = ''; };
+  const closePin = document.getElementById('closePin');
+  if (closePin) closePin.onclick = () => { hide('pinModal'); pinCallback = null; pinBuffer = ''; };
   const pad = document.getElementById('pinPad');
-  pad.innerHTML = [1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k => {
-    if (k === '') return '<div></div>';
-    const isBack = k === '⌫';
-    return `<button class="pin-key ${isBack?'danger':''}" data-pin="${k}">${isBack?'<i class="fas fa-delete-left"></i>':k}</button>`;
-  }).join('');
-  pad.onclick = e => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    handlePinInput(b.dataset.pin);
-  };
+  if (pad) {
+    pad.innerHTML = [1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k => {
+      if (k === '') return '<div></div>';
+      const isBack = k === '⌫';
+      return `<button class="pin-key ${isBack?'danger':''}" data-pin="${k}">${isBack?'<i class="fas fa-delete-left"></i>':k}</button>`;
+    }).join('');
+    pad.onclick = e => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      handlePinInput(b.dataset.pin);
+    };
+  }
 
-  document.getElementById('userChip').onclick = () => openModal('userModal');
-  document.getElementById('closeUser').onclick = () => closeModal('userModal');
-  document.getElementById('cancelUser').onclick = () => closeModal('userModal');
-  document.getElementById('signOutBtn').onclick = () => signOut(auth);
+  const userChip = document.getElementById('userChip');
+  if (userChip) userChip.onclick = () => show('userModal');
+  const closeUser = document.getElementById('closeUser');
+  if (closeUser) closeUser.onclick = () => hide('userModal');
+  const cancelUser = document.getElementById('cancelUser');
+  if (cancelUser) cancelUser.onclick = () => hide('userModal');
+  const signOutBtn = document.getElementById('signOutBtn');
+  if (signOutBtn) signOutBtn.onclick = () => signOut(auth);
 
-  document.getElementById('mpesaBtn').onclick = () => { updateMpesaDisplay(); openModal('mpesaModal'); };
-  document.getElementById('closeMpesa').onclick = () => closeModal('mpesaModal');
-  document.getElementById('mpesaDepositBtn').onclick = () => openMpesaTxModal('in');
-  document.getElementById('mpesaWithdrawBtn').onclick = () => openMpesaTxModal('out');
-  document.getElementById('closeMpesaTx').onclick = () => closeModal('mpesaTxModal');
-  document.getElementById('cancelMpesaTx').onclick = () => closeModal('mpesaTxModal');
-  document.getElementById('saveMpesaTx').onclick = saveMpesaTx;
-  document.getElementById('mpesaTxAmount').oninput = updateMpesaTxPreview;
+  const mpesaBtn = document.getElementById('mpesaBtn');
+  if (mpesaBtn) mpesaBtn.onclick = () => { updateMpesaDisplay(); show('mpesaModal'); };
+  const closeMpesa = document.getElementById('closeMpesa');
+  if (closeMpesa) closeMpesa.onclick = () => hide('mpesaModal');
+  const mpesaDepositBtn = document.getElementById('mpesaDepositBtn');
+  if (mpesaDepositBtn) mpesaDepositBtn.onclick = () => openMpesaTxModal('in');
+  const mpesaWithdrawBtn = document.getElementById('mpesaWithdrawBtn');
+  if (mpesaWithdrawBtn) mpesaWithdrawBtn.onclick = () => openMpesaTxModal('out');
+  const closeMpesaTx = document.getElementById('closeMpesaTx');
+  if (closeMpesaTx) closeMpesaTx.onclick = () => hide('mpesaTxModal');
+  const cancelMpesaTx = document.getElementById('cancelMpesaTx');
+  if (cancelMpesaTx) cancelMpesaTx.onclick = () => hide('mpesaTxModal');
+  const saveMpesaTx = document.getElementById('saveMpesaTx');
+  if (saveMpesaTx) saveMpesaTx.onclick = saveMpesaTxFn;
+  const mpesaTxAmount = document.getElementById('mpesaTxAmount');
+  if (mpesaTxAmount) mpesaTxAmount.oninput = updateMpesaTxPreview;
 
   document.querySelectorAll('.modal').forEach(m => {
     m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
@@ -1173,9 +1229,6 @@ function wireEvents(){
   window.addEventListener('online', checkNetwork);
   window.addEventListener('offline', checkNetwork);
 }
-
-function openModal(id){ document.getElementById(id).classList.add('open'); }
-function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 
 /* ============================================================
    PRODUCTS
@@ -1266,7 +1319,9 @@ function openProductMenu(id){
   const p = allProducts.find(x => String(x.id) === String(id));
   if (!p) return;
   activeProductMenu = p;
-  document.getElementById('menuBody').innerHTML = `
+  const body = document.getElementById('menuBody');
+  if (!body) return;
+  body.innerHTML = `
     <div style="text-align:center;padding:6px 0 12px">
       <div style="font-size:1rem;font-weight:800">${esc(p.name)}</div>
       <div style="font-size:.78rem;color:var(--text3);margin-top:2px">${esc(p.category||'—')} · Stock: ${p.stock??0}</div>
@@ -1280,14 +1335,14 @@ function openProductMenu(id){
       <button class="action-card danger" data-act="delete" style="grid-column:1/-1"><i class="fas fa-trash"></i><div class="t">Delete Product</div><div class="s">Remove from catalog</div></button>
     </div>
   `;
-  document.getElementById('menuBody').querySelectorAll('[data-act]').forEach(btn => {
+  body.querySelectorAll('[data-act]').forEach(btn => {
     btn.onclick = () => {
       const act = btn.dataset.act;
-      closeModal('menuModal');
+      hide('menuModal');
       setTimeout(() => runProductAction(act), 150);
     };
   });
-  openModal('menuModal');
+  show('menuModal');
 }
 
 function runProductAction(action){
@@ -1310,20 +1365,20 @@ function runProductAction(action){
    EDIT PRODUCT
    ============================================================ */
 function openEditProduct(p){
-  document.getElementById('editName').value = p.name || '';
-  document.getElementById('editPrice').value = p.price || 0;
-  document.getElementById('editCat').value = p.category || 'accessories';
-  document.getElementById('editBarcode').value = p.barcode || '';
-  openModal('editModal');
+  const n = document.getElementById('editName'); if (n) n.value = p.name || '';
+  const pr = document.getElementById('editPrice'); if (pr) pr.value = p.price || 0;
+  const c = document.getElementById('editCat'); if (c) c.value = p.category || 'accessories';
+  const b = document.getElementById('editBarcode'); if (b) b.value = p.barcode || '';
+  show('editModal');
 }
 
 async function saveProductEdit(){
   const p = activeProductMenu;
   if (!p) return;
-  const name = document.getElementById('editName').value.trim();
-  const price = parseFloat(document.getElementById('editPrice').value);
-  const category = document.getElementById('editCat').value;
-  const barcode = document.getElementById('editBarcode').value.trim();
+  const name = (document.getElementById('editName')?.value || '').trim();
+  const price = parseFloat(document.getElementById('editPrice')?.value);
+  const category = document.getElementById('editCat')?.value || 'accessories';
+  const barcode = (document.getElementById('editBarcode')?.value || '').trim();
 
   if (!name || isNaN(price) || price <= 0) {
     toast('Enter valid name and price', 'warning');
@@ -1338,7 +1393,7 @@ async function saveProductEdit(){
       icon: iconFor(category),
       barcode: String(barcode)
     });
-    closeModal('editModal');
+    hide('editModal');
     toast('Product updated', 'success');
   } catch (e) {
     toast('Failed: ' + e.message, 'error');
@@ -1349,25 +1404,27 @@ async function saveProductEdit(){
    STOCK
    ============================================================ */
 function openStockAdjust(p){
-  document.getElementById('stockName').textContent = p.name;
-  document.getElementById('stockCurrent').textContent = p.stock ?? 0;
-  document.getElementById('stockAmount').value = 1;
+  setText('stockName', p.name);
+  setText('stockCurrent', p.stock ?? 0);
+  const amt = document.getElementById('stockAmount'); if (amt) amt.value = 1;
   updateStockPreview();
-  openModal('stockModal');
+  show('stockModal');
 }
 
 function updateStockPreview(){
   const p = activeProductMenu;
   if (!p) return;
   const current = p.stock ?? 0;
-  const amt = parseInt(document.getElementById('stockAmount').value) || 0;
-  document.getElementById('stockAfter').textContent = current + amt;
+  const amtEl = document.getElementById('stockAmount');
+  const amt = parseInt(amtEl?.value) || 0;
+  setText('stockAfter', current + amt);
 }
 
 async function changeStock(direction){
   const p = activeProductMenu;
   if (!p) return;
-  const amt = parseInt(document.getElementById('stockAmount').value) || 0;
+  const amtEl = document.getElementById('stockAmount');
+  const amt = parseInt(amtEl?.value) || 0;
   if (amt <= 0) { toast('Enter valid amount', 'warning'); return; }
   const change = direction * amt;
   const newStock = Math.max(0, (p.stock || 0) + change);
@@ -1384,7 +1441,7 @@ async function changeStock(direction){
       }
     });
     toast('Stock updated → ' + newStock, 'success');
-    closeModal('stockModal');
+    hide('stockModal');
   } catch (e) {
     toast('Failed: ' + e.message, 'error');
   }
@@ -1409,13 +1466,13 @@ async function deleteProduct(p){
 function requestPin(msg, cb){
   pinBuffer = '';
   pinCallback = cb;
-  document.getElementById('pinMsg').textContent = msg;
-  document.getElementById('pinErr').textContent = '';
+  setText('pinMsg', msg);
+  setText('pinErr', '');
   document.querySelectorAll('#pinDots .pin-dot').forEach(d => {
     d.style.background = 'var(--bg3)';
     d.style.borderColor = 'var(--border)';
   });
-  openModal('pinModal');
+  show('pinModal');
 }
 
 function handlePinInput(k){
@@ -1431,13 +1488,13 @@ function handlePinInput(k){
   if (pinBuffer.length === 4) {
     setTimeout(() => {
       if (pinBuffer === MANAGER_PIN) {
-        closeModal('pinModal');
+        hide('pinModal');
         const cb = pinCallback;
         pinCallback = null;
         pinBuffer = '';
         if (cb) cb();
       } else {
-        document.getElementById('pinErr').textContent = 'Incorrect PIN';
+        setText('pinErr', 'Incorrect PIN');
         vibrate([40, 30, 40]);
         pinBuffer = '';
         document.querySelectorAll('#pinDots .pin-dot').forEach(d => {
@@ -1521,9 +1578,9 @@ function undoRemove(){
 function renderCart(){
   const items = document.getElementById('cartItems');
   if (!items) return;
-  document.getElementById('cartCount').textContent = cartCount();
-  const tabCount = document.getElementById('cartTabCount');
-  if (tabCount) tabCount.textContent = cartCount();
+
+  setText('cartCount', cartCount());
+  setText('cartTabCount', cartCount());
 
   if (cart.length === 0) {
     items.innerHTML = `<div class="cart-empty"><i class="fas fa-shopping-basket"></i><p>Cart is empty</p></div>`;
@@ -1548,9 +1605,9 @@ function renderCart(){
     items.querySelectorAll('[data-del]').forEach(b => b.onclick = () => removeFromCart(b.dataset.del));
   }
 
-  document.getElementById('sumSub').textContent = money(cartSubtotal());
-  document.getElementById('sumTax').textContent = money(cartTax());
-  document.getElementById('sumTotal').textContent = money(cartTotal());
+  setText('sumSub', money(cartSubtotal()));
+  setText('sumTax', money(cartTax()));
+  setText('sumTotal', money(cartTotal()));
 }
 
 /* ============================================================
@@ -1588,7 +1645,7 @@ function renderRecentSales(){
 }
 
 /* ============================================================
-   CHECKOUT — M-PESA INTEGRATION + SANITIZED SALE
+   CHECKOUT
    ============================================================ */
 function openCheckout(){
   if (cart.length === 0) { toast('Cart is empty', 'warning'); return; }
@@ -1597,42 +1654,41 @@ function openCheckout(){
   mpesaRef = '';
   mpesaPhone = '';
   document.querySelectorAll('.pay-opt').forEach(x => x.classList.toggle('active', x.dataset.method === 'cash'));
-  document.getElementById('cashSection').style.display = 'block';
-  document.getElementById('mpesaSection').style.display = 'none';
-  document.getElementById('cashInput').value = '';
-  document.getElementById('mpesaRefInput').value = '';
-  document.getElementById('mpesaPhoneInput').value = '';
-  document.getElementById('checkoutTotal').textContent = money(cartTotal());
+  setDisplay('cashSection', 'block');
+  setDisplay('mpesaSection', 'none');
+  const ci = document.getElementById('cashInput'); if (ci) ci.value = '';
+  const ri = document.getElementById('mpesaRefInput'); if (ri) ri.value = '';
+  const pi = document.getElementById('mpesaPhoneInput'); if (pi) pi.value = '';
+  setText('checkoutTotal', money(cartTotal()));
   updateChangeDisplay();
   updateMpesaDisplay();
-  openModal('checkoutModal');
+  show('checkoutModal');
 }
 
 function updateChangeDisplay(){
-  document.getElementById('cashDisp').textContent = money(cashReceived);
+  setText('cashDisp', money(cashReceived));
   const total = cartTotal();
   const change = cashReceived - total;
   const box = document.getElementById('changeBox');
   const amt = document.getElementById('changeAmt');
-  amt.textContent = money(Math.abs(change));
-  box.classList.toggle('neg', change < 0);
-  box.querySelector('span').textContent = change < 0 ? 'Remaining' : 'Change Due';
+  if (amt) amt.textContent = money(Math.abs(change));
+  if (box) {
+    box.classList.toggle('neg', change < 0);
+    const lbl = box.querySelector('span');
+    if (lbl) lbl.textContent = change < 0 ? 'Remaining' : 'Change Due';
+  }
 }
 
 function updateMpesaDisplay(){
-  const disp = document.getElementById('mpesaFloatDisp');
-  const modalDisp = document.getElementById('mpesaModalBalance');
-  const modalThresh = document.getElementById('mpesaModalThreshold');
-  const info = document.getElementById('mpesaFloatInfo');
-  const badge = document.getElementById('mpesaBadge');
-
   const formatted = money(mpesaFloatBalance);
-  if (disp) disp.textContent = formatted;
-  if (modalDisp) modalDisp.textContent = formatted;
-  if (modalThresh) modalThresh.textContent = 'Low threshold: ' + money(mpesaFloatLowThreshold);
+  setText('mpesaFloatDisp', formatted);
+  setText('mpesaModalBalance', formatted);
+  setText('mpesaModalThreshold', 'Low threshold: ' + money(mpesaFloatLowThreshold));
 
   const isLow = mpesaFloatBalance < mpesaFloatLowThreshold;
+  const info = document.getElementById('mpesaFloatInfo');
   if (info) info.classList.toggle('warn', isLow);
+  const badge = document.getElementById('mpesaBadge');
   if (badge) badge.style.display = isLow ? 'block' : 'none';
 }
 
@@ -1674,8 +1730,10 @@ async function completeSale(){
   }
 
   const btn = document.getElementById('confirmCheckout');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+  }
 
   const sale = {
     items: cart.map(i => ({
@@ -1695,8 +1753,8 @@ async function completeSale(){
     change: selectedPayment === 'cash' ? +(cashReceived - total).toFixed(2) : null,
     mpesaRef: selectedPayment === 'mpesa' ? String(mpesaRef) : null,
     mpesaPhone: selectedPayment === 'mpesa' ? String(mpesaPhone || '') : null,
-    staff: String(currentUser.name || 'Staff'),
-    staffId: String(currentUser.uid || 'unknown'),
+    staff: String(currentUser?.name || 'Staff'),
+    staffId: String(currentUser?.uid || 'unknown'),
     timestamp: Date.now(),
     status: 'completed'
   };
@@ -1725,8 +1783,8 @@ async function completeSale(){
           reference: String(mpesaRef),
           phone: String(mpesaPhone || ''),
           notes: `Sale #${(txId || '').slice(-6)}`,
-          staff: String(currentUser.name || 'Staff'),
-          staffId: String(currentUser.uid || 'unknown'),
+          staff: String(currentUser?.name || 'Staff'),
+          staffId: String(currentUser?.uid || 'unknown'),
           balanceAfter: +newBalance.toFixed(2),
           timestamp: Date.now()
         });
@@ -1751,21 +1809,23 @@ async function completeSale(){
     renderCart();
     renderProducts();
     renderRecentSales();
-    closeModal('checkoutModal');
+    hide('checkoutModal');
     toast(`Sale complete — ${money(total)}`, 'success');
     vibrate([30, 50, 30]);
   } catch (e) {
     console.error('[ElectroPOS] Sale failed:', e);
     toast('Sale failed: ' + (e.message || 'unknown error'), 'error', 4000);
   } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-check"></i> Complete';
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-check"></i> Complete';
+    }
   }
 }
 
 function showReceipt(sale){
   const date = sale.timestamp ? new Date(sale.timestamp).toLocaleString() : new Date().toLocaleString();
-  document.getElementById('receiptBody').innerHTML = `
+  setHTML('receiptBody', `
     <div class="receipt">
       <h2>LEMSA_ACCESSORIES</h2>
       <div class="center" style="font-size:.72rem">Electronics Shop</div>
@@ -1792,8 +1852,8 @@ function showReceipt(sale){
       ` : ''}
       <div class="div"></div>
       <div class="center" style="margin-top:8px;font-weight:700">Thank you</div>
-    </div>`;
-  openModal('receiptModal');
+    </div>`);
+  show('receiptModal');
 }
 
 /* ============================================================
@@ -1802,20 +1862,21 @@ function showReceipt(sale){
 function openScanner(target){
   scannerTarget = target || 'cart';
   const title = document.getElementById('scanTitle');
-  if (target === 'cart') title.textContent = 'Scan to Add';
-  else if (target === 'barcode-edit') title.textContent = 'Scan for Edit';
-  else if (target === 'barcode-assign') title.textContent = 'Scan to Assign';
-  openModal('scanModal');
+  if (title) {
+    if (target === 'cart') title.textContent = 'Scan to Add';
+    else if (target === 'barcode-edit') title.textContent = 'Scan for Edit';
+    else if (target === 'barcode-assign') title.textContent = 'Scan to Assign';
+  }
+  show('scanModal');
   lastScannedCode = null;
   lastScannedAt = 0;
 
   const status = document.getElementById('scanStatus');
-  if (!window.ZXing) { status.textContent = '⚠️ Scanner not loaded. Type barcode below.'; return; }
+  if (!window.ZXing) { if (status) status.textContent = '⚠️ Scanner not loaded. Type barcode below.'; return; }
 
   scanner = new ZXing.BrowserMultiFormatReader();
   scannerActive = true;
-  status.textContent = 'Starting camera…';
-  status.classList.remove('ok');
+  if (status) { status.textContent = 'Starting camera…'; status.classList.remove('ok'); }
 
   scanner.decodeFromVideoDevice(null, 'scanVideo', (result, err) => {
     if (!scannerActive) return;
@@ -1825,29 +1886,28 @@ function openScanner(target){
       if (code === lastScannedCode && (now - lastScannedAt) < 2000) return;
       lastScannedCode = code;
       lastScannedAt = now;
-      status.textContent = '✅ ' + code;
-      status.classList.add('ok');
+      if (status) { status.textContent = '✅ ' + code; status.classList.add('ok'); }
       vibrate(20);
       handleScan(code);
     }
   }).catch(e => {
     console.error(e);
-    status.textContent = '⚠️ Camera unavailable. Type barcode below.';
+    if (status) status.textContent = '⚠️ Camera unavailable. Type barcode below.';
   });
 }
 
 function closeScanner(){
-  closeModal('scanModal');
+  hide('scanModal');
   scannerActive = false;
   if (scanner) { try { scanner.reset(); } catch(e){} scanner = null; }
   const v = document.getElementById('scanVideo');
   if (v && v.srcObject) { v.srcObject.getTracks().forEach(t => t.stop()); v.srcObject = null; }
-  document.getElementById('manualCode').value = '';
+  const mc = document.getElementById('manualCode'); if (mc) mc.value = '';
 }
 
 function handleScan(code){
   if (scannerTarget === 'barcode-edit') {
-    document.getElementById('editBarcode').value = code;
+    const eb = document.getElementById('editBarcode'); if (eb) eb.value = code;
     toast('Barcode set', 'success');
     closeScanner();
     return;
@@ -1878,29 +1938,31 @@ function handleScan(code){
 let mpesaTxMode = 'in';
 function openMpesaTxModal(mode){
   mpesaTxMode = mode;
-  closeModal('mpesaModal');
-  document.getElementById('mpesaTxTitle').textContent = mode === 'in' ? 'Deposit to Float' : 'Withdraw from Float';
-  document.getElementById('mpesaTxAmount').value = '';
-  document.getElementById('mpesaTxRef').value = '';
-  document.getElementById('mpesaTxNotes').value = '';
-  document.getElementById('mpesaTxPreview').style.display = 'none';
-  openModal('mpesaTxModal');
-  setTimeout(() => document.getElementById('mpesaTxAmount').focus(), 300);
+  hide('mpesaModal');
+  setText('mpesaTxTitle', mode === 'in' ? 'Deposit to Float' : 'Withdraw from Float');
+  const amt = document.getElementById('mpesaTxAmount'); if (amt) amt.value = '';
+  const ref = document.getElementById('mpesaTxRef'); if (ref) ref.value = '';
+  const notes = document.getElementById('mpesaTxNotes'); if (notes) notes.value = '';
+  setDisplay('mpesaTxPreview', 'none');
+  show('mpesaTxModal');
+  setTimeout(() => { if (amt) amt.focus(); }, 300);
 }
 
 function updateMpesaTxPreview(){
-  const amt = parseFloat(document.getElementById('mpesaTxAmount').value) || 0;
+  const amtEl = document.getElementById('mpesaTxAmount');
+  const amt = parseFloat(amtEl?.value) || 0;
   const preview = document.getElementById('mpesaTxPreview');
+  if (!preview) return;
   if (amt <= 0) { preview.style.display = 'none'; return; }
   preview.style.display = 'flex';
   const after = mpesaTxMode === 'in' ? mpesaFloatBalance + amt : mpesaFloatBalance - amt;
-  document.getElementById('mpesaTxAfter').textContent = money(Math.max(0, after));
+  setText('mpesaTxAfter', money(Math.max(0, after)));
 }
 
-async function saveMpesaTx(){
-  const amt = parseFloat(document.getElementById('mpesaTxAmount').value);
-  const ref = document.getElementById('mpesaTxRef').value.trim();
-  const notes = document.getElementById('mpesaTxNotes').value.trim();
+async function saveMpesaTxFn(){
+  const amt = parseFloat(document.getElementById('mpesaTxAmount')?.value);
+  const ref = (document.getElementById('mpesaTxRef')?.value || '').trim();
+  const notes = (document.getElementById('mpesaTxNotes')?.value || '').trim();
 
   if (!amt || amt <= 0) { toast('Enter valid amount', 'warning'); return; }
   if (mpesaTxMode === 'out' && amt > mpesaFloatBalance) {
@@ -1909,8 +1971,10 @@ async function saveMpesaTx(){
   }
 
   const btn = document.getElementById('saveMpesaTx');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+  }
 
   try {
     const newBalance = mpesaTxMode === 'in' ? mpesaFloatBalance + amt : mpesaFloatBalance - amt;
@@ -1926,21 +1990,23 @@ async function saveMpesaTx(){
       reference: ref || '',
       phone: '',
       notes: notes || '',
-      staff: String(currentUser.name || 'Staff'),
-      staffId: String(currentUser.uid || 'unknown'),
+      staff: String(currentUser?.name || 'Staff'),
+      staffId: String(currentUser?.uid || 'unknown'),
       balanceAfter: +newBalance.toFixed(2),
       timestamp: Date.now()
     });
 
     toast(`${mpesaTxMode === 'in' ? 'Deposited' : 'Withdrawn'} ${money(amt)}`, 'mpesa');
     vibrate([20, 40, 20]);
-    closeModal('mpesaTxModal');
+    hide('mpesaTxModal');
   } catch (e) {
     console.error(e);
     toast('Failed: ' + e.message, 'error');
   } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-check"></i> Confirm';
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-check"></i> Confirm';
+    }
   }
 }
 
@@ -2019,7 +2085,6 @@ onAuthStateChanged(auth, async (user) => {
 
   clearAuthIntent();
 
-  // Verify user is registered
   try {
     const snap = await get(ref(db, 'users'));
     const users = snap.val() || {};
