@@ -1,14 +1,14 @@
 {
-  "short_name": "LEMSA_ADMIN",
+  "short_name": "LEMSA_STAFF",
   "name": "LEMSA_ACCESSORIES",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
