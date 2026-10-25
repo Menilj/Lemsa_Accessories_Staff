@@ -1,21 +1,21 @@
 {
   "$schema": "https://schemastore.org",
-  "id": "/?utm_source=pwa",
+  "id": "/Lemsa_Accessories_Staff/?utm_source=pwa",
   "name": "Lemsa Accessories",
   "short_name": "Lemsa_staff",
   "description": "Premium electronics and smartphone accessories shop.",
-  "start_url": "/?utm_source=pwa",
+  "start_url": "/Lemsa_Accessories_Staff/?utm_source=pwa",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#111111",
   "theme_color": "#111111",
   "orientation": "portrait-primary",
   "categories": ["shopping", "electronics"],
-  "icon": [
+  "icons": [
     {
-      "src": "/logo.png",
+      "src": "/Lemsa_Accessories_Staff/logo.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any"
+      "sizes": "192x192"
     },
+
     
