@@ -13,7 +13,7 @@
   "categories": ["shopping", "electronics"],
   "icon": [
     {
-      "src": "logo.png",
+      "src": "/logo.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any"
