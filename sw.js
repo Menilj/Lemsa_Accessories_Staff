@@ -2,9 +2,10 @@ const CACHE_NAME = 'lemsa-cache-v1';
 
 // Add assets you want available immediately offline
 const PRECACHE_ASSETS = [
-  '/Lemsa_Accessories_Staff/',
-  '/Lemsa_Accessories_Staff/index.html',
-  '/Lemsa_Accessories_Staff/manifest.json'
+  './',
+  'index.html',
+  'manifest.json',
+  'logo.png'
 ];
 
 
