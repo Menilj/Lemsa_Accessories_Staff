@@ -20,6 +20,8 @@
   --accent:#3b82f6;--accent2:#2563eb;--accentB:#60a5fa;--accentS:rgba(59,130,246,.14);--glow:rgba(59,130,246,.5);
   --success:#10b981;--warning:#f59e0b;--danger:#ef4444;--purple:#8b5cf6;
   --mpesa:#00a651;--mpesa-light:#4ade80;--mpesa-dark:#007a3d;
+  --cash:#10b981;--cash-light:#34d399;--cash-dark:#047857;
+  --sales:#8b5cf6;--sales-light:#a78bfa;--sales-dark:#6d28d9;
   --text:#fff;--text2:#a8b8d0;--text3:#64748b;
   --r-sm:12px;--r-md:16px;--r-lg:22px;--r-xl:28px;
   --safe-top:env(safe-area-inset-top,0px);
@@ -114,7 +116,6 @@ input{-webkit-appearance:none;appearance:none}
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text3)}
 .empty i{font-size:3rem;opacity:.2;margin-bottom:14px;display:block}
 
-/* Desktop cart */
 .cart{flex:1;min-width:340px;max-width:440px;display:flex;flex-direction:column;background:var(--bg2);border-left:1px solid var(--border)}
 .cart-tabs{display:flex;background:var(--bg3);border-bottom:1px solid var(--border);padding:6px;gap:4px;flex-shrink:0}
 .cart-tab{flex:1;padding:9px;border-radius:var(--r-sm);font-size:.75rem;font-weight:800;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:transparent;text-transform:uppercase;letter-spacing:.5px}
@@ -212,6 +213,20 @@ input{-webkit-appearance:none;appearance:none}
 .mpesa-float-info .val{color:var(--mpesa-light);font-weight:900;font-variant-numeric:tabular-nums}
 .mpesa-float-info.warn .val{color:var(--danger)}
 
+.wallet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 0 12px}
+.wallet-card{padding:14px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);display:flex;flex-direction:column;gap:6px}
+.wallet-card .wc-head{display:flex;align-items:center;justify-content:space-between}
+.wallet-card .wc-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.wallet-card.mpesa .wc-icon{background:rgba(0,166,81,.15);color:var(--mpesa-light)}
+.wallet-card.cash .wc-icon{background:rgba(16,185,129,.15);color:var(--cash-light)}
+.wallet-card.sales .wc-icon{background:rgba(139,92,246,.15);color:var(--sales-light)}
+.wallet-card .wc-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;font-weight:800}
+.wallet-card .wc-value{font-size:1.3rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.wallet-card.mpesa .wc-value{color:var(--mpesa-light)}
+.wallet-card.cash .wc-value{color:var(--cash-light)}
+.wallet-card.sales .wc-value{color:var(--sales-light)}
+.wallet-card .wc-sub{font-size:.65rem;color:var(--text3);font-weight:700}
+
 .scan-view{position:relative;width:100%;aspect-ratio:4/3;background:#000;border-radius:var(--r-lg);overflow:hidden;border:2px solid var(--accent)}
 .scan-view video{width:100%;height:100%;object-fit:cover}
 .scan-overlay{position:absolute;inset:0;pointer-events:none}
@@ -224,7 +239,7 @@ input{-webkit-appearance:none;appearance:none}
 .scan-manual input{flex:1;padding:13px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);color:var(--text);font-size:.92rem;outline:none;font-family:monospace;min-height:46px}
 .scan-manual button{padding:13px 18px;background:var(--accent);color:#fff;border-radius:var(--r-md);font-weight:800;font-size:.84rem;min-height:46px}
 
-.receipt{background:#fff;color:#000;padding:20px 16px;border-radius:var(--r-md);font-family:monospace;font-size:.78rem;line-height:1.55}
+.receipt{background:#fff;color:#000;padding:20px 16px;border-radius:var(--r-md);font-family:'JetBrains Mono','Courier New',monospace;font-size:.78rem;line-height:1.55}
 .receipt h2{text-align:center;font-size:1.05rem;margin-bottom:4px;font-weight:800}
 .receipt .center{text-align:center}
 .receipt .div{border-top:1px dashed #000;margin:10px 0}
@@ -240,6 +255,7 @@ input{-webkit-appearance:none;appearance:none}
 .action-card .s{font-size:.68rem;color:var(--text3);font-weight:600}
 .action-card.danger i{color:var(--danger)}
 .action-card.mpesa i{color:var(--mpesa-light)}
+.action-card.cash i{color:var(--cash-light)}
 
 .pin-dot{width:18px;height:18px;border-radius:50%;background:var(--bg3);border:2px solid var(--border)}
 .pin-key{padding:20px 8px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:1.4rem;font-weight:800;min-height:60px;display:flex;align-items:center;justify-content:center;cursor:pointer}
@@ -272,9 +288,22 @@ input{-webkit-appearance:none;appearance:none}
 .profile-btn.danger{color:var(--danger)}
 .profile-btn.danger > i:first-child{color:var(--danger);background:rgba(239,68,68,.12)}
 .profile-btn.mpesa > i:first-child{color:var(--mpesa-light);background:rgba(0,166,81,.15)}
+.profile-btn.cash > i:first-child{color:var(--cash-light);background:rgba(16,185,129,.15)}
+.profile-btn.sales > i:first-child{color:var(--sales-light);background:rgba(139,92,246,.15)}
 .profile-btn .text{flex:1}
 .profile-btn .text small{display:block;font-size:.72rem;color:var(--text3);font-weight:600;margin-top:2px}
 .profile-btn .chev{color:var(--text3);font-size:.85rem}
+
+.profile-wallets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.profile-wallet{padding:14px;border-radius:var(--r-md);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:6px}
+.profile-wallet.mpesa{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,166,81,.03));border-color:rgba(0,166,81,.3)}
+.profile-wallet.cash{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(16,185,129,.03));border-color:rgba(16,185,129,.3)}
+.profile-wallet.sales{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(139,92,246,.03));border-color:rgba(139,92,246,.3)}
+.profile-wallet .pw-label{font-size:.6rem;text-transform:uppercase;letter-spacing:1px;font-weight:800;color:var(--text3)}
+.profile-wallet .pw-value{font-size:1rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.profile-wallet.mpesa .pw-value{color:var(--mpesa-light)}
+.profile-wallet.cash .pw-value{color:var(--cash-light)}
+.profile-wallet.sales .pw-value{color:var(--sales-light)}
 
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-h-total);background:rgba(10,21,36,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:100;padding-bottom:var(--safe-bottom)}
 .bottom-nav-inner{display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
@@ -293,7 +322,6 @@ input{-webkit-appearance:none;appearance:none}
 .cart-fab.pulse{animation:fab-pulse .4s}
 @keyframes fab-pulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
 
-/* Mobile cart sheet */
 .cart-sheet{display:none;position:fixed;left:0;right:0;bottom:0;top:6vh;background:var(--bg2);border-top-left-radius:var(--r-xl);border-top-right-radius:var(--r-xl);border-top:1px solid var(--border2);z-index:200;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);flex-direction:column;max-height:94vh}
 .cart-sheet.open{transform:translateY(0)}
 .cart-sheet .sheet-handle{display:flex;justify-content:center;padding:10px 0 6px;flex-shrink:0;cursor:grab;touch-action:none}
@@ -316,6 +344,7 @@ input{-webkit-appearance:none;appearance:none}
 .toast.error{border-left-color:var(--danger)}.toast.error i{color:var(--danger)}
 .toast.warning{border-left-color:var(--warning)}.toast.warning i{color:var(--warning)}
 .toast.mpesa{border-left-color:var(--mpesa)}.toast.mpesa i{color:var(--mpesa-light)}
+.toast.cash{border-left-color:var(--cash)}.toast.cash i{color:var(--cash-light)}
 .toast .undo{margin-left:auto;background:var(--bg3);border:1px solid var(--border);color:var(--accentB);padding:5px 10px;border-radius:var(--r-sm);font-weight:800;font-size:.75rem}
 
 .offline-bar{position:fixed;top:0;left:0;right:0;background:var(--warning);color:#000;padding:6px 12px;padding-top:calc(6px + var(--safe-top));text-align:center;font-size:.8rem;font-weight:800;z-index:9998;display:none}
@@ -353,6 +382,8 @@ input{-webkit-appearance:none;appearance:none}
   .bnav-item{font-size:.58rem}
   .bnav-item i{font-size:1.05rem}
   .cart-fab{width:54px;height:54px;font-size:1.2rem}
+  .profile-wallets{grid-template-columns:1fr}
+  .wallet-grid{grid-template-columns:1fr}
 }
 @media(min-width:901px){
   .main{flex-direction:row;padding-bottom:0}
@@ -363,11 +394,131 @@ input{-webkit-appearance:none;appearance:none}
   .cart-sheet-backdrop{display:none}
   .profile-page{display:none!important}
 }
-@media print{
-  body{background:#fff !important}
-  .receipt{box-shadow:none;border-radius:0;padding:12px}
-  .modal,.toasts,.offline-bar,.bottom-nav,.cart-fab,.cart-sheet,.cart-sheet-backdrop{display:none !important}
-  #receiptBody .receipt{display:block !important}
+
+/* ============================================================
+   PRINT — only the receipt, nothing else
+   ============================================================ */
+@page {
+  margin: 6mm;
+  size: auto;
+}
+
+@media print {
+  /* Kill page background and fixed positioning so content flows naturally */
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    background: #fff !important;
+    color: #000 !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  #app {
+    display: block !important;
+    height: auto !important;
+    background: #fff !important;
+  }
+
+  /* Hide EVERYTHING by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Reset the print-target container so it can render at the top */
+  #receiptModal {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #fff !important;
+    backdrop-filter: none !important;
+    opacity: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    z-index: 99999 !important;
+  }
+  #receiptModal .m-content {
+    display: block !important;
+    max-width: none !important;
+    width: 100% !important;
+    max-height: none !important;
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+  #receiptModal .m-hdr,
+  #receiptModal .m-foot {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  #receiptModal .m-body {
+    display: block !important;
+    visibility: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    max-height: none !important;
+    flex: none !important;
+    gap: 0 !important;
+  }
+
+  /* Make the receipt itself visible and clean */
+  #receiptBody,
+  #receiptBody * {
+    visibility: visible !important;
+  }
+  #receiptBody {
+    display: block !important;
+    width: 100% !important;
+    max-width: 80mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  #receiptBody .receipt {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 6px 4px !important;
+    margin: 0 !important;
+    font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    max-width: 80mm !important;
+  }
+  #receiptBody .receipt h2 {
+    font-size: 14px !important;
+    margin-bottom: 3px !important;
+  }
+  #receiptBody .receipt .row {
+    font-size: 11px !important;
+  }
+  #receiptBody .receipt .row.total {
+    font-size: 13px !important;
+  }
+
+  /* Explicitly hide every other element */
+  .toasts, .offline-bar, .bottom-nav, .cart-fab,
+  .cart-sheet, .cart-sheet-backdrop,
+  .loading, .login-wrap,
+  .modal:not(#receiptModal),
+  .m-content:not(#receiptModal .m-content),
+  .hdr, .main, .products, .cart, .profile-page,
+  .tbtn, .chips, .grid, .toolbar, .search {
+    display: none !important;
+    visibility: hidden !important;
+  }
 }
 </style>
 </head>
@@ -378,7 +529,10 @@ input{-webkit-appearance:none;appearance:none}
 
 <script type="module">
 /* ============================================================
-   ElectroPOS · Staff Terminal — Fixed Features
+   ElectroPOS · Staff Terminal
+   - No VAT
+   - Dual cash drawer (Cash Float + Cash Sales)
+   - Reliable receipt printing
    ============================================================ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -387,8 +541,11 @@ import {
   setPersistence, browserLocalPersistence,
   browserSessionPersistence, inMemoryPersistence
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, push, set, onValue, update, remove, get, serverTimestamp, runTransaction }
+import { getDatabase, ref as dbRef, push, set, onValue, update, remove, get, serverTimestamp, runTransaction }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+/* Defensive alias — prevents `ref is not a function`. */
+const ref = dbRef;
 
 const firebaseConfig = {
   apiKey: "AIzaSyDh3pTqEkU_2G2MpQtDtvZQc1vXM6tvMFo",
@@ -402,7 +559,6 @@ const firebaseConfig = {
 };
 
 const MANAGER_PIN = '2387';
-const VAT_RATE = 0.16;
 
 (function checkConfig(){
   const errs = [];
@@ -416,9 +572,6 @@ const VAT_RATE = 0.16;
 
 let app, auth, db;
 
-/* ============================================================
-   SAFE DOM HELPERS
-   ============================================================ */
 function setText(id, value){const el=document.getElementById(id); if(el) el.textContent=value;}
 function setHTML(id, value){const el=document.getElementById(id); if(el) el.innerHTML=value;}
 function setDisplay(id, value){const el=document.getElementById(id); if(el) el.style.display=value;}
@@ -428,9 +581,6 @@ function toggleClass(id, cls, force){const el=document.getElementById(id); if(el
 function show(id){addClass(id, 'open');}
 function hide(id){removeClass(id, 'open');}
 
-/* ============================================================
-   MOBILE HELPERS
-   ============================================================ */
 function isMobileDevice(){
   const ua = navigator.userAgent || '';
   const uaMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS|FxiOS/i.test(ua);
@@ -492,7 +642,6 @@ try {
   throw e;
 }
 
-/* Redirect result resolver */
 (async () => {
   try {
     await pickBestPersistence();
@@ -516,9 +665,6 @@ try {
   }
 })();
 
-/* ============================================================
-   STATE
-   ============================================================ */
 let currentUser = null;
 let allProducts = [];
 let activeCategory = 'all';
@@ -530,34 +676,31 @@ let cashReceived = 0;
 let mpesaRef = '';
 let mpesaPhone = '';
 let mpesaFloatBalance = 0;
+let cashFloatBalance = 0;
+let cashSalesBalance = 0;
 let mpesaFloatLowThreshold = 5000;
+let cashFloatLowThreshold = 2000;
 let activeProductMenu = null;
 let scannerTarget = 'cart';
 let recentSales = [];
-
 let scanner = null;
 let scannerActive = false;
 let lastScannedCode = null;
 let lastScannedAt = 0;
-
 let isOnline = navigator.onLine;
 let offlineQueue = [];
 let lastRemoved = null;
-
 let shellRendered = false;
 let pinBuffer = '';
 let pinCallback = null;
-
 let activeTab = 'products';
 let sheetTab = 'cart';
+let mpesaTxMode = 'in';
 
 const CART_KEY = 'electropos_cart';
 const FAV_KEY = 'electro_favorites';
 const OFFLINE_KEY = 'electro_offline_queue';
 
-/* ============================================================
-   HELPERS
-   ============================================================ */
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function money(n){const num=Number(n)||0;const fixed=num.toFixed(2);const parts=fixed.split('.');return 'KSh '+parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',')+'.'+parts[1];}
 function initials(n){return (n||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();}
@@ -568,7 +711,7 @@ function timeAgo(ts){const d=Date.now()-ts;if(d<60000)return'just now';if(d<3600
 function toast(msg, type='info', duration=2400, showUndo=false){
   let c = document.querySelector('.toasts');
   if (!c) { c = document.createElement('div'); c.className = 'toasts'; document.body.appendChild(c); }
-  const icons = {info:'fa-circle-info',success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',mpesa:'fa-mobile-screen'};
+  const icons = {info:'fa-circle-info',success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',mpesa:'fa-mobile-screen',cash:'fa-money-bill-wave'};
   const el = document.createElement('div');
   el.className = 'toast ' + type;
   el.innerHTML = `<i class="fas ${icons[type]||icons.info}"></i><span>${esc(msg)}</span>${showUndo?'<button class="undo">Undo</button>':''}`;
@@ -582,10 +725,9 @@ function toast(msg, type='info', duration=2400, showUndo=false){
   }, duration);
 }
 
-/* CART MATH */
+/* CART MATH — NO VAT */
 function cartSubtotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0);}
-function cartTax(){return cartSubtotal()*VAT_RATE;}
-function cartTotal(){return cartSubtotal()+cartTax();}
+function cartTotal(){return cartSubtotal();}
 function cartCount(){return cart.reduce((s,i)=>s+i.qty,0);}
 
 function saveCart(){
@@ -658,16 +800,12 @@ function renderLogin(errMsg=''){
   };
 }
 
-/* ============================================================
-   SIGN-IN — popup first, redirect fallback
-   ============================================================ */
 async function doGoogleSignIn(){
   await pickBestPersistence();
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
   const isMobile = isMobileDevice();
 
-  // On mobile, use popup first (avoids sessionStorage wipe). Redirect is last resort.
   if (isMobile) {
     try {
       console.log('📱 Mobile → attempting popup');
@@ -689,7 +827,6 @@ async function doGoogleSignIn(){
         await signInWithPopup(auth, p2);
         return;
       }
-      // Fall back to redirect
       console.log('⚠️ Falling back to redirect');
       markAuthIntent();
       try { await setPersistence(auth, browserSessionPersistence); } catch(e){}
@@ -698,7 +835,6 @@ async function doGoogleSignIn(){
     }
   }
 
-  // Desktop: popup first
   try {
     await signInWithPopup(auth, provider);
     clearAuthIntent();
@@ -733,8 +869,8 @@ function renderUI(){
         </div>
       </div>
       <div class="hdr-actions">
-        <button class="hdr-icon-btn mpesa" id="mpesaBtn" title="M-Pesa Float">
-          <i class="fas fa-mobile-screen"></i>
+        <button class="hdr-icon-btn mpesa" id="mpesaBtn" title="Floats & Drawers">
+          <i class="fas fa-wallet"></i>
           <span class="badge" id="mpesaBadge" style="display:none">!</span>
         </button>
       </div>
@@ -770,10 +906,26 @@ function renderUI(){
             <span class="role">${esc(currentUser.role||'staff')}</span>
           </div>
         </div>
+
+        <div class="profile-wallets">
+          <div class="profile-wallet mpesa">
+            <div class="pw-label"><i class="fas fa-mobile-screen"></i> M-Pesa</div>
+            <div class="pw-value" id="pwMpesa">KSh 0.00</div>
+          </div>
+          <div class="profile-wallet cash">
+            <div class="pw-label"><i class="fas fa-money-bill-wave"></i> Cash Float</div>
+            <div class="pw-value" id="pwCash">KSh 0.00</div>
+          </div>
+          <div class="profile-wallet sales">
+            <div class="pw-label"><i class="fas fa-cash-register"></i> Cash Sales</div>
+            <div class="pw-value" id="pwSales">KSh 0.00</div>
+          </div>
+        </div>
+
         <div class="profile-actions">
           <button class="profile-btn mpesa" id="profileMpesaBtn">
-            <i class="fas fa-mobile-screen"></i>
-            <div class="text">M-Pesa Float<small>View balance & manage float</small></div>
+            <i class="fas fa-wallet"></i>
+            <div class="text">Floats &amp; Drawers<small>Manage all three ledgers</small></div>
             <i class="fas fa-chevron-right chev"></i>
           </button>
           <button class="profile-btn" id="profileRecentBtn">
@@ -798,8 +950,6 @@ function renderUI(){
           <div class="cart-items" id="cartItems"></div>
           <div class="cart-foot">
             <div class="summary">
-              <div class="sumrow"><span>Subtotal</span><span id="sumSub">KSh 0.00</span></div>
-              <div class="sumrow"><span>VAT (16%)</span><span id="sumTax">KSh 0.00</span></div>
               <div class="sumrow total"><span>Total</span><span id="sumTotal">KSh 0.00</span></div>
             </div>
             <div class="c-actions-row">
@@ -829,8 +979,6 @@ function renderUI(){
         <div class="cart-items" id="sheetCartItems"></div>
         <div class="cart-foot">
           <div class="summary">
-            <div class="sumrow"><span>Subtotal</span><span id="sheetSumSub">KSh 0.00</span></div>
-            <div class="sumrow"><span>VAT (16%)</span><span id="sheetSumTax">KSh 0.00</span></div>
             <div class="sumrow total"><span>Total</span><span id="sheetSumTotal">KSh 0.00</span></div>
           </div>
           <div class="c-actions-row">
@@ -897,11 +1045,14 @@ function renderUI(){
               <div class="form-field"><label>Custom amount</label><input id="cashInput" type="number" step="1" min="0" placeholder="0" inputmode="numeric"></div>
               <div class="change-disp" id="changeBox"><span>Change Due</span><strong id="changeAmt">KSh 0.00</strong></div>
             </div>
+            <div class="mpesa-float-info" style="margin-top:10px" id="cashFloatInfo">
+              <span class="lbl">Cash Sales Drawer</span><span class="val" id="cashSalesDisp">KSh 0.00</span>
+            </div>
           </div>
           <div id="mpesaSection" style="display:none">
             <div class="mpesa-panel">
               <div class="mp-hdr"><i class="fas fa-mobile-screen"></i><span>M-Pesa Payment</span></div>
-              <div class="mpesa-float-info" id="mpesaFloatInfo"><span class="lbl">Float Balance</span><span class="val" id="mpesaFloatDisp">KSh 0.00</span></div>
+              <div class="mpesa-float-info" id="mpesaFloatInfo"><span class="lbl">M-Pesa Float</span><span class="val" id="mpesaFloatDisp">KSh 0.00</span></div>
               <div class="form-field"><label>M-Pesa Reference / Code</label><input id="mpesaRefInput" type="text" placeholder="e.g. QK12345678" autocomplete="off"></div>
               <div class="form-field"><label>Customer Phone (optional)</label><input id="mpesaPhoneInput" type="tel" placeholder="e.g. 0712345678" autocomplete="off" inputmode="tel"></div>
             </div>
@@ -971,16 +1122,69 @@ function renderUI(){
 
     <div class="modal" id="mpesaModal">
       <div class="m-content">
-        <div class="m-hdr"><h3><i class="fas fa-mobile-screen"></i> M-Pesa Float</h3><button class="m-close" id="closeMpesa"><i class="fas fa-xmark"></i></button></div>
+        <div class="m-hdr"><h3><i class="fas fa-wallet"></i> Floats &amp; Drawers</h3><button class="m-close" id="closeMpesa"><i class="fas fa-xmark"></i></button></div>
         <div class="m-body">
-          <div style="text-align:center;padding:20px;background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,166,81,.05));border:1.5px solid rgba(0,166,81,.35);border-radius:var(--r-lg);margin-bottom:10px">
-            <div style="font-size:.7rem;color:var(--mpesa-light);text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:8px">Available Float</div>
-            <div style="font-size:2.2rem;font-weight:900;color:#fff;font-variant-numeric:tabular-nums;text-shadow:0 4px 20px rgba(0,166,81,.4)" id="mpesaModalBalance">KSh 0.00</div>
-            <div style="font-size:.7rem;color:var(--text3);margin-top:6px" id="mpesaModalThreshold">Low threshold: KSh 5,000</div>
+          <div class="wallet-grid">
+            <div class="wallet-card mpesa">
+              <div class="wc-head"><div class="wc-icon"><i class="fas fa-mobile-screen"></i></div></div>
+              <div class="wc-label">M-Pesa Float</div>
+              <div class="wc-value" id="mpesaModalBalance">KSh 0.00</div>
+              <div class="wc-sub" id="mpesaModalThreshold">Threshold: KSh 5,000</div>
+            </div>
+            <div class="wallet-card cash">
+              <div class="wc-head"><div class="wc-icon"><i class="fas fa-money-bill-wave"></i></div></div>
+              <div class="wc-label">Cash Float</div>
+              <div class="wc-value" id="cashFloatModalDisp">KSh 0.00</div>
+              <div class="wc-sub" id="cashFloatModalThreshold">Threshold: KSh 2,000</div>
+            </div>
           </div>
+          <div class="wallet-card sales" style="margin-bottom:4px">
+            <div class="wc-head"><div class="wc-icon"><i class="fas fa-cash-register"></i></div></div>
+            <div class="wc-label">Cash Sales Drawer</div>
+            <div class="wc-value" id="cashSalesModalDisp">KSh 0.00</div>
+            <div class="wc-sub">Product-sale cash · never touched by float transfers</div>
+          </div>
+
+          <div style="font-size:.7rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-top:8px;margin-bottom:2px">Transfer between M-Pesa &amp; Cash Float</div>
           <div class="action-grid">
-            <button class="action-card mpesa" id="mpesaDepositBtn"><i class="fas fa-arrow-down"></i><div class="t">Deposit</div><div class="s">Add to float</div></button>
-            <button class="action-card mpesa" id="mpesaWithdrawBtn"><i class="fas fa-arrow-up"></i><div class="t">Withdraw</div><div class="s">Move to bank</div></button>
+            <button class="action-card mpesa" id="mpesaDepositBtn">
+              <i class="fas fa-arrow-down"></i>
+              <div class="t">Deposit</div>
+              <div class="s">M-Pesa ↓ · Cash Float ↑</div>
+            </button>
+            <button class="action-card mpesa" id="mpesaWithdrawBtn">
+              <i class="fas fa-arrow-up"></i>
+              <div class="t">Withdraw</div>
+              <div class="s">M-Pesa ↑ · Cash Float ↓</div>
+            </button>
+          </div>
+
+          <div style="font-size:.7rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-top:14px;margin-bottom:2px">Manage Cash Float</div>
+          <div class="action-grid">
+            <button class="action-card cash" id="cashFloatDepositBtn">
+              <i class="fas fa-plus"></i>
+              <div class="t">Bank Top-Up</div>
+              <div class="s">Add working capital</div>
+            </button>
+            <button class="action-card cash" id="cashFloatWithdrawBtn">
+              <i class="fas fa-minus"></i>
+              <div class="t">Bank Withdraw</div>
+              <div class="s">Move float to bank</div>
+            </button>
+          </div>
+
+          <div style="font-size:.7rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-top:14px;margin-bottom:2px">Manage Cash Sales Drawer</div>
+          <div class="action-grid">
+            <button class="action-card cash" id="cashSalesCollectBtn">
+              <i class="fas fa-hand-holding-dollar"></i>
+              <div class="t">Collect to Bank</div>
+              <div class="s">Clear cash sales to bank</div>
+            </button>
+            <button class="action-card cash" id="cashSalesAdjustBtn">
+              <i class="fas fa-scale-balanced"></i>
+              <div class="t">Reconcile</div>
+              <div class="s">Adjust to actual cash counted</div>
+            </button>
           </div>
         </div>
       </div>
@@ -988,14 +1192,38 @@ function renderUI(){
 
     <div class="modal" id="mpesaTxModal">
       <div class="m-content">
-        <div class="m-hdr"><h3><i class="fas fa-mobile-screen"></i> <span id="mpesaTxTitle">Float Transaction</span></h3><button class="m-close" id="closeMpesaTx"><i class="fas fa-xmark"></i></button></div>
+        <div class="m-hdr"><h3><i class="fas fa-mobile-screen"></i> <span id="mpesaTxTitle">Float Transfer</span></h3><button class="m-close" id="closeMpesaTx"><i class="fas fa-xmark"></i></button></div>
         <div class="m-body">
           <div class="form-field"><label>Amount (KSh)</label><input id="mpesaTxAmount" type="number" step="0.01" min="0" placeholder="0.00" inputmode="decimal"></div>
           <div class="form-field"><label>Reference / Code</label><input id="mpesaTxRef" type="text" placeholder="e.g. QK12345678" autocomplete="off"></div>
           <div class="form-field"><label>Notes (optional)</label><input id="mpesaTxNotes" type="text" placeholder="Reason…"></div>
-          <div class="mpesa-float-info" id="mpesaTxPreview" style="display:none"><span class="lbl">After Transaction</span><span class="val" id="mpesaTxAfter">KSh 0.00</span></div>
+          <div class="mpesa-float-info" id="mpesaTxPreview" style="display:none"><span class="lbl">After Transfer</span><span class="val" id="mpesaTxAfter">KSh 0.00</span></div>
         </div>
         <div class="m-foot"><button class="bs" id="cancelMpesaTx">Cancel</button><button class="bmpesa" id="saveMpesaTx"><i class="fas fa-check"></i> Confirm</button></div>
+      </div>
+    </div>
+
+    <div class="modal" id="cashFloatModal">
+      <div class="m-content">
+        <div class="m-hdr"><h3><i class="fas fa-money-bill-wave"></i> <span id="cashFloatTitle">Cash Float Adjustment</span></h3><button class="m-close" id="closeCashFloat"><i class="fas fa-xmark"></i></button></div>
+        <div class="m-body">
+          <div class="form-field"><label>Amount (KSh)</label><input id="cashFloatAmount" type="number" step="0.01" min="0" placeholder="0.00" inputmode="decimal"></div>
+          <div class="form-field"><label>Reference / Notes</label><input id="cashFloatNotes" type="text" placeholder="e.g. Bank top-up" autocomplete="off"></div>
+          <div class="mpesa-float-info" id="cashFloatPreview" style="display:none"><span class="lbl">After</span><span class="val" id="cashFloatAfter">KSh 0.00</span></div>
+        </div>
+        <div class="m-foot"><button class="bs" id="cancelCashFloat">Cancel</button><button class="bok" id="saveCashFloat"><i class="fas fa-check"></i> Confirm</button></div>
+      </div>
+    </div>
+
+    <div class="modal" id="cashSalesModal">
+      <div class="m-content">
+        <div class="m-hdr"><h3><i class="fas fa-cash-register"></i> <span id="cashSalesTitle">Cash Sales Drawer</span></h3><button class="m-close" id="closeCashSales"><i class="fas fa-xmark"></i></button></div>
+        <div class="m-body">
+          <div class="form-field"><label>Amount (KSh)</label><input id="cashSalesAmount" type="number" step="0.01" min="0" placeholder="0.00" inputmode="decimal"></div>
+          <div class="form-field"><label>Reference / Notes</label><input id="cashSalesNotes" type="text" placeholder="e.g. Collected to bank" autocomplete="off"></div>
+          <div class="mpesa-float-info" id="cashSalesPreview" style="display:none"><span class="lbl">After</span><span class="val" id="cashSalesAfter">KSh 0.00</span></div>
+        </div>
+        <div class="m-foot"><button class="bs" id="cancelCashSales">Cancel</button><button class="bp" id="saveCashSales"><i class="fas fa-check"></i> Confirm</button></div>
       </div>
     </div>
   `;
@@ -1006,31 +1234,22 @@ function renderUI(){
   renderCart();
   renderRecentSales();
   updateMpesaDisplay();
+  updateCashFloatDisplay();
+  updateCashSalesDisplay();
   updateMobileNav();
   checkNetwork();
 }
 
-/* ============================================================
-   MOBILE NAV
-   ============================================================ */
 function switchTab(tab){
   activeTab = tab;
   const products = document.getElementById('productsPanel');
   const profile = document.getElementById('profilePage');
   document.querySelectorAll('.bnav-item').forEach(b => b.classList.toggle('active', b.dataset.nav === tab));
-
   if (products) products.classList.remove('hidden');
   if (profile) profile.classList.remove('active');
-
   if (tab === 'products') { closeCartSheet(); }
-  else if (tab === 'cart') {
-    switchSheetTab('cart');
-    openCartSheet();
-  }
-  else if (tab === 'recent') {
-    switchSheetTab('recent');
-    openCartSheet();
-  }
+  else if (tab === 'cart') { switchSheetTab('cart'); openCartSheet(); }
+  else if (tab === 'recent') { switchSheetTab('recent'); openCartSheet(); }
   else if (tab === 'profile') {
     if (products) products.classList.add('hidden');
     if (profile) profile.classList.add('active');
@@ -1043,6 +1262,9 @@ function switchTab(tab){
 function renderProfilePage(){
   const c = document.getElementById('profileRecentCount');
   if (c) c.textContent = `${recentSales.length} transaction${recentSales.length!==1?'s':''}`;
+  setText('pwMpesa', money(mpesaFloatBalance));
+  setText('pwCash', money(cashFloatBalance));
+  setText('pwSales', money(cashSalesBalance));
 }
 
 function openCartSheet(){
@@ -1115,7 +1337,6 @@ function wireEvents(){
     renderProducts();
   };
 
-  // Desktop cart tabs
   document.querySelectorAll('#cartPanel .cart-tab').forEach(tab => {
     tab.onclick = () => {
       const t = tab.dataset.tab;
@@ -1125,12 +1346,10 @@ function wireEvents(){
     };
   });
 
-  // Sheet cart tabs
   document.querySelectorAll('#cartSheet .cart-tab').forEach(tab => {
     tab.onclick = () => switchSheetTab(tab.dataset.tab);
   });
 
-  // Bottom nav
   document.querySelectorAll('.bnav-item').forEach(btn => {
     btn.onclick = () => switchTab(btn.dataset.nav);
   });
@@ -1143,7 +1362,6 @@ function wireEvents(){
   const sheetBackdrop = document.getElementById('cartSheetBackdrop');
   if (sheetBackdrop) sheetBackdrop.onclick = closeCartSheet;
 
-  // Drag handle
   const sheetHandle = document.getElementById('sheetHandle');
   const cartSheet = document.getElementById('cartSheet');
   if (sheetHandle && cartSheet) {
@@ -1204,6 +1422,7 @@ function wireEvents(){
       setText('checkoutTotal', money(cartTotal()));
       updateChangeDisplay();
       updateMpesaDisplay();
+      updateCashSalesDisplay();
     };
   });
 
@@ -1237,7 +1456,7 @@ function wireEvents(){
   const newSaleBtn = document.getElementById('newSaleBtn');
   if (newSaleBtn) newSaleBtn.onclick = () => hide('receiptModal');
   const printBtn = document.getElementById('printBtn');
-  if (printBtn) printBtn.onclick = () => window.print();
+  if (printBtn) printBtn.onclick = printReceipt;
 
   const closeMenu = document.getElementById('closeMenu');
   if (closeMenu) closeMenu.onclick = () => hide('menuModal');
@@ -1267,16 +1486,17 @@ function wireEvents(){
   }
 
   const profileMpesaBtn = document.getElementById('profileMpesaBtn');
-  if (profileMpesaBtn) profileMpesaBtn.onclick = () => { updateMpesaDisplay(); show('mpesaModal'); };
+  if (profileMpesaBtn) profileMpesaBtn.onclick = () => { updateMpesaDisplay(); updateCashFloatDisplay(); updateCashSalesDisplay(); show('mpesaModal'); };
   const profileRecentBtn = document.getElementById('profileRecentBtn');
   if (profileRecentBtn) profileRecentBtn.onclick = () => { switchTab('recent'); };
   const profileSignOutBtn = document.getElementById('profileSignOutBtn');
   if (profileSignOutBtn) profileSignOutBtn.onclick = () => signOut(auth);
 
   const mpesaBtn = document.getElementById('mpesaBtn');
-  if (mpesaBtn) mpesaBtn.onclick = () => { updateMpesaDisplay(); show('mpesaModal'); };
+  if (mpesaBtn) mpesaBtn.onclick = () => { updateMpesaDisplay(); updateCashFloatDisplay(); updateCashSalesDisplay(); show('mpesaModal'); };
   const closeMpesa = document.getElementById('closeMpesa');
   if (closeMpesa) closeMpesa.onclick = () => hide('mpesaModal');
+
   const mpesaDepositBtn = document.getElementById('mpesaDepositBtn');
   if (mpesaDepositBtn) mpesaDepositBtn.onclick = () => openMpesaTxModal('in');
   const mpesaWithdrawBtn = document.getElementById('mpesaWithdrawBtn');
@@ -1290,11 +1510,37 @@ function wireEvents(){
   const mpesaTxAmount = document.getElementById('mpesaTxAmount');
   if (mpesaTxAmount) mpesaTxAmount.oninput = updateMpesaTxPreview;
 
-  // Modal backdrop tap to close — only close if not cart sheet
+  const cfAdd = document.getElementById('cashFloatDepositBtn');
+  if (cfAdd) cfAdd.onclick = () => openCashFloatModal('in');
+  const cfSub = document.getElementById('cashFloatWithdrawBtn');
+  if (cfSub) cfSub.onclick = () => openCashFloatModal('out');
+  const closeCF = document.getElementById('closeCashFloat');
+  if (closeCF) closeCF.onclick = () => hide('cashFloatModal');
+  const cancelCF = document.getElementById('cancelCashFloat');
+  if (cancelCF) cancelCF.onclick = () => hide('cashFloatModal');
+  const saveCF = document.getElementById('saveCashFloat');
+  if (saveCF) saveCF.onclick = saveCashFloat;
+  const cfAmount = document.getElementById('cashFloatAmount');
+  if (cfAmount) cfAmount.oninput = updateCashFloatPreview;
+
+  const csCollect = document.getElementById('cashSalesCollectBtn');
+  if (csCollect) csCollect.onclick = () => openCashSalesModal('collect');
+  const csAdjust = document.getElementById('cashSalesAdjustBtn');
+  if (csAdjust) csAdjust.onclick = () => openCashSalesModal('reconcile');
+  const closeCS = document.getElementById('closeCashSales');
+  if (closeCS) closeCS.onclick = () => hide('cashSalesModal');
+  const cancelCS = document.getElementById('cancelCashSales');
+  if (cancelCS) cancelCS.onclick = () => hide('cashSalesModal');
+  const saveCS = document.getElementById('saveCashSales');
+  if (saveCS) saveCS.onclick = saveCashSales;
+  const csAmount = document.getElementById('cashSalesAmount');
+  if (csAmount) csAmount.oninput = updateCashSalesPreview;
+
   document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
 
   window.addEventListener('online', checkNetwork);
   window.addEventListener('offline', checkNetwork);
+  window.addEventListener('afterprint', restoreAfterPrint);
 }
 
 function clearCart(){
@@ -1305,6 +1551,38 @@ function clearCart(){
   renderCart();
   renderProducts();
   toast('Cart cleared', 'info');
+}
+
+/* ============================================================
+   PRINT RECEIPT
+   ============================================================ */
+function printReceipt() {
+  const receiptBody = document.getElementById('receiptBody');
+  if (!receiptBody || !receiptBody.innerHTML.trim()) {
+    toast('No receipt to print', 'warning');
+    return;
+  }
+
+  // Ensure the modal is open (it should be, since Print is inside it)
+  const modal = document.getElementById('receiptModal');
+  if (!modal.classList.contains('open')) {
+    modal.classList.add('open');
+  }
+
+  // Small delay to ensure layout is settled before invoking print dialog
+  setTimeout(() => {
+    try {
+      window.print();
+    } catch (e) {
+      console.error('Print failed:', e);
+      toast('Print failed: ' + e.message, 'error');
+    }
+  }, 60);
+}
+
+function restoreAfterPrint() {
+  // Nothing to restore — print CSS is purely additive via @media print.
+  console.log('✅ Print finished');
 }
 
 /* ============================================================
@@ -1573,11 +1851,7 @@ function renderCart(){
     }
   });
 
-  const sub = money(cartSubtotal());
-  const tax = money(cartTax());
   const tot = money(cartTotal());
-  ['sumSub','sheetSumSub'].forEach(id => setText(id, sub));
-  ['sumTax','sheetSumTax'].forEach(id => setText(id, tax));
   ['sumTotal','sheetSumTotal'].forEach(id => setText(id, tot));
   setText('cartTabCount', cartCount());
   updateMobileNav();
@@ -1632,6 +1906,7 @@ function openCheckout(){
   setText('checkoutTotal', money(cartTotal()));
   updateChangeDisplay();
   updateMpesaDisplay();
+  updateCashSalesDisplay();
   closeCartSheet();
   show('checkoutModal');
 }
@@ -1654,14 +1929,38 @@ function updateMpesaDisplay(){
   const formatted = money(mpesaFloatBalance);
   setText('mpesaFloatDisp', formatted);
   setText('mpesaModalBalance', formatted);
-  setText('mpesaModalThreshold', 'Low threshold: ' + money(mpesaFloatLowThreshold));
+  setText('mpesaModalThreshold', 'Threshold: ' + money(mpesaFloatLowThreshold));
   const isLow = mpesaFloatBalance < mpesaFloatLowThreshold;
   const info = document.getElementById('mpesaFloatInfo');
   if (info) info.classList.toggle('warn', isLow);
   const badge = document.getElementById('mpesaBadge');
   if (badge) badge.style.display = isLow ? 'block' : 'none';
+  setText('pwMpesa', formatted);
 }
 
+function updateCashFloatDisplay(){
+  const formatted = money(cashFloatBalance);
+  const modalEl = document.getElementById('cashFloatModalDisp');
+  if (modalEl) modalEl.textContent = formatted;
+  const threshEl = document.getElementById('cashFloatModalThreshold');
+  if (threshEl) threshEl.textContent = 'Threshold: ' + money(cashFloatLowThreshold);
+  const info = document.getElementById('cashFloatInfo');
+  if (info) info.classList.toggle('warn', cashFloatBalance < cashFloatLowThreshold);
+  setText('pwCash', formatted);
+}
+
+function updateCashSalesDisplay(){
+  const formatted = money(cashSalesBalance);
+  setText('cashSalesDisp', formatted);
+  setText('cashSalesModalDisp', formatted);
+  setText('pwSales', formatted);
+}
+
+/* ============================================================
+   COMPLETE SALE — Dual Drawer Model
+   Cash sale     → Cash Sales drawer ↑
+   M-Pesa sale   → M-Pesa float ↓
+   ============================================================ */
 async function completeSale(){
   if (cart.length === 0) { toast('Cart is empty', 'warning'); return; }
   const cleanCart = cart.filter(i => i && i.id != null && String(i.id) !== '' && typeof i.name === 'string' && i.name.length > 0 && typeof i.price === 'number' && !isNaN(i.price) && typeof i.qty === 'number' && i.qty > 0);
@@ -1671,10 +1970,11 @@ async function completeSale(){
   }
   cart = cleanCart;
   const total = cartTotal();
+
   if (selectedPayment === 'cash' && cashReceived < total) { toast('Cash received is less than total', 'warning'); vibrate([40,30,40]); return; }
   if (selectedPayment === 'mpesa') {
     if (!mpesaRef) { toast('Enter M-Pesa reference code', 'warning'); return; }
-    if (mpesaFloatBalance < total) { toast(`Insufficient float. Need ${money(total - mpesaFloatBalance)} more`, 'error', 4000); vibrate([40,30,40]); return; }
+    if (mpesaFloatBalance < total) { toast(`Insufficient M-Pesa float. Need ${money(total - mpesaFloatBalance)} more`, 'error', 4000); vibrate([40,30,40]); return; }
   }
 
   const btn = document.getElementById('confirmCheckout');
@@ -1682,9 +1982,7 @@ async function completeSale(){
 
   const sale = {
     items: cart.map(i => ({ productId: String(i.id), name: String(i.name), price: Number(i.price), qty: Number(i.qty), lineTotal: +(Number(i.price) * Number(i.qty)).toFixed(2) })),
-    subtotal: +cartSubtotal().toFixed(2),
-    vat: +cartTax().toFixed(2),
-    vatRate: VAT_RATE,
+    subtotal: +cartTotal().toFixed(2),
     total: +total.toFixed(2),
     currency: 'KSh',
     paymentMethod: String(selectedPayment || 'cash'),
@@ -1703,6 +2001,7 @@ async function completeSale(){
       const txRef = push(ref(db, 'transactions'));
       const txId = txRef.key;
       await set(txRef, { ...sale, id: txId, timestamp: serverTimestamp() });
+
       for (const item of cart) {
         const p = allProducts.find(x => String(x.id) === String(item.id));
         if (p && typeof p.stock === 'number') {
@@ -1710,6 +2009,7 @@ async function completeSale(){
           await update(ref(db, `products/${p.id}`), { stock: newStock });
         }
       }
+
       if (selectedPayment === 'mpesa') {
         const newBalance = mpesaFloatBalance - total;
         await set(ref(db, 'mpesaFloat/balance'), +newBalance.toFixed(2));
@@ -1719,7 +2019,18 @@ async function completeSale(){
           balanceAfter: +newBalance.toFixed(2), timestamp: Date.now()
         });
         toast('M-Pesa float updated', 'mpesa');
+      } else {
+        const newCashSales = cashSalesBalance + total;
+        await set(ref(db, 'cashSales/balance'), +newCashSales.toFixed(2));
+        await set(push(ref(db, 'cashSales/transactions')), {
+          type: 'sale', amount: +total.toFixed(2), reference: '',
+          notes: `Sale #${(txId || '').slice(-6)}`, staff: String(currentUser?.name || 'Staff'), staffId: String(currentUser?.uid || 'unknown'),
+          balanceAfter: +newCashSales.toFixed(2), cashReceived: +cashReceived.toFixed(2), change: +(cashReceived - total).toFixed(2),
+          timestamp: Date.now()
+        });
+        toast('Cash sales drawer updated', 'success');
       }
+
       sale.id = txId;
       recentSales.unshift(sale);
       if (recentSales.length > 50) recentSales = recentSales.slice(0, 50);
@@ -1761,8 +2072,6 @@ function showReceipt(sale){
       <div class="div"></div>
       ${(sale.items||[]).map(i => `<div class="row"><span>${esc(i.name)}</span><span>${money(i.lineTotal || (i.price*i.qty))}</span></div><div style="font-size:.7rem;color:#444;padding-left:6px">${i.qty} × ${money(i.price)}</div>`).join('')}
       <div class="div"></div>
-      <div class="row"><span>Subtotal</span><span>${money(sale.subtotal)}</span></div>
-      <div class="row"><span>VAT (16%)</span><span>${money(sale.vat)}</span></div>
       <div class="row total"><span>TOTAL</span><span>${money(sale.total)}</span></div>
       ${sale.paymentMethod === 'cash' ? `<div class="div"></div><div class="row"><span>Cash</span><span>${money(sale.cashReceived)}</span></div><div class="row"><span>Change</span><span>${money(sale.change)}</span></div>` : ''}
       <div class="div"></div>
@@ -1827,13 +2136,15 @@ function handleScan(code){
   closeScanner();
 }
 
-let mpesaTxMode = 'in';
+/* ============================================================
+   M-PESA ↔ CASH FLOAT TRANSFER
+   ============================================================ */
 function openMpesaTxModal(mode){
   mpesaTxMode = mode;
   hide('mpesaModal');
-  setText('mpesaTxTitle', mode === 'in' ? 'Deposit to Float' : 'Withdraw from Float');
+  setText('mpesaTxTitle', mode === 'in' ? 'Deposit — M-Pesa ↓ · Cash Float ↑' : 'Withdraw — M-Pesa ↑ · Cash Float ↓');
   const amt = document.getElementById('mpesaTxAmount'); if (amt) amt.value = '';
-  const ref = document.getElementById('mpesaTxRef'); if (ref) ref.value = '';
+  const refEl = document.getElementById('mpesaTxRef'); if (refEl) refEl.value = '';
   const notes = document.getElementById('mpesaTxNotes'); if (notes) notes.value = '';
   setDisplay('mpesaTxPreview', 'none');
   show('mpesaTxModal');
@@ -1846,30 +2157,207 @@ function updateMpesaTxPreview(){
   if (!preview) return;
   if (amt <= 0) { preview.style.display = 'none'; return; }
   preview.style.display = 'flex';
-  const after = mpesaTxMode === 'in' ? mpesaFloatBalance + amt : mpesaFloatBalance - amt;
-  setText('mpesaTxAfter', money(Math.max(0, after)));
+  const mpesaAfter = mpesaTxMode === 'in' ? mpesaFloatBalance - amt : mpesaFloatBalance + amt;
+  const cashAfter = mpesaTxMode === 'in' ? cashFloatBalance + amt : cashFloatBalance - amt;
+  setText('mpesaTxAfter', `${money(Math.max(0, mpesaAfter))} · Cash ${money(Math.max(0, cashAfter))}`);
 }
 async function saveMpesaTxFn(){
   const amt = parseFloat(document.getElementById('mpesaTxAmount')?.value);
-  const ref = (document.getElementById('mpesaTxRef')?.value || '').trim();
+  const txRef = (document.getElementById('mpesaTxRef')?.value || '').trim();
   const notes = (document.getElementById('mpesaTxNotes')?.value || '').trim();
   if (!amt || amt <= 0) { toast('Enter valid amount', 'warning'); return; }
-  if (mpesaTxMode === 'out' && amt > mpesaFloatBalance) { toast(`Insufficient float. Available: ${money(mpesaFloatBalance)}`, 'error'); return; }
+
+  if (mpesaTxMode === 'in' && amt > mpesaFloatBalance) {
+    toast(`Insufficient M-Pesa float. Available: ${money(mpesaFloatBalance)}`, 'error', 3500);
+    return;
+  }
+  if (mpesaTxMode === 'out' && amt > cashFloatBalance) {
+    toast(`Insufficient cash float. Available: ${money(cashFloatBalance)}`, 'error', 3500);
+    return;
+  }
+
   const btn = document.getElementById('saveMpesaTx');
   if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…'; }
+
+  const pairId = 'pair_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
+  const now = Date.now();
+
   try {
-    const newBalance = mpesaTxMode === 'in' ? mpesaFloatBalance + amt : mpesaFloatBalance - amt;
-    await runTransaction(ref(db, 'mpesaFloat/balance'), (cur) => { const c = cur || 0; return mpesaTxMode === 'in' ? c + amt : c - amt; });
-    await set(push(ref(db, 'mpesaFloat/transactions')), {
-      type: mpesaTxMode, amount: +amt.toFixed(2), reference: ref || '', phone: '', notes: notes || '',
-      staff: String(currentUser?.name || 'Staff'), staffId: String(currentUser?.uid || 'unknown'),
-      balanceAfter: +newBalance.toFixed(2), timestamp: Date.now()
+    let newMpesa = mpesaFloatBalance;
+    let newCash = cashFloatBalance;
+
+    await runTransaction(ref(db, 'mpesaFloat/balance'), (cur) => {
+      const m = cur || 0;
+      newMpesa = mpesaTxMode === 'in' ? m - amt : m + amt;
+      if (newMpesa < 0) throw new Error('INSUFFICIENT_MPESA');
+      return +newMpesa.toFixed(2);
     });
-    toast(`${mpesaTxMode === 'in' ? 'Deposited' : 'Withdrawn'} ${money(amt)}`, 'mpesa');
+
+    await runTransaction(ref(db, 'cashFloat/balance'), (cur) => {
+      const c = cur || 0;
+      newCash = mpesaTxMode === 'in' ? c + amt : c - amt;
+      if (newCash < 0) throw new Error('INSUFFICIENT_CASH');
+      return +newCash.toFixed(2);
+    });
+
+    const directionLabel = mpesaTxMode === 'in' ? 'Deposit (M-Pesa ↓, cash float ↑)' : 'Withdraw (M-Pesa ↑, cash float ↓)';
+    const baseNotes = notes || (mpesaTxMode === 'in' ? 'Agent deposit — cash received' : 'Agent withdraw — cash paid out');
+
+    await set(push(ref(db, 'mpesaFloat/transactions')), {
+      type: mpesaTxMode === 'in' ? 'out' : 'in',
+      amount: +amt.toFixed(2), reference: txRef || '',
+      notes: `${directionLabel} — ${baseNotes}`,
+      staff: String(currentUser?.name || 'Staff'), staffId: String(currentUser?.uid || 'unknown'),
+      balanceAfter: +newMpesa.toFixed(2), previousBalance: +mpesaFloatBalance.toFixed(2),
+      cashBalanceAfter: +newCash.toFixed(2), transferPairId: pairId, timestamp: now
+    });
+
+    await set(push(ref(db, 'cashFloat/transactions')), {
+      type: mpesaTxMode === 'in' ? 'in' : 'out',
+      amount: +amt.toFixed(2), reference: txRef || '',
+      notes: `${directionLabel} — ${baseNotes}`,
+      staff: String(currentUser?.name || 'Staff'), staffId: String(currentUser?.uid || 'unknown'),
+      balanceAfter: +newCash.toFixed(2), previousBalance: +cashFloatBalance.toFixed(2),
+      transferPairId: pairId, timestamp: now
+    });
+
+    toast(`${mpesaTxMode === 'in' ? 'Deposited' : 'Withdrew'} ${money(amt)} — ${mpesaTxMode === 'in' ? 'cash float ↑' : 'cash float ↓'}`, 'mpesa');
     vibrate([20,40,20]);
     hide('mpesaTxModal');
-  } catch (e) { toast('Failed: ' + e.message, 'error'); }
-  finally { if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Confirm'; } }
+  } catch (e) {
+    if (e.message === 'INSUFFICIENT_CASH') toast(`Insufficient cash float`, 'error');
+    else if (e.message === 'INSUFFICIENT_MPESA') toast(`Insufficient M-Pesa float`, 'error');
+    else toast('Failed: ' + e.message, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Confirm'; }
+  }
+}
+
+/* ============================================================
+   CASH FLOAT (bank top-up / withdraw)
+   ============================================================ */
+let cashFloatMode = 'in';
+function openCashFloatModal(mode){
+  cashFloatMode = mode;
+  hide('mpesaModal');
+  setText('cashFloatTitle', mode === 'in' ? 'Add to Cash Float' : 'Withdraw from Cash Float');
+  const amt = document.getElementById('cashFloatAmount'); if (amt) amt.value = '';
+  const notes = document.getElementById('cashFloatNotes'); if (notes) notes.value = '';
+  setDisplay('cashFloatPreview', 'none');
+  show('cashFloatModal');
+  setTimeout(() => { if (amt) amt.focus(); }, 300);
+}
+function updateCashFloatPreview(){
+  const amt = parseFloat(document.getElementById('cashFloatAmount')?.value) || 0;
+  const preview = document.getElementById('cashFloatPreview');
+  if (!preview) return;
+  if (amt <= 0) { preview.style.display = 'none'; return; }
+  preview.style.display = 'flex';
+  const after = cashFloatMode === 'in' ? cashFloatBalance + amt : cashFloatBalance - amt;
+  setText('cashFloatAfter', money(Math.max(0, after)));
+}
+async function saveCashFloat(){
+  const amt = parseFloat(document.getElementById('cashFloatAmount')?.value);
+  const notes = (document.getElementById('cashFloatNotes')?.value || '').trim();
+  if (!amt || amt <= 0) { toast('Enter valid amount', 'warning'); return; }
+  if (cashFloatMode === 'out' && amt > cashFloatBalance) {
+    toast(`Insufficient cash float. Available: ${money(cashFloatBalance)}`, 'error', 3500);
+    return;
+  }
+  const btn = document.getElementById('saveCashFloat');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…'; }
+  try {
+    let newCash = cashFloatBalance;
+    await runTransaction(ref(db, 'cashFloat/balance'), (cur) => {
+      const c = cur || 0;
+      newCash = cashFloatMode === 'in' ? c + amt : c - amt;
+      if (newCash < 0) throw new Error('INSUFFICIENT_CASH');
+      return +newCash.toFixed(2);
+    });
+
+    await set(push(ref(db, 'cashFloat/transactions')), {
+      type: cashFloatMode, amount: +amt.toFixed(2), reference: '',
+      notes: notes || (cashFloatMode === 'in' ? 'Float top-up' : 'Float withdrawal'),
+      staff: String(currentUser?.name || 'Staff'), staffId: String(currentUser?.uid || 'unknown'),
+      balanceAfter: +newCash.toFixed(2), previousBalance: +cashFloatBalance.toFixed(2),
+      timestamp: Date.now()
+    });
+
+    toast(`${cashFloatMode === 'in' ? 'Added to' : 'Removed from'} cash float: ${money(amt)}`, 'cash');
+    hide('cashFloatModal');
+  } catch (e) {
+    if (e.message === 'INSUFFICIENT_CASH') toast(`Insufficient cash float`, 'error');
+    else toast('Failed: ' + e.message, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Confirm'; }
+  }
+}
+
+/* ============================================================
+   CASH SALES DRAWER
+   ============================================================ */
+let cashSalesMode = 'collect';
+function openCashSalesModal(mode){
+  cashSalesMode = mode;
+  hide('mpesaModal');
+  setText('cashSalesTitle', mode === 'collect' ? 'Collect Cash Sales to Bank' : 'Reconcile Cash Sales Drawer');
+  const amt = document.getElementById('cashSalesAmount');
+  if (amt) amt.value = mode === 'collect' ? cashSalesBalance.toFixed(2) : '';
+  const notes = document.getElementById('cashSalesNotes'); if (notes) notes.value = '';
+  setDisplay('cashSalesPreview', 'none');
+  show('cashSalesModal');
+  setTimeout(() => { if (amt) amt.focus(); }, 300);
+}
+function updateCashSalesPreview(){
+  const amt = parseFloat(document.getElementById('cashSalesAmount')?.value) || 0;
+  const preview = document.getElementById('cashSalesPreview');
+  if (!preview) return;
+  if (isNaN(amt) || amt < 0) { preview.style.display = 'none'; return; }
+  preview.style.display = 'flex';
+  const after = cashSalesMode === 'collect' ? Math.max(0, cashSalesBalance - amt) : amt;
+  setText('cashSalesAfter', money(after));
+}
+async function saveCashSales(){
+  const amt = parseFloat(document.getElementById('cashSalesAmount')?.value);
+  const notes = (document.getElementById('cashSalesNotes')?.value || '').trim();
+  if (isNaN(amt) || amt < 0) { toast('Enter valid amount', 'warning'); return; }
+  if (cashSalesMode === 'collect' && amt > cashSalesBalance) {
+    toast(`Amount exceeds cash sales. Available: ${money(cashSalesBalance)}`, 'error', 3500);
+    return;
+  }
+  const btn = document.getElementById('saveCashSales');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…'; }
+  try {
+    let newSales;
+    let type;
+    let logAmount;
+    let logNotes;
+    if (cashSalesMode === 'collect') {
+      newSales = cashSalesBalance - amt;
+      type = 'collect';
+      logAmount = amt;
+      logNotes = notes || 'Collected to bank';
+    } else {
+      newSales = amt;
+      type = 'reconcile';
+      logAmount = Math.abs(cashSalesBalance - amt);
+      logNotes = notes || `Reconciled to actual: ${money(amt)}`;
+    }
+    await set(ref(db, 'cashSales/balance'), +newSales.toFixed(2));
+    await set(push(ref(db, 'cashSales/transactions')), {
+      type, amount: +logAmount.toFixed(2), reference: '',
+      notes: logNotes,
+      staff: String(currentUser?.name || 'Staff'), staffId: String(currentUser?.uid || 'unknown'),
+      balanceAfter: +newSales.toFixed(2), previousBalance: +cashSalesBalance.toFixed(2),
+      timestamp: Date.now()
+    });
+    toast(cashSalesMode === 'collect' ? `Collected ${money(amt)} to bank` : `Cash sales reconciled to ${money(newSales)}`, 'success');
+    hide('cashSalesModal');
+  } catch (e) {
+    toast('Failed: ' + e.message, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Confirm'; }
+  }
 }
 
 function checkNetwork(){
@@ -1904,6 +2392,17 @@ async function syncOffline(){
           type: 'sale', amount: +sale.total.toFixed(2), reference: String(sale.mpesaRef), phone: String(sale.mpesaPhone || ''),
           notes: `Offline sale #${(txId || '').slice(-6)}`, staff: String(sale.staff || 'Staff'), staffId: String(sale.staffId || 'unknown'),
           balanceAfter: +newBal.toFixed(2), timestamp: Date.now()
+        });
+      } else if (sale.paymentMethod === 'cash') {
+        const currentSnap = await get(ref(db, 'cashSales/balance'));
+        const current = currentSnap.val() || 0;
+        const newBal = current + sale.total;
+        await set(ref(db, 'cashSales/balance'), +newBal.toFixed(2));
+        await set(push(ref(db, 'cashSales/transactions')), {
+          type: 'sale', amount: +sale.total.toFixed(2), reference: '',
+          notes: `Offline cash sale #${(txId || '').slice(-6)}`, staff: String(sale.staff || 'Staff'), staffId: String(sale.staffId || 'unknown'),
+          balanceAfter: +newBal.toFixed(2), cashReceived: sale.cashReceived || 0, change: sale.change || 0,
+          timestamp: Date.now()
         });
       }
       synced++;
@@ -1965,11 +2464,23 @@ onAuthStateChanged(auth, async (user) => {
     mpesaFloatBalance = snap.val() || 0;
     if (shellRendered) updateMpesaDisplay();
   });
-
+  onValue(ref(db, 'cashFloat/balance'), snap => {
+    cashFloatBalance = snap.val() || 0;
+    if (shellRendered) updateCashFloatDisplay();
+  });
+  onValue(ref(db, 'cashSales/balance'), snap => {
+    cashSalesBalance = snap.val() || 0;
+    if (shellRendered) updateCashSalesDisplay();
+  });
   onValue(ref(db, 'mpesaFloat/settings'), snap => {
     const settings = snap.val() || {};
     if (settings.lowThreshold) mpesaFloatLowThreshold = settings.lowThreshold;
     if (shellRendered) updateMpesaDisplay();
+  });
+  onValue(ref(db, 'cashFloat/settings'), snap => {
+    const settings = snap.val() || {};
+    if (settings.lowThreshold) cashFloatLowThreshold = settings.lowThreshold;
+    if (shellRendered) updateCashFloatDisplay();
   });
 
   if (!shellRendered) {
