@@ -1,21 +1,21 @@
 {
-  "short_name": "LEMSA_STAFF",
-  "name": "LEMSA_ACCESSORIES",
-  "icons": [
-    {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": "/",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "$schema": "https://schemastore.org",
+  "id": "/?utm_source=pwa",
+  "name": "Lemsa Accessories",
+  "short_name": "Lemsa_staff",
+  "description": "Premium electronics and smartphone accessories shop.",
+  "start_url": "/?utm_source=pwa",
   "display": "standalone",
-  "orientation": "portrait"
-}
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "electronics"],
+  "icon": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    
