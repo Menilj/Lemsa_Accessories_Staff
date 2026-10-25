@@ -7,18 +7,47 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
- <meta name="theme-color" content="#000000"><!-- Link the manifest -->
- <link rel="manifest" href="/manifest.json">
-  <!-- Register the Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemsa Accessories</title>
+
+  <!-- PWA Metadata Links -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/logo.png">
+
+  <style>
+    /* Quick styling for the custom app download banner */
+    #pwa-install-banner {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 9999;
+      font-family: sans-serif;
+      align-items: center;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
     }
-  </script>
-
-
+    #pwa-install-banner button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 
   
 <title>LEMSA_ACCESSORIES · Staff</title>
@@ -537,6 +566,14 @@ input{-webkit-appearance:none;appearance:none}
 </style>
 </head>
 <body>
+
+<!-- Hidden Installation Promotion UI Element -->
+  <div id="pwa-install-banner">
+    <span>Download Lemsa App?</span>
+    <button id="pwa-install-btn">Install</button>
+  </div>
+
+ 
 <div id="app">
   <div class="loading"><div class="spinner"></div><p>Loading</p></div>
 </div>
@@ -548,6 +585,50 @@ input{-webkit-appearance:none;appearance:none}
    - Dual cash drawer (Cash Float + Cash Sales)
    - Reliable receipt printing
    ============================================================ */
+
+ // 1. Register the Service Worker securely
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker Registered!', reg.scope))
+          .catch(err => console.error('Service Worker registration failed:', err));
+      });
+    }
+
+    // 2. Capture and Trigger Custom Download Prompt
+    let deferredPrompt;
+    const installBanner = document.getElementById('pwa-install-banner');
+    const installBtn = document.getElementById('pwa-install-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent browser default installation UI mini-infobar from flashing
+      e.preventDefault();
+      // Save event properties globally so we can trigger it later
+      deferredPrompt = e;
+      // Show your custom branded install banner
+      installBanner.style.display = 'flex';
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      // Show native operating system download overlay modal
+      deferredPrompt.prompt();
+      // Wait for consumer interaction response choice
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User installation decision: ${outcome}`);
+      // Clear execution cache references since event can only be called once
+      deferredPrompt = null;
+      // Conceal interface promotion container elements
+      installBanner.style.display = 'none';
+    });
+
+    // Detect if app was successfully installed
+    window.addEventListener('appinstalled', () => {
+      console.log('PWA application successfully installed by user!');
+      installBanner.style.display = 'none';
+    });
+
+ 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
